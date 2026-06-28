@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Calendar, User } from 'lucide-react';
 
 export const metadata = {
-  title: 'mProjects | Actualités',
+  title: 'Actualités',
   description: 'Les dernières actualités de mDevsLabs.'
 };
 

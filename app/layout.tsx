@@ -17,9 +17,17 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "mProjects | Portail mDevsLabs",
+  title: {
+    default: "mProjects - Just build",
+    template: "%s | mProjects - Just build",
+  },
   description:
     "Portail de suivi des versions et documentation pour les projets de mDevsLabs.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/mprojects.png",
+  },
 };
 
 export default async function RootLayout({

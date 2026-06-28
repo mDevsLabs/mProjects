@@ -2,7 +2,7 @@ import { getChangelogs } from "@/lib/changelog";
 import ChangelogView from "./changelog-view";
 
 export const metadata = {
-  title: "mProjects | Changelogs",
+  title: "Notes de version",
   description: "Notes de version des projets mDevsLabs.",
 };
 
