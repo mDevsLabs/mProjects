@@ -11,6 +11,7 @@ import {
   Globe,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { GithubRelease } from "@/components/github-release";
 
@@ -37,10 +38,13 @@ export default function MsearchProjectPage() {
         >
           <div className="flex items-center gap-6">
             <div className="w-20 h-20 md:w-28 md:h-28 rounded-3xl md:rounded-full bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] flex items-center justify-center p-4">
-              <img
+              <Image
                 src="/logo.PNG"
                 alt="mSearch logo"
+                width={112}
+                height={112}
                 className="w-full h-full object-contain drop-shadow-md"
+                priority
               />
             </div>
             <div>
@@ -104,7 +108,7 @@ export default function MsearchProjectPage() {
 
       {/* Features Grid */}
       <div className="space-y-8">
-        <h3 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+        <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <Shield className="w-6 h-6 text-blue-500" />
           Fonctionnalités Principales
         </h3>
@@ -156,13 +160,13 @@ function FeatureCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay }}
-      className="bg-white/40 backdrop-blur-md border border-white/60 p-6 rounded-2xl shadow-[0_4px_16px_0_rgba(31,38,135,0.05)] hover:shadow-[0_8px_24px_0_rgba(31,38,135,0.1)] transition-all group"
+      className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 p-6 rounded-2xl shadow-[0_4px_16px_0_rgba(31,38,135,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_0_rgba(31,38,135,0.1)] dark:hover:shadow-[0_8px_32px_0_rgba(59,130,246,0.15)] transition-all group"
     >
-      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <div className="w-12 h-12 bg-blue-100 dark:bg-blue-950/40 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
         {icon}
       </div>
-      <h4 className="text-xl font-bold text-slate-900 mb-2">{title}</h4>
-      <p className="text-slate-600 text-sm leading-relaxed">{description}</p>
+      <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{title}</h4>
+      <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{description}</p>
     </motion.div>
   );
 }

@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { GithubActivity } from "@/components/github-activity";
+import Image from "next/image";
 
 export default function ProjectsPage() {
   return (
@@ -52,9 +53,11 @@ export default function ProjectsPage() {
 
           <div className="flex flex-col h-full relative z-10">
             <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
-              <img
+              <Image
                 src="/logo.png"
                 alt="mAI logo"
+                width={64}
+                height={64}
                 className="w-full h-full object-contain drop-shadow-md"
               />
             </div>
@@ -113,9 +116,11 @@ export default function ProjectsPage() {
 
           <div className="flex flex-col h-full relative z-10">
             <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
-              <img
+              <Image
                 src="/logo.PNG"
                 alt="mSearch logo"
+                width={64}
+                height={64}
                 className="w-full h-full object-contain drop-shadow-md"
               />
             </div>

@@ -1,8 +1,9 @@
-name: 🚀 Deploy to Vercel (Preview)
+name: 🚀 Deploy to Vercel
 
 on:
   push:
     branches:
+      - main
       - canary
   pull_request:
     types: [opened, synchronize, reopened]
@@ -14,7 +15,7 @@ env:
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
 jobs:
-  deploy-preview:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 📦 Checkout du code
@@ -48,10 +49,25 @@ jobs:
         run: npm install
 
       - name: 🌍 Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            vercel pull --yes --environment=production --token=${{ env.VERCEL_TOKEN }}
+          else
+            vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
+          fi
 
       - name: 🏗️ Build Project Artifacts
-        run: vercel build --token=${{ env.VERCEL_TOKEN }}
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            vercel build --prod --token=${{ env.VERCEL_TOKEN }}
+          else
+            vercel build --token=${{ env.VERCEL_TOKEN }}
+          fi
 
-      - name: 🌐 Deploy Project Artifacts to Vercel (Preview)
-        run: vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}
+      - name: 🌐 Deploy Project Artifacts to Vercel
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            vercel deploy --prebuilt --prod --token=${{ env.VERCEL_TOKEN }}
+          else
+            vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}
+          fi
