@@ -1,0 +1,162 @@
+"use client";
+
+import { motion } from "motion/react";
+import {
+  ExternalLink,
+  Sparkles,
+  Search,
+  Download,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
+import { GithubActivity } from "@/components/github-activity";
+
+export default function ProjectsPage() {
+  return (
+    <div className="flex flex-col gap-10 md:gap-16">
+      <div className="text-left space-y-2">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900 dark:text-white"
+        >
+          Projets <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">
+            mDevsLabs
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="text-slate-500 dark:text-slate-400 text-base md:text-lg font-light mt-2 md:mt-4"
+        >
+          Découvrez nos outils pensés pour votre productivité.
+        </motion.p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Project 1 : mAI */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          className="group relative bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 rounded-3xl p-6 md:p-8 hover:border-purple-500/30 transition-all overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] hover:shadow-[0_8px_32px_0_rgba(168,85,247,0.2)]"
+        >
+          <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+            <div className="text-6xl font-black italic tracking-tighter select-none text-slate-900 dark:text-white">
+              01
+            </div>
+          </div>
+
+          <div className="flex flex-col h-full relative z-10">
+            <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
+              <img
+                src="/logo.png"
+                alt="mAI logo"
+                className="w-full h-full object-contain drop-shadow-md"
+              />
+            </div>
+
+            <h2 className="text-3xl font-black mb-2 text-slate-900 dark:text-white">mAI</h2>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 uppercase font-bold tracking-widest">
+                Web
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 uppercase font-bold tracking-widest">
+                Windows
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 uppercase font-bold tracking-widest">
+                macOS
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 uppercase font-bold tracking-widest">
+                Linux
+              </span>
+            </div>
+
+            <p className="text-purple-600 dark:text-purple-400 font-medium mb-4 italic">
+              &quot;Avec mAI, passez à la vitesse supérieure !&quot;
+            </p>
+            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+              L&apos;assistant IA de nouvelle génération, conçu pour fluidifier
+              votre workflow et booster votre créativité au quotidien.
+            </p>
+
+            <Link
+              href="/projects/mai"
+              className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] text-slate-900 dark:text-white font-bold hover:bg-white/60 dark:hover:bg-slate-800/60 hover:gap-3 transition-all w-fit"
+            >
+              Découvrir mAI
+              <ExternalLink className="w-4 h-4" />
+            </Link>
+
+            <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/5 w-full">
+              <GithubActivity repo="mDevsLabs/mAI" title="Commits Récents" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Project 2 : mSearch */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3 }}
+          className="group relative bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 rounded-3xl p-6 md:p-8 hover:border-blue-500/30 transition-all overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] hover:shadow-[0_8px_32px_0_rgba(59,130,246,0.2)]"
+        >
+          <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+            <div className="text-6xl font-black italic tracking-tighter select-none text-slate-900 dark:text-white">
+              02
+            </div>
+          </div>
+
+          <div className="flex flex-col h-full relative z-10">
+            <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
+              <img
+                src="/logo.PNG"
+                alt="mSearch logo"
+                className="w-full h-full object-contain drop-shadow-md"
+              />
+            </div>
+
+            <h2 className="text-3xl font-black mb-2 text-slate-900 dark:text-white">mSearch</h2>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 uppercase font-bold tracking-widest">
+                Windows
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 uppercase font-bold tracking-widest">
+                macOS
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 uppercase font-bold tracking-widest">
+                Linux
+              </span>
+            </div>
+
+            <p className="text-blue-600 dark:text-blue-400 font-medium mb-4 italic">
+              &quot;Avec mSearch, recherchez en toute sécurité !&quot;
+            </p>
+
+            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+              Un outil de recherche unifié ultra-rapide, téléchargeable et natif
+              pour tous vos appareils.
+            </p>
+
+            <Link
+              href="/projects/msearch"
+              className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] text-slate-900 dark:text-white font-bold hover:bg-white/60 dark:hover:bg-slate-800/60 hover:gap-3 transition-all w-fit"
+            >
+              Découvrir mSearch
+              <ExternalLink className="w-4 h-4" />
+            </Link>
+
+            <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/5 w-full">
+              <GithubActivity repo="mDevsLabs/mSearch" title="Commits Récents" />
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}

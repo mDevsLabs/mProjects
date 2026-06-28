@@ -1,0 +1,57 @@
+name: 🚀 Deploy to Vercel (Preview)
+
+on:
+  push:
+    branches:
+      - canary
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout du code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 🔑 Vérifier les secrets Vercel
+        run: |
+          if [ -z "${{ env.VERCEL_TOKEN }}" ]; then
+            echo "::error::Le secret VERCEL_TOKEN est manquant dans les paramètres GitHub !"
+            exit 1
+          fi
+          if [ -z "${{ env.VERCEL_ORG_ID }}" ]; then
+            echo "::error::La variable VERCEL_ORG_ID est manquante !"
+            exit 1
+          fi
+          if [ -z "${{ env.VERCEL_PROJECT_ID }}" ]; then
+            echo "::error::La variable VERCEL_PROJECT_ID est manquante !"
+            exit 1
+          fi
+
+      - name: ⚡ Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: 📥 Installation des dépendances
+        run: npm install
+
+      - name: 🌍 Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
+
+      - name: 🏗️ Build Project Artifacts
+        run: vercel build --token=${{ env.VERCEL_TOKEN }}
+
+      - name: 🌐 Deploy Project Artifacts to Vercel (Preview)
+        run: vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}

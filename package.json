@@ -1,0 +1,36 @@
+{
+  "name": "@mdevs/mprojects",
+  "version": 1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "setup": "npm install"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.0.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.462.0",
+    "motion": "^11.12.0",
+    "next": "15.0.3",
+    "next-themes": "^0.4.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^5"
+  }
+}

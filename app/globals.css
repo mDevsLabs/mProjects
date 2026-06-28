@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+}
+
+body {
+  background-color: #fafafa;
+  color: #0f172a;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: rgba(168, 85, 247, 0.2);
+  color: #000;
+}
