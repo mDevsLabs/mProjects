@@ -20,8 +20,8 @@ function cleanMarkdown(md: string): string {
     .replace(/<sup>Released on \*\*([^*]+)\*\*<\/sup>/gi, "*Publié le $1*")
     // Supprimer le conteneur div align="right" (les badges Back To Top de github)
     .replace(/<div align="right">[\s\S]*?<\/div>/gi, "")
-    // Supprimer les balises <br/>
-    .replace(/<br\s*\/?>/gi, "")
+    // Remplacer les balises <br/> par des sauts de ligne
+    .replace(/<br\s*\/?>/gi, "\n")
     // Remplacer details/summary par du formatage propre
     .replace(/<details>/gi, "\n")
     .replace(/<\/details>/gi, "\n")
