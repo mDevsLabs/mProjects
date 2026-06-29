@@ -17,6 +17,7 @@ export type ChangelogsByProject = {
   mAI: ChangelogEntry[];
   mSearch: ChangelogEntry[];
   mAIRaw?: string;
+  mSearchRaw?: string;
 };
 
 export function getChangelogs(): ChangelogsByProject {
@@ -26,10 +27,17 @@ export function getChangelogs(): ChangelogsByProject {
     mAIRaw = fs.readFileSync(mAIPath, 'utf8');
   }
 
+  const mSearchPath = path.join(process.cwd(), `docs/msearch/changelog/CHANGELOG.md`);
+  let mSearchRaw = "";
+  if (fs.existsSync(mSearchPath)) {
+    mSearchRaw = fs.readFileSync(mSearchPath, 'utf8');
+  }
+
   const result: ChangelogsByProject = {
     mAI: parseChangelog('mai', 'mAI', 'text-purple-600', 'bg-purple-50'),
     mSearch: parseChangelog('msearch', 'mSearch', 'text-blue-600', 'bg-blue-50'),
-    mAIRaw
+    mAIRaw,
+    mSearchRaw
   };
   return result;
 }
