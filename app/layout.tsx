@@ -43,7 +43,7 @@ export default async function RootLayout({
       <body
         className="antialiased font-sans min-h-screen flex flex-col pt-24 overflow-x-hidden relative bg-slate-50 dark:bg-slate-950 transition-colors duration-300 text-slate-900 dark:text-slate-100"
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false} disableTransitionOnChange>
           <Navbar changelogs={changelogs} news={news} />
           {/* Background Orbs */}
           <div className="absolute -top-24 -left-24 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>

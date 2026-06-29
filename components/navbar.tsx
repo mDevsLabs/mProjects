@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { CommandMenu } from "@/components/command-menu";
 import type { ChangelogsByProject } from "@/lib/changelog";
 import type { NewsArticle } from "@/lib/news";
-import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 
 const navLinks = [
@@ -72,6 +71,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                 alt="mProjects"
                 width={140}
                 height={56}
+                sizes="(max-width: 768px) 100px, 140px"
                 className="h-10 md:h-14 w-auto object-contain drop-shadow-sm dark:invert"
                 priority
               />
@@ -140,7 +140,6 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
 
           {/* Actions */}
           <div className="flex items-center gap-2 md:gap-4">
-            <ThemeToggle />
             {/* Search icon */}
             <button
               onClick={() => setIsCommandOpen(true)}

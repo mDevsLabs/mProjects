@@ -50,44 +50,50 @@ export default function ChangelogView({
               <span className="text-purple-600">mAI</span> Changelog
             </h2>
             <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] rounded-3xl p-6 md:p-8 flex flex-col relative overflow-hidden">
-              <div className="space-y-10 md:space-y-8 flex-1">
-                {changelogs?.mAI?.map((change, i) => {
-                  const Icon = iconMap[change.icon as string] || Star;
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      className="border-l-2 border-slate-200 dark:border-slate-800 pl-4 md:pl-6 py-2 relative group"
-                    >
-                      <div className="absolute -left-[9px] top-1.5 flex items-center justify-center w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.5)] group-hover:scale-125 transition-transform"></div>
-
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
-                        <span className="text-[10px] px-2 py-1 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest w-fit">
-                          {change.version} • {change.date}
-                        </span>
-                        <div
-                          className={`flex items-center gap-1 px-2 py-1 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-xs font-medium w-fit ${change.color}`}
+              <div className="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 prose-headings:text-slate-800 dark:prose-headings:text-white prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-strong:text-slate-800 dark:prose-strong:text-white prose-code:text-purple-600 dark:prose-code:text-purple-400 prose-code:bg-purple-50 dark:prose-code:bg-purple-950/40 prose-code:px-1 prose-code:rounded prose-blockquote:border-l-purple-500 prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-slate-900/40 prose-blockquote:py-1 prose-blockquote:px-3 prose-blockquote:not-italic prose-blockquote:text-slate-600 dark:prose-blockquote:text-slate-400">
+                {changelogs?.mAIRaw ? (
+                  <Markdown>{changelogs.mAIRaw}</Markdown>
+                ) : (
+                  <div className="space-y-10 md:space-y-8 flex-1">
+                    {changelogs?.mAI?.map((change, i) => {
+                      const Icon = iconMap[change.icon as string] || Star;
+                      return (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                          className="border-l-2 border-slate-200 dark:border-slate-800 pl-4 md:pl-6 py-2 relative group"
                         >
-                          <Icon className="w-3 h-3" />
-                          <span>
-                            {change.type === "feature"
-                              ? "Nouveauté"
-                              : "Amélioration"}
-                          </span>
-                        </div>
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                        {change.title}
-                      </h3>
+                          <div className="absolute -left-[9px] top-1.5 flex items-center justify-center w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.5)] group-hover:scale-125 transition-transform"></div>
 
-                      <div className="prose prose-sm prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 prose-headings:text-slate-800 dark:prose-headings:text-white prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-strong:text-slate-800 dark:prose-strong:text-white prose-code:text-purple-600 dark:prose-code:text-purple-400 prose-code:bg-purple-50 dark:prose-code:bg-purple-950/40 prose-code:px-1 prose-code:rounded prose-blockquote:border-l-purple-500 prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-slate-900/40 prose-blockquote:py-1 prose-blockquote:px-3 prose-blockquote:not-italic prose-blockquote:text-slate-600 dark:prose-blockquote:text-slate-400">
-                        <Markdown>{change.description}</Markdown>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
+                            <span className="text-[10px] px-2 py-1 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest w-fit">
+                              {change.version} • {change.date}
+                            </span>
+                            <div
+                              className={`flex items-center gap-1 px-2 py-1 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-xs font-medium w-fit ${change.color}`}
+                            >
+                              <Icon className="w-3 h-3" />
+                              <span>
+                                {change.type === "feature"
+                                  ? "Nouveauté"
+                                  : "Amélioration"}
+                              </span>
+                            </div>
+                          </div>
+                          <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                            {change.title}
+                          </h3>
+
+                          <div className="prose prose-sm prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 prose-headings:text-slate-800 dark:prose-headings:text-white prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-strong:text-slate-800 dark:prose-strong:text-white prose-code:text-purple-600 dark:prose-code:text-purple-400 prose-code:bg-purple-50 dark:prose-code:bg-purple-950/40 prose-code:px-1 prose-code:rounded prose-blockquote:border-l-purple-500 prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-slate-900/40 prose-blockquote:py-1 prose-blockquote:px-3 prose-blockquote:not-italic prose-blockquote:text-slate-600 dark:prose-blockquote:text-slate-400">
+                            <Markdown>{change.description}</Markdown>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </div>

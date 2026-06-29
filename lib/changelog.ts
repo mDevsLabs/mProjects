@@ -16,12 +16,20 @@ export type ChangelogEntry = {
 export type ChangelogsByProject = {
   mAI: ChangelogEntry[];
   mSearch: ChangelogEntry[];
+  mAIRaw?: string;
 };
 
 export function getChangelogs(): ChangelogsByProject {
+  const mAIPath = path.join(process.cwd(), `docs/mai/changelog/CHANGELOG.md`);
+  let mAIRaw = "";
+  if (fs.existsSync(mAIPath)) {
+    mAIRaw = fs.readFileSync(mAIPath, 'utf8');
+  }
+
   const result: ChangelogsByProject = {
     mAI: parseChangelog('mai', 'mAI', 'text-purple-600', 'bg-purple-50'),
-    mSearch: parseChangelog('msearch', 'mSearch', 'text-blue-600', 'bg-blue-50')
+    mSearch: parseChangelog('msearch', 'mSearch', 'text-blue-600', 'bg-blue-50'),
+    mAIRaw
   };
   return result;
 }
@@ -32,26 +40,39 @@ function parseChangelog(folder: string, projectName: string, color: string, bgCo
 
   const fileContents = fs.readFileSync(filePath, 'utf8');
   
-  const sections = fileContents.split(/^##\s+/m).filter(Boolean);
+  // Split by ## or ### at the start of a line
+  const sections = fileContents.split(/^##+\s+/m).filter(Boolean);
   const entries: ChangelogEntry[] = [];
 
   for (const section of sections) {
     const lines = section.trim().split('\n');
     const header = lines.shift() || '';
     
-    const headerMatch = header.match(/^([^\s-]+)(?:\s+-\s+(.+))?/);
-    if (!headerMatch) continue; 
+    // Test alternative format like: [Version 1.0.0](...) or Version 1.0.0
+    const versionMatch = header.match(/Version\s+([^\s\]\)]+)/i) || header.match(/^([^\s-]+)/);
+    if (!versionMatch) continue;
 
-    const version = headerMatch[1];
-    const date = headerMatch[2] || 'Inconnu';
-    
+    const version = versionMatch[1];
+    let date = 'Inconnu';
     let title = `Mise à jour ${version}`;
     let type = 'feature';
     let icon = 'Star';
     
+    // Look for date in lines (e.g. Released on **2026-06-28**)
+    const dateLineIndex = lines.findIndex(l => l.includes('Released on'));
+    if (dateLineIndex !== -1) {
+      const dateMatch = lines[dateLineIndex].match(/Released on \*\*([^*]+)\*\*/i);
+      if (dateMatch) {
+        date = dateMatch[1];
+      }
+    }
+
     const descriptionLines = [];
     
-    for (const line of lines) {
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (i === dateLineIndex) continue; // Skip the released on line if found
+
       if (line.startsWith('**Title:**')) {
         title = line.replace('**Title:**', '').trim();
       } else if (line.startsWith('**Type:**')) {

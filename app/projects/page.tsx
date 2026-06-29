@@ -58,6 +58,7 @@ export default function ProjectsPage() {
                 alt="mAI logo"
                 width={64}
                 height={64}
+                sizes="64px"
                 className="w-full h-full object-contain drop-shadow-md"
               />
             </div>
@@ -121,6 +122,7 @@ export default function ProjectsPage() {
                 alt="mSearch logo"
                 width={64}
                 height={64}
+                sizes="64px"
                 className="w-full h-full object-contain drop-shadow-md"
               />
             </div>
