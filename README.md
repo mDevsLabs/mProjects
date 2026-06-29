@@ -38,7 +38,7 @@ Assurez-vous d'avoir installé **Node.js** (version 20 ou supérieure conseillé
 
 1. **Cloner le dépôt** :
    ```bash
-   git clone <url-du-depot>
+   git clone https://github.com/mDevsLabs/mProjects.git
    cd mprojects
    ```
 
@@ -47,14 +47,7 @@ Assurez-vous d'avoir installé **Node.js** (version 20 ou supérieure conseillé
    npm install
    ```
 
-3. **Configurer les variables d'environnement** :
-   Créez un fichier `.env.local` à la racine et ajoutez vos clés nécessaires :
-   ```env
-   # Si requis par des intégrations d'IA
-   GEMINI_API_KEY=votre_cle_gemini
-   ```
-
-4. **Lancer le serveur de développement** :
+3. **Lancer le serveur de développement** :
    ```bash
    npm run dev
    ```
