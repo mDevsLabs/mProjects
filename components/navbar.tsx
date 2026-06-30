@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Search, Github, DiscIcon as Discord, Menu, X, ChevronDown } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Search, Github, DiscIcon as Discord, Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { CommandMenu } from "@/components/command-menu";
@@ -35,6 +34,7 @@ const navLinks = [
 
 export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject; news?: NewsArticle[] }) {
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null);
   const [isCommandOpen, setIsCommandOpen] = useState(false);
@@ -140,15 +140,15 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
 
           {/* Actions */}
           <div className="flex items-center gap-2 md:gap-4">
-            {/* Search icon */}
+            {/* Theme Toggle */}
             <button
-              onClick={() => setIsCommandOpen(true)}
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               className="p-2 border border-transparent rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center text-slate-600 dark:text-slate-300 group relative"
-              aria-label="Rechercher"
+              aria-label={theme === 'dark' ? 'Passer au mode jour' : 'Passer au mode sombre'}
             >
-              <Search className="w-5 h-5" />
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none px-2 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-medium rounded shadow-lg whitespace-nowrap z-50">
-                Rechercher (⌘K)
+                {theme === 'dark' ? 'Mode jour' : 'Mode sombre'}
               </div>
             </button>
 
