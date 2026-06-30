@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ThumbsUp, ThumbsDown, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin, Instagram, Youtube, Globe, ExternalLink } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 
 export type Comment = {
   id: string;
@@ -70,33 +70,6 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
         >
           <Instagram className="w-4 h-4" />
           Instagram
-        </a>
-        <a
-          href={`https://www.reddit.com/submit?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent(title)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#FF4500]"
-        >
-          <Globe className="w-4 h-4" />
-          Reddit
-        </a>
-        <a
-          href={`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&description=${encodeURIComponent(description || title)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#BD081C]"
-        >
-          <ExternalLink className="w-4 h-4" />
-          Pinterest
-        </a>
-        <a
-          href={`https://www.tiktok.com/share?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#FE2C59]"
-        >
-          <Globe className="w-4 h-4" />
-          TikTok
         </a>
         <a
           href={`https://www.youtube.com/share?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
@@ -271,23 +244,41 @@ function CommentItem({ comment, commentId }: { comment: Comment; commentId: stri
   }, [commentId]);
   
   const handleHelpful = () => {
-    if (hasVoted) return;
     const counts = JSON.parse(localStorage.getItem(`votes_${commentId}`) || '{"helpful":0,"unhelpful":0}');
-    const newCounts = { ...counts, helpful: counts.helpful + 1 };
-    localStorage.setItem(`vote_${commentId}`, 'helpful');
-    localStorage.setItem(`votes_${commentId}`, JSON.stringify(newCounts));
-    setHasVoted('helpful');
-    setHelpfulCount(newCounts.helpful);
+    if (hasVoted === 'helpful') {
+      localStorage.removeItem(`vote_${commentId}`);
+      localStorage.setItem(`votes_${commentId}`, JSON.stringify({ ...counts, helpful: counts.helpful - 1 }));
+      setHasVoted(null);
+      setHelpfulCount(counts.helpful - 1);
+    } else {
+      const newCounts = hasVoted === 'unhelpful' 
+        ? { ...counts, helpful: counts.helpful + 1, unhelpful: counts.unhelpful - 1 }
+        : { ...counts, helpful: counts.helpful + 1 };
+      localStorage.setItem(`vote_${commentId}`, 'helpful');
+      localStorage.setItem(`votes_${commentId}`, JSON.stringify(newCounts));
+      setHasVoted('helpful');
+      setHelpfulCount(newCounts.helpful);
+      if (hasVoted === 'unhelpful') setUnhelpfulCount(newCounts.unhelpful);
+    }
   };
   
   const handleUnhelpful = () => {
-    if (hasVoted) return;
     const counts = JSON.parse(localStorage.getItem(`votes_${commentId}`) || '{"helpful":0,"unhelpful":0}');
-    const newCounts = { ...counts, unhelpful: counts.unhelpful + 1 };
-    localStorage.setItem(`vote_${commentId}`, 'unhelpful');
-    localStorage.setItem(`votes_${commentId}`, JSON.stringify(newCounts));
-    setHasVoted('unhelpful');
-    setUnhelpfulCount(newCounts.unhelpful);
+    if (hasVoted === 'unhelpful') {
+      localStorage.removeItem(`vote_${commentId}`);
+      localStorage.setItem(`votes_${commentId}`, JSON.stringify({ ...counts, unhelpful: counts.unhelpful - 1 }));
+      setHasVoted(null);
+      setUnhelpfulCount(counts.unhelpful - 1);
+    } else {
+      const newCounts = hasVoted === 'helpful'
+        ? { ...counts, helpful: counts.helpful - 1, unhelpful: counts.unhelpful + 1 }
+        : { ...counts, unhelpful: counts.unhelpful + 1 };
+      localStorage.setItem(`vote_${commentId}`, 'unhelpful');
+      localStorage.setItem(`votes_${commentId}`, JSON.stringify(newCounts));
+      setHasVoted('unhelpful');
+      setUnhelpfulCount(newCounts.unhelpful);
+      if (hasVoted === 'helpful') setHelpfulCount(newCounts.helpful);
+    }
   };
   
   const formatDate = (timestamp: number) => {
