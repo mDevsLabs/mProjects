@@ -8,6 +8,8 @@ import { CommandMenu } from "@/components/command-menu";
 import type { ChangelogsByProject } from "@/lib/changelog";
 import type { NewsArticle } from "@/lib/news";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Accueil", href: "/" },
