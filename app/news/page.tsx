@@ -14,8 +14,8 @@ export default function NewsPage() {
   const tags = Array.from(
     new Set(
       articles
-        .filter(article => article.label)
         .map(article => article.label)
+        .filter((label): label is string => typeof label === 'string')
     )
   ).sort();
   
