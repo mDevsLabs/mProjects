@@ -1,0 +1,14 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/icon.png/route": "/icon.png",
+  "/about/page": "/about",
+  "/page": "/",
+  "/projects/mai/page": "/projects/mai",
+  "/projects/msearch/page": "/projects/msearch",
+  "/projects/page": "/projects",
+  "/changelog/mai/page": "/changelog/mai",
+  "/changelog/page": "/changelog",
+  "/changelog/msearch/page": "/changelog/msearch",
+  "/news/[slug]/page": "/news/[slug]",
+  "/news/page": "/news"
+}

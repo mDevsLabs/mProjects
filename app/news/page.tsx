@@ -1,16 +1,26 @@
 import { getNewsArticles } from '@/lib/news';
 import Link from 'next/link';
-import { Calendar, User, Tag } from 'lucide-react';
+import { Calendar, User, Tag, Trash2 } from 'lucide-react';
+import { notFound } from 'next/navigation';
 
 export const metadata = {
   title: 'Actualités',
   description: 'Les dernières actualités de mDevsLabs.'
 };
 
-export default function NewsPage() {
+export default async function NewsPage({ searchParams }: { searchParams: Promise<{ tag?: string; tags?: string[]; start?: string; end?: string }> }) {
+  const params = await searchParams;
   const articles = getNewsArticles();
   
-  // Extract unique tags from articles
+  const selectedLabels = params.tags 
+    ? (Array.isArray(params.tags) ? params.tags : [params.tags])
+    : params.tag 
+      ? [params.tag] 
+      : [];
+  
+  const startDate = params.start || '';
+  const endDate = params.end || '';
+  
   const tags = Array.from(
     new Set(
       articles
@@ -19,8 +29,22 @@ export default function NewsPage() {
     )
   ).sort();
   
-  // Sort articles by date (descending)
-  const sortedArticles = articles.sort((a, b) => b.date.localeCompare(a.date));
+  const filteredArticles = articles.filter(article => {
+    const matchesLabel = selectedLabels.length === 0 || selectedLabels.some(label => article.label === label);
+    const articleDate = article.date;
+    const matchesStartDate = !startDate || articleDate >= startDate;
+    const matchesEndDate = !endDate || articleDate <= endDate;
+    return matchesLabel && matchesStartDate && matchesEndDate;
+  });
+  
+  const sortedArticles = filteredArticles.sort((a, b) => b.date.localeCompare(a.date));
+  
+  const resetFilters = () => {
+    const query = new URLSearchParams();
+    if (startDate) query.set('start', startDate);
+    if (endDate) query.set('end', endDate);
+    return `/news${query.toString() ? '?' + query.toString() : ''}`;
+  };
   
   return (
     <div className="max-w-4xl mx-auto">
@@ -36,29 +60,81 @@ export default function NewsPage() {
         </p>
       </div>
 
-      {/* Tag Cloud Section */}
-      {tags.length > 0 && (
-        <div className="mb-12 pb-8 border-b border-slate-200 dark:border-slate-800">
-          <div className="flex items-center gap-2 mb-4">
+      <div className="mb-12 pb-8 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
             <Tag className="w-5 h-5 text-orange-500" />
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">Filtrer par étiquette</h2>
           </div>
+          {(selectedLabels.length > 0 || startDate || endDate) && (
+            <a
+              href={resetFilters()}
+              className="flex items-center gap-2 px-3 py-1 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
+            >
+              <Trash2 className="w-4 h-4" />
+              Réinitialiser
+            </a>
+          )}
+        </div>
+        
+        <div className="space-y-4">
           <div className="flex flex-wrap gap-2">
             {tags.map(tag => {
-              const count = articles.filter(a => a.label === tag).length;
+              const isSelected = selectedLabels.includes(tag);
+              const nextLabels = isSelected 
+                ? selectedLabels.filter(l => l !== tag)
+                : [...selectedLabels, tag];
+              const query = new URLSearchParams();
+              nextLabels.forEach(l => query.append('tag', l));
+              if (startDate) query.set('start', startDate);
+              if (endDate) query.set('end', endDate);
+              const href = `/news?${query.toString()}`;
+              
               return (
                 <Link
                   key={tag}
-                  href={`/news?tag=${encodeURIComponent(tag)}`}
-                  className="px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-orange-500 hover:border-orange-500/50"
+                  href={href}
+                  className={`px-4 py-2 rounded-full border transition-all text-sm font-medium ${isSelected
+                    ? 'bg-orange-500 text-white border-orange-500'
+                    : 'bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border-white/60 dark:border-slate-800/60 text-slate-700 dark:text-slate-300 hover:text-orange-500 hover:border-orange-500/50'
+                  }`}
                 >
-                  {tag} <span className="text-xs opacity-70 ml-1">({count})</span>
+                  {tag}
                 </Link>
               );
             })}
           </div>
+          
+          <form method="GET" className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <div>
+              <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">Date de début</label>
+              <input
+                type="date"
+                name="start"
+                value={startDate}
+                className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">Date de fin</label>
+              <input
+                type="date"
+                name="end"
+                value={endDate}
+                className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              />
+            </div>
+            <div className="flex items-end">
+              <button
+                type="submit"
+                className="px-4 py-2 rounded-lg bg-orange-500 text-white text-sm font-medium hover:bg-orange-600 transition-colors"
+              >
+                Filtrer
+              </button>
+            </div>
+          </form>
         </div>
-      )}
+      </div>
 
       <div className="flex flex-col gap-8">
         {sortedArticles.length === 0 ? (

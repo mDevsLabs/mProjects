@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ThumbsUp, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin, Instagram, Youtube, Globe, ExternalLink } from 'lucide-react';
 
 export type Comment = {
   id: string;
@@ -61,6 +61,51 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
         >
           <Linkedin className="w-4 h-4" />
           LinkedIn
+        </a>
+        <a
+          href={`https://www.instagram.com/share?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#E4405F]"
+        >
+          <Instagram className="w-4 h-4" />
+          Instagram
+        </a>
+        <a
+          href={`https://www.reddit.com/submit?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent(title)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#FF4500]"
+        >
+          <Globe className="w-4 h-4" />
+          Reddit
+        </a>
+        <a
+          href={`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&description=${encodeURIComponent(description || title)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#BD081C]"
+        >
+          <ExternalLink className="w-4 h-4" />
+          Pinterest
+        </a>
+        <a
+          href={`https://www.tiktok.com/share?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#FE2C59]"
+        >
+          <Globe className="w-4 h-4" />
+          TikTok
+        </a>
+        <a
+          href={`https://www.youtube.com/share?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#FF0000]"
+        >
+          <Youtube className="w-4 h-4" />
+          YouTube
         </a>
         <button
           onClick={() => {
@@ -211,11 +256,38 @@ function CommentForm({ onAddComment }: { onAddComment: (comment: Comment) => voi
   );
 }
 
-function CommentItem({ comment }: { comment: Comment }) {
+function CommentItem({ comment, commentId }: { comment: Comment; commentId: string }) {
   const [helpfulCount, setHelpfulCount] = useState(0);
+  const [unhelpfulCount, setUnhelpfulCount] = useState(0);
+  const [hasVoted, setHasVoted] = useState<'helpful' | 'unhelpful' | null>(null);
+  
+  useEffect(() => {
+    const savedVote = localStorage.getItem(`vote_${commentId}`);
+    if (savedVote === 'helpful') setHasVoted('helpful');
+    else if (savedVote === 'unhelpful') setHasVoted('unhelpful');
+    const counts = JSON.parse(localStorage.getItem(`votes_${commentId}`) || '{"helpful":0,"unhelpful":0}');
+    setHelpfulCount(counts.helpful || 0);
+    setUnhelpfulCount(counts.unhelpful || 0);
+  }, [commentId]);
   
   const handleHelpful = () => {
-    setHelpfulCount(prev => prev + 1);
+    if (hasVoted) return;
+    const counts = JSON.parse(localStorage.getItem(`votes_${commentId}`) || '{"helpful":0,"unhelpful":0}');
+    const newCounts = { ...counts, helpful: counts.helpful + 1 };
+    localStorage.setItem(`vote_${commentId}`, 'helpful');
+    localStorage.setItem(`votes_${commentId}`, JSON.stringify(newCounts));
+    setHasVoted('helpful');
+    setHelpfulCount(newCounts.helpful);
+  };
+  
+  const handleUnhelpful = () => {
+    if (hasVoted) return;
+    const counts = JSON.parse(localStorage.getItem(`votes_${commentId}`) || '{"helpful":0,"unhelpful":0}');
+    const newCounts = { ...counts, unhelpful: counts.unhelpful + 1 };
+    localStorage.setItem(`vote_${commentId}`, 'unhelpful');
+    localStorage.setItem(`votes_${commentId}`, JSON.stringify(newCounts));
+    setHasVoted('unhelpful');
+    setUnhelpfulCount(newCounts.unhelpful);
   };
   
   const formatDate = (timestamp: number) => {
@@ -288,10 +360,19 @@ function CommentItem({ comment }: { comment: Comment }) {
       <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
         <button
           onClick={handleHelpful}
-          className="flex items-center gap-2 px-3 py-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm text-slate-600 dark:text-slate-400"
+          disabled={hasVoted !== null}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-colors text-sm ${hasVoted === 'helpful' ? 'text-orange-500 bg-orange-100 dark:bg-orange-900/30' : hasVoted === 'unhelpful' ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
         >
           <ThumbsUp className="w-4 h-4" />
           Utile ({helpfulCount})
+        </button>
+        <button
+          onClick={handleUnhelpful}
+          disabled={hasVoted !== null}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-colors text-sm ${hasVoted === 'unhelpful' ? 'text-slate-500 bg-slate-100 dark:bg-slate-800' : hasVoted === 'helpful' ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+        >
+          <ThumbsDown className="w-4 h-4" />
+          Inutile ({unhelpfulCount})
         </button>
       </div>
     </div>
@@ -357,7 +438,7 @@ export function CommentSection({ articleSlug }: { articleSlug: string }) {
       {comments.length > 0 ? (
         <div className="space-y-6 mt-8">
           {comments.map((comment) => (
-            <CommentItem key={comment.id} comment={comment} />
+            <CommentItem key={comment.id} comment={comment} commentId={comment.id} />
           ))}
         </div>
       ) : (
