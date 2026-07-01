@@ -39,7 +39,7 @@ export default function MsearchProjectPage() {
           <div className="flex items-center gap-6">
             <div className="w-20 h-20 md:w-28 md:h-28 rounded-3xl md:rounded-full bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] flex items-center justify-center p-4">
               <Image
-                src="/logo.PNG"
+                src="/msearch.PNG"
                 alt="mSearch logo"
                 width={112}
                 height={112}

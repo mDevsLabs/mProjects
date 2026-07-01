@@ -1,14 +1,15 @@
 {
   "/_not-found/page": "/_not-found",
   "/icon.png/route": "/icon.png",
-  "/page": "/",
   "/about/page": "/about",
+  "/page": "/",
   "/projects/mai/page": "/projects/mai",
-  "/projects/page": "/projects",
   "/projects/msearch/page": "/projects/msearch",
+  "/projects/page": "/projects",
+  "/blog/page": "/blog",
   "/changelog/mai/page": "/changelog/mai",
-  "/changelog/msearch/page": "/changelog/msearch",
   "/changelog/page": "/changelog",
-  "/news/[slug]/page": "/news/[slug]",
-  "/news/page": "/news"
+  "/changelog/msearch/page": "/changelog/msearch",
+  "/news/page": "/news",
+  "/news/[slug]/page": "/news/[slug]"
 }

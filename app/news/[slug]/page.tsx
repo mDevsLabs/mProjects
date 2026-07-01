@@ -70,7 +70,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
 
-        <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-orange-500 prose-img:rounded-xl">
+        <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-orange-500 prose-img:rounded-xl prose-p:mb-4 prose-p:leading-relaxed">
           <Markdown>{article.content}</Markdown>
         </div>
       </div>

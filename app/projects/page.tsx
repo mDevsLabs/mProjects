@@ -54,7 +54,7 @@ export default function ProjectsPage() {
           <div className="flex flex-col h-full relative z-10">
             <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
               <Image
-                src="/logo.png"
+                src="/mai.png"
                 alt="mAI logo"
                 width={64}
                 height={64}
@@ -118,7 +118,7 @@ export default function ProjectsPage() {
           <div className="flex flex-col h-full relative z-10">
             <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
               <Image
-                src="/logo.PNG"
+                src="/msearch.PNG"
                 alt="mSearch logo"
                 width={64}
                 height={64}

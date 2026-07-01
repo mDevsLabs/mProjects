@@ -9,6 +9,7 @@ import {
   MessageSquare,
   Code,
   Layout,
+  Download,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -39,7 +40,7 @@ export default function MaiProjectPage() {
           <div className="flex items-center gap-6">
             <div className="w-20 h-20 md:w-28 md:h-28 rounded-3xl md:rounded-full bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] flex items-center justify-center p-4">
               <Image
-                src="/logo.png"
+                src="/mai.png"
                 alt="mAI logo"
                 width={112}
                 height={112}
@@ -99,8 +100,17 @@ export default function MaiProjectPage() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] text-slate-900 dark:text-white font-semibold hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
             >
-              Lancer mAI Web
+              Découvrir mAI
               <ExternalLink className="w-5 h-5" />
+            </a>
+            <a
+              href="https://github.com/mDevsLabs/mAI/releases"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] text-slate-900 dark:text-white font-semibold hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
+            >
+              Télécharger mAI
+              <Download className="w-5 h-5" />
             </a>
           </div>
         </div>

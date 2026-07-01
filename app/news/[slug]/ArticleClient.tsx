@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ThumbsUp, ThumbsDown, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin, Instagram, Youtube, Edit, Trash2 } from 'lucide-react';
 
 export type Comment = {
   id: string;
@@ -96,13 +96,13 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
   );
 }
 
-function CommentForm({ onAddComment }: { onAddComment: (comment: Comment) => void }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [avatar, setAvatar] = useState('');
-  const [message, setMessage] = useState('');
+function CommentForm({ onAddComment, editingComment, onUpdateComment }: { onAddComment: (comment: Comment) => void; editingComment?: Comment | null; onUpdateComment?: (comment: Comment) => void }) {
+  const [name, setName] = useState(editingComment?.name || '');
+  const [email, setEmail] = useState(editingComment?.email || '');
+  const [avatar, setAvatar] = useState(editingComment?.avatar || '');
+  const [message, setMessage] = useState(editingComment?.message || '');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(editingComment?.rating || 0);
   
   const emojiOptions = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤓', '🧐', '😐', '😑', '😶', '🙄', '😏', '😣', '😥', '😮', '🤐', '😯', '😪', '😫', '🥱', '😴', '🤤', '😒', '😓', '😔', '😕', '🙁', '☹️', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😰', '😥', '😮', '😳', '😵', '😡', '😠', '🤬', '😺', '😸', '😹', '😻', '😼', '😽', '🙈', '🙉', '🙊', '🐵', '🐶', '🐺', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🦝', '🐮', '🐷', '🐗', '🐸', '🐳', '🐋', '🐬', '🦭', '🐟', '🐠', '🐡', '🦐', '🦀', '🦑', '🦈', '🐙', '🐚', '🌸', '💐', '🌷', '🌹', '🥀', '🌺', '🌻', '🌼', '🌱', '🌲', '🌳', '🌴', '🌵', '🌶️', '🌿', '☘️', '🍀', '🍁', '🍂', '🍃', '🌰', '🍄', '🌪️', '🌈', '☀️', '🌙', '⭐', '🌟', '✨', '⚡', '☔', '❄️', '⛄', '☃️', '🔥', '💧', '🌊', '🌫️', '🌥️', '🌤️', '⛅', '🌛', '🌝', '🌕', '🌗', '🌖', '🌒', '🌓', '🌔'];
   
@@ -111,16 +111,20 @@ function CommentForm({ onAddComment }: { onAddComment: (comment: Comment) => voi
     if (!name || !email || !message) return;
     
     const newComment: Comment = {
-      id: Date.now().toString(),
+      id: editingComment?.id || Date.now().toString(),
       name,
       email,
       avatar: avatar || undefined,
       message,
-      timestamp: Date.now(),
+      timestamp: editingComment?.timestamp || Date.now(),
       rating: rating || undefined,
     };
     
-    onAddComment(newComment);
+    if (onUpdateComment) {
+      onUpdateComment(newComment);
+    } else {
+      onAddComment(newComment);
+    }
     setName('');
     setEmail('');
     setAvatar('');
@@ -223,13 +227,13 @@ function CommentForm({ onAddComment }: { onAddComment: (comment: Comment) => voi
         className="px-6 py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium transition-colors flex items-center gap-2"
       >
         <Send className="w-5 h-5" />
-        Publier le commentaire
+        {editingComment ? 'Mettre à jour le commentaire' : 'Publier le commentaire'}
       </button>
     </form>
   );
 }
 
-function CommentItem({ comment, commentId }: { comment: Comment; commentId: string }) {
+function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Comment; commentId: string; onDelete?: (id: string) => void; onEdit?: (comment: Comment) => void }) {
   const [helpfulCount, setHelpfulCount] = useState(0);
   const [unhelpfulCount, setUnhelpfulCount] = useState(0);
   const [hasVoted, setHasVoted] = useState<'helpful' | 'unhelpful' | null>(null);
@@ -351,7 +355,6 @@ function CommentItem({ comment, commentId }: { comment: Comment; commentId: stri
       <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
         <button
           onClick={handleHelpful}
-          disabled={hasVoted !== null}
           className={`flex items-center gap-2 px-3 py-1 rounded-full transition-colors text-sm ${hasVoted === 'helpful' ? 'text-orange-500 bg-orange-100 dark:bg-orange-900/30' : hasVoted === 'unhelpful' ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
         >
           <ThumbsUp className="w-4 h-4" />
@@ -359,12 +362,29 @@ function CommentItem({ comment, commentId }: { comment: Comment; commentId: stri
         </button>
         <button
           onClick={handleUnhelpful}
-          disabled={hasVoted !== null}
           className={`flex items-center gap-2 px-3 py-1 rounded-full transition-colors text-sm ${hasVoted === 'unhelpful' ? 'text-slate-500 bg-slate-100 dark:bg-slate-800' : hasVoted === 'helpful' ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
         >
           <ThumbsDown className="w-4 h-4" />
           Inutile ({unhelpfulCount})
         </button>
+        {onEdit && (
+          <button
+            onClick={() => onEdit(comment)}
+            className="flex items-center gap-2 px-3 py-1 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm"
+          >
+            <Edit className="w-4 h-4" />
+            Modifier
+          </button>
+        )}
+        {onDelete && (
+          <button
+            onClick={() => onDelete(commentId)}
+            className="flex items-center gap-2 px-3 py-1 rounded-full text-slate-600 dark:text-slate-400 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors text-sm"
+          >
+            <Trash2 className="w-4 h-4" />
+            Supprimer
+          </button>
+        )}
       </div>
     </div>
   );
@@ -372,8 +392,8 @@ function CommentItem({ comment, commentId }: { comment: Comment; commentId: stri
 
 export function CommentSection({ articleSlug }: { articleSlug: string }) {
   const [comments, setComments] = useState<Comment[]>([]);
+  const [editingComment, setEditingComment] = useState<Comment | null>(null);
   
-  // Load comments from localStorage on component mount
   useEffect(() => {
     const storedComments = localStorage.getItem(`comments_${articleSlug}`);
     if (storedComments) {
@@ -381,7 +401,6 @@ export function CommentSection({ articleSlug }: { articleSlug: string }) {
     }
   }, [articleSlug]);
   
-  // Save comments to localStorage when comments change
   useEffect(() => {
     if (comments.length > 0) {
       localStorage.setItem(`comments_${articleSlug}`, JSON.stringify(comments));
@@ -390,6 +409,15 @@ export function CommentSection({ articleSlug }: { articleSlug: string }) {
   
   const addComment = (comment: Comment) => {
     setComments(prev => [comment, ...prev]);
+  };
+  
+  const updateComment = (updatedComment: Comment) => {
+    setComments(prev => prev.map(c => c.id === updatedComment.id ? updatedComment : c));
+    setEditingComment(null);
+  };
+  
+  const deleteComment = (id: string) => {
+    setComments(prev => prev.filter(c => c.id !== id));
   };
   
   const avgRating = comments.length > 0
@@ -424,12 +452,18 @@ export function CommentSection({ articleSlug }: { articleSlug: string }) {
         )}
       </div>
       
-      <CommentForm onAddComment={addComment} />
+      <CommentForm onAddComment={addComment} editingComment={editingComment} onUpdateComment={updateComment} />
       
       {comments.length > 0 ? (
         <div className="space-y-6 mt-8">
           {comments.map((comment) => (
-            <CommentItem key={comment.id} comment={comment} commentId={comment.id} />
+            <CommentItem 
+              key={comment.id} 
+              comment={comment} 
+              commentId={comment.id} 
+              onDelete={deleteComment}
+              onEdit={setEditingComment}
+            />
           ))}
         </div>
       ) : (
