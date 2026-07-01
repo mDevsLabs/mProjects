@@ -8,15 +8,23 @@ export const metadata = {
   description: 'Les dernières actualités de mDevsLabs.'
 };
 
-export default async function NewsPage({ searchParams }: { searchParams: Promise<{ tag?: string; tags?: string[]; start?: string; end?: string }> }) {
+const formatDate = (dateStr: any) => {
+  if (typeof dateStr !== 'string') return String(dateStr || '');
+  if (!dateStr || dateStr.split('-').length !== 3) return dateStr;
+  const [year, month, day] = dateStr.split('-');
+  return `${day}/${month}/${year}`;
+};
+
+const isValidDateFormat = (d: string) => /^\d{4}-\d{2}-\d{2}$/.test(d);
+
+export default async function NewsPage({ searchParams }: { searchParams: Promise<{ tag?: string | string[]; start?: string; end?: string }> }) {
   const params = await searchParams;
   const articles = getNewsArticles();
   
-  const selectedLabels = params.tags 
-    ? (Array.isArray(params.tags) ? params.tags : [params.tags])
-    : params.tag 
-      ? [params.tag] 
-      : [];
+  const rawTag = params.tag;
+  const selectedLabels = rawTag
+    ? (Array.isArray(rawTag) ? rawTag : [rawTag])
+    : [];
   
   const startDate = params.start || '';
   const endDate = params.end || '';
@@ -32,19 +40,14 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
   const filteredArticles = articles.filter(article => {
     const matchesLabel = selectedLabels.length === 0 || selectedLabels.some(label => article.label === label);
     const articleDate = article.date;
-    const matchesStartDate = !startDate || articleDate >= startDate;
-    const matchesEndDate = !endDate || articleDate <= endDate;
+    const matchesStartDate = !startDate || (isValidDateFormat(articleDate) && articleDate >= startDate);
+    const matchesEndDate = !endDate || (isValidDateFormat(articleDate) && articleDate <= endDate);
     return matchesLabel && matchesStartDate && matchesEndDate;
   });
   
   const sortedArticles = filteredArticles.sort((a, b) => b.date.localeCompare(a.date));
   
-  const resetFilters = () => {
-    const query = new URLSearchParams();
-    if (startDate) query.set('start', startDate);
-    if (endDate) query.set('end', endDate);
-    return `/news${query.toString() ? '?' + query.toString() : ''}`;
-  };
+  const resetFilters = () => '/news';
   
   return (
     <div className="max-w-4xl mx-auto">
@@ -77,8 +80,8 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
           )}
         </div>
         
-        <div className="space-y-4">
-          <div className="flex flex-wrap gap-2">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div className="flex-1 flex flex-wrap gap-2">
             {tags.map(tag => {
               const isSelected = selectedLabels.includes(tag);
               const nextLabels = isSelected 
@@ -105,13 +108,16 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
             })}
           </div>
           
-          <form method="GET" className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+          <form method="GET" className="flex flex-col sm:flex-row items-end gap-4 lg:pt-0 lg:border-t-0 border-t border-slate-200 dark:border-slate-800 pt-4">
+            {selectedLabels.map(label => (
+              <input key={label} type="hidden" name="tag" value={label} />
+            ))}
             <div>
               <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">Date de début</label>
               <input
                 type="date"
                 name="start"
-                value={startDate}
+                defaultValue={startDate}
                 className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
@@ -120,11 +126,11 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
               <input
                 type="date"
                 name="end"
-                value={endDate}
+                defaultValue={endDate}
                 className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
-            <div className="flex items-end">
+            <div>
               <button
                 type="submit"
                 className="px-4 py-2 rounded-lg bg-orange-500 text-white text-sm font-medium hover:bg-orange-600 transition-colors"
@@ -159,7 +165,7 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
                   </div>
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    <span>{article.date}</span>
+                    <span>{formatDate(article.date)}</span>
                   </div>
                   {article.label && (
                     <div className="flex items-center gap-1 ml-auto">

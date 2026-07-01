@@ -25,6 +25,13 @@ import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { ShareButtons, CommentSection } from './ArticleClient';
 
+const formatDate = (dateStr: any) => {
+  if (typeof dateStr !== 'string') return String(dateStr || '');
+  if (!dateStr || dateStr.split('-').length !== 3) return dateStr;
+  const [year, month, day] = dateStr.split('-');
+  return `${day}/${month}/${year}`;
+};
+
 export async function generateStaticParams() {
   const articles = getNewsArticles();
   return articles.map((article) => ({
@@ -66,12 +73,18 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </div>
           <div className="flex items-center gap-1.5">
             <Calendar className="w-4 h-4" />
-            <span>{article.date}</span>
+            <span>{formatDate(article.date)}</span>
           </div>
         </div>
 
         <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-orange-500 prose-img:rounded-xl prose-p:mb-4 prose-p:leading-relaxed">
-          <Markdown>{article.content}</Markdown>
+          <Markdown
+            components={{
+              p: ({ node, ...props }) => <p className="whitespace-pre-line mb-4 leading-relaxed" {...props} />
+            }}
+          >
+            {article.content}
+          </Markdown>
         </div>
       </div>
 

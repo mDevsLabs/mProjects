@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ThumbsUp, ThumbsDown, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin, Instagram, Youtube, Edit, Trash2 } from 'lucide-react';
 
 export type Comment = {
@@ -298,9 +299,12 @@ function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Commen
   const getAvatarElement = () => {
     if (comment.avatar && comment.avatar.startsWith('http')) {
       return (
-        <img
+        <Image
           src={comment.avatar}
           alt={comment.name}
+          width={48}
+          height={48}
+          unoptimized
           className="w-12 h-12 rounded-full object-cover border-2 border-orange-200 dark:border-orange-800"
         />
       );
