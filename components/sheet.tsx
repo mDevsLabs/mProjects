@@ -28,13 +28,13 @@ export function Sheet({ open, onOpenChange, children, className = "" }: SheetPro
             animate={{ y: "0%" }}
             exit={{ y: "100%" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className={`relative w-full max-h-[90vh] rounded-t-3xl bg-white/95 dark:bg-slate-950/95 backdrop-blur-3xl border border-black/10 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-6 overflow-y-auto ${className}`}
+            className={`relative w-full max-h-[90vh] rounded-t-3xl bg-white/95 backdrop-blur-3xl border border-black/10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-6 overflow-y-auto ${className}`}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-end mb-4">
               <button
                 onClick={() => onOpenChange(false)}
-                className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="p-2 rounded-full hover:bg-slate-100 transition-colors"
                 aria-label="Fermer"
               >
                 <X className="w-5 h-5" />

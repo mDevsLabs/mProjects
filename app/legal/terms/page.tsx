@@ -9,7 +9,7 @@ export default function TermsPage() {
     <div className="max-w-4xl mx-auto px-4 py-8 relative z-10">
       <Link
         href="/"
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-sm font-medium text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all duration-300 mb-8"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-white/60 transition-all duration-300 mb-8"
       >
         <ArrowLeft className="w-4 h-4" />
         Retour à l'accueil
@@ -19,23 +19,23 @@ export default function TermsPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-white/60 dark:border-slate-800/60 rounded-3xl p-8 md:p-12 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)]"
+        className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-3xl p-8 md:p-12 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]"
       >
-        <div className="inline-flex items-center justify-center p-4 mb-6 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+        <div className="inline-flex items-center justify-center p-4 mb-6 rounded-full bg-blue-100 text-blue-600">
           <Scale className="w-8 h-8" />
         </div>
 
-        <h1 className="text-4xl sm:text-5xl font-black italic tracking-tighter uppercase text-slate-900 dark:text-white mb-6">
+        <h1 className="text-4xl sm:text-5xl font-black italic tracking-tighter uppercase text-slate-900 mb-6">
           Conditions Générales <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">d'Utilisation</span> ⚖️
         </h1>
 
-<p className="text-slate-500 dark:text-slate-400 font-light mb-10 text-base md:text-lg">
+        <p className="text-slate-500 font-light mb-10 text-base md:text-lg">
           Dernière mise à jour : 1er juillet 2026. Conditions d'utilisation applicables aux projets mAI et mSearch développés par mDevsLabs.
         </p>
 
-        <div className="space-y-8 text-slate-600 dark:text-slate-300">
+        <div className="space-y-8 text-slate-600">
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <Cpu className="w-5 h-5 text-purple-500" />
               1. Acceptation des Conditions
             </h2>
@@ -45,7 +45,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <Search className="w-5 h-5 text-blue-500" />
               2. Description des Services
             </h2>
@@ -58,7 +58,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <ShieldAlert className="w-5 h-5 text-orange-500" />
               3. Limitation de Responsabilité
             </h2>
@@ -68,7 +68,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <FileText className="w-5 h-5 text-emerald-500" />
               4. Données et Propriété Intellectuelle
             </h2>
@@ -81,7 +81,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <Lock className="w-5 h-5 text-purple-500" />
               5. Confidentialité et Sécurité
             </h2>
@@ -91,7 +91,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <ExternalLink className="w-5 h-5 text-blue-500" />
               6. Liens Externes et Intégrations
             </h2>
@@ -104,7 +104,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <Zap className="w-5 h-5 text-emerald-500" />
               7. Conditions d'Utilisation Acceptables
             </h2>
@@ -114,7 +114,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
               <ArrowLeft className="w-5 h-5 text-orange-500" />
               8. Clôture du Compte
             </h2>

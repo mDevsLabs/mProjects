@@ -51,18 +51,18 @@ export function CommandMenu({
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.1 }}
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] border border-white/60 dark:border-slate-800/60 overflow-hidden"
+            className="w-full max-w-xl bg-white/60 backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 overflow-hidden"
           >
             <Command
               className="flex flex-col w-full h-full"
               label="Menu de commandes"
             >
-              <div className="flex items-center px-4 border-b border-black/5 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
-                <Search className="w-5 h-5 text-slate-400 dark:text-slate-500 mr-2 shrink-0" />
+              <div className="flex items-center px-4 border-b border-black/5 bg-white/40">
+                <Search className="w-5 h-5 text-slate-400 mr-2 shrink-0" />
                 <Command.Input
                   autoFocus
                   placeholder="Rechercher des projets, notes de versions..."
-                  className="w-full h-14 bg-transparent outline-none text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                  className="w-full h-14 bg-transparent outline-none text-slate-900 placeholder:text-slate-500"
                 />
               </div>
               <Command.List className="max-h-[400px] overflow-y-auto p-2 scroll-py-2">
@@ -76,16 +76,16 @@ export function CommandMenu({
                 >
                   <Command.Item
                     onSelect={() => runCommand(() => router.push("/projects"))}
-                    className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 rounded-lg cursor-pointer aria-selected:bg-black/5 dark:aria-selected:bg-white/10 aria-selected:text-slate-900 dark:aria-selected:text-white transition-colors"
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors"
                   >
-                    <Folder className="w-4 h-4 text-purple-500 dark:text-purple-400" />
+                    <Folder className="w-4 h-4 text-purple-500" />
                     <span>mAI - Intelligence Artificielle</span>
                   </Command.Item>
                   <Command.Item
                     onSelect={() => runCommand(() => router.push("/projects"))}
-                    className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 dark:text-slate-300 rounded-lg cursor-pointer aria-selected:bg-black/5 dark:aria-selected:bg-white/10 aria-selected:text-slate-900 dark:aria-selected:text-white transition-colors"
+                    className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors"
                   >
-                    <Folder className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                    <Folder className="w-4 h-4 text-blue-500" />
                     <span>mSearch - Recherche Universelle</span>
                   </Command.Item>
                 </Command.Group>
@@ -100,15 +100,15 @@ export function CommandMenu({
                       onSelect={() =>
                         runCommand(() => router.push("/changelog"))
                       }
-                      className="flex flex-col px-3 py-2 text-sm text-slate-700 dark:text-slate-300 rounded-lg cursor-pointer aria-selected:bg-black/5 dark:aria-selected:bg-white/10 aria-selected:text-slate-900 dark:aria-selected:text-white transition-colors mb-1"
+                      className="flex flex-col px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors mb-1"
                     >
                       <div className="flex items-center gap-2 font-medium">
-                        <FileText className="w-4 h-4 text-purple-500 dark:text-purple-400" />
+                        <FileText className="w-4 h-4 text-purple-500" />
                         <span>
                           {change.version} - {change.title}
                         </span>
                       </div>
-                      <div className="pl-6 text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-1">
+                      <div className="pl-6 text-xs text-slate-500 line-clamp-1 mt-1">
                         {change.description.replace(/\n/g, " ")}
                       </div>
                     </Command.Item>
@@ -125,15 +125,15 @@ export function CommandMenu({
                       onSelect={() =>
                         runCommand(() => router.push("/changelog"))
                       }
-                      className="flex flex-col px-3 py-2 text-sm text-slate-700 dark:text-slate-300 rounded-lg cursor-pointer aria-selected:bg-black/5 dark:aria-selected:bg-white/10 aria-selected:text-slate-900 dark:aria-selected:text-white transition-colors mb-1"
+                      className="flex flex-col px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors mb-1"
                     >
                       <div className="flex items-center gap-2 font-medium">
-                        <FileText className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                        <FileText className="w-4 h-4 text-blue-500" />
                         <span>
                           {change.version} - {change.title}
                         </span>
                       </div>
-                      <div className="pl-6 text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-1">
+                      <div className="pl-6 text-xs text-slate-500 line-clamp-1 mt-1">
                         {change.description.replace(/\n/g, " ")}
                       </div>
                     </Command.Item>
@@ -150,13 +150,13 @@ export function CommandMenu({
                       onSelect={() =>
                         runCommand(() => router.push(`/news/${article.slug}`))
                       }
-                      className="flex flex-col px-3 py-2 text-sm text-slate-700 dark:text-slate-300 rounded-lg cursor-pointer aria-selected:bg-black/5 dark:aria-selected:bg-white/10 aria-selected:text-slate-900 dark:aria-selected:text-white transition-colors mb-1"
+                      className="flex flex-col px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors mb-1"
                     >
                       <div className="flex items-center gap-2 font-medium">
-                        <FileText className="w-4 h-4 text-orange-500 dark:text-orange-400" />
+                        <FileText className="w-4 h-4 text-orange-500" />
                         <span>{article.title}</span>
                       </div>
-                      <div className="pl-6 text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-1">
+                      <div className="pl-6 text-xs text-slate-500 line-clamp-1 mt-1">
                         {article.description}
                       </div>
                     </Command.Item>

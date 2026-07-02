@@ -47,7 +47,7 @@ export function GithubRelease({
   if (loading) {
     return (
       <div className="flex items-center gap-2 text-sm text-slate-500 animate-pulse">
-        <div className="w-4 h-4 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+        <div className="w-4 h-4 bg-slate-300 rounded-full"></div>
         Chargement des versions...
       </div>
     );
@@ -62,7 +62,7 @@ export function GithubRelease({
           href={`https://github.com/${repo}/releases/latest`}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 text-xs font-bold uppercase tracking-wider hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-slate-800 text-xs font-bold uppercase tracking-wider hover:bg-white/60 transition-colors"
         >
           <Tag className="w-3 h-3" />
           Latest: {latestRelease}
@@ -73,7 +73,7 @@ export function GithubRelease({
           href={`https://github.com/${repo}/releases/tag/${latestPreRelease}`}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-wider hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-purple-600 text-xs font-bold uppercase tracking-wider hover:bg-white/60 transition-colors"
         >
           <Tag className="w-3 h-3" />
           Pre-release: {latestPreRelease}

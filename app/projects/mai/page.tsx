@@ -39,7 +39,7 @@ export default function MaiProjectPage() {
           className="flex flex-col gap-4"
         >
           <div className="flex items-center gap-6">
-            <div className="w-20 h-20 md:w-28 md:h-28 rounded-3xl md:rounded-full bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] flex items-center justify-center p-4">
+            <div className="w-20 h-20 md:w-28 md:h-28 rounded-3xl md:rounded-full bg-white/30 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] flex items-center justify-center p-4">
               <Image
                 src="/mai.png"
                 alt="mAI logo"
@@ -50,10 +50,10 @@ export default function MaiProjectPage() {
               />
             </div>
             <div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black italic tracking-tighter uppercase text-slate-900 dark:text-white drop-shadow-sm">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black italic tracking-tighter uppercase text-slate-900 drop-shadow-sm">
                 mAI
               </h1>
-              <p className="text-purple-600 dark:text-purple-400 font-medium text-lg italic mt-1">
+              <p className="text-purple-600 font-medium text-lg italic mt-1">
                 Passez à la vitesse supérieure !
               </p>
             </div>
@@ -67,28 +67,28 @@ export default function MaiProjectPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="relative bg-white/30 dark:bg-slate-900/30 backdrop-blur-xl border border-white/50 dark:border-slate-800/50 rounded-3xl p-8 md:p-12 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] overflow-hidden"
+        className="relative bg-white/30 backdrop-blur-xl border border-white/50 rounded-3xl p-8 md:p-12 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] overflow-hidden"
       >
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-purple-400/30 rounded-full blur-[80px] -z-10"></div>
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-400/30 rounded-full blur-[80px] -z-10"></div>
 
         <div className="relative z-10 max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
             L&apos;intelligence artificielle réinventée pour vous.
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8">
+          <p className="text-slate-600 text-lg leading-relaxed mb-8">
             mAI est votre assistant personnel de nouvelle génération, propulsé
             par
             <a
               href="https://lobehub.com"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 text-purple-600 dark:text-purple-400 font-semibold ml-1 group relative transition-colors"
+              className="inline-flex items-center gap-1 text-purple-600 font-semibold ml-1 group relative transition-colors"
             >
               <span className="relative z-10 flex items-center gap-1 group-hover:-translate-y-0.5 transition-transform duration-300">
                 LobeHub <ExternalLink className="w-3 h-3 group-hover:rotate-12 transition-transform duration-300" />
               </span>
-              <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-purple-600 dark:bg-purple-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
             </a>
             . Il intègre les modèles de langage les plus avancés dans une
             interface fluide, intuitive et hautement personnalisable.
@@ -99,7 +99,7 @@ export default function MaiProjectPage() {
               href="https://mai-officiel.vercel.app"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] text-slate-900 dark:text-white font-semibold hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
             >
               Découvrir mAI
               <ExternalLink className="w-5 h-5" />
@@ -108,7 +108,7 @@ export default function MaiProjectPage() {
               href="https://github.com/mDevsLabs/mAI/releases"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] text-slate-900 dark:text-white font-semibold hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
             >
               Télécharger mAI
               <Download className="w-5 h-5" />
@@ -119,7 +119,7 @@ export default function MaiProjectPage() {
 
       {/* Features Grid */}
       <div className="space-y-8">
-        <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+        <h3 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
           <Sparkles className="w-6 h-6 text-purple-500" />
           Fonctionnalités Principales
         </h3>
@@ -183,13 +183,13 @@ function FeatureCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay }}
-      className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 p-6 rounded-2xl shadow-[0_4px_16px_0_rgba(31,38,135,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_0_rgba(31,38,135,0.1)] dark:hover:shadow-[0_8px_32px_0_rgba(168,85,247,0.15)] transition-all group"
+      className="bg-white/40 backdrop-blur-md border border-white/60 p-6 rounded-2xl shadow-[0_4px_16px_0_rgba(31,38,135,0.05)] hover:shadow-[0_8px_24px_0_rgba(31,38,135,0.1)] transition-all group"
     >
-      <div className="w-12 h-12 bg-purple-100 dark:bg-purple-950/40 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
         {icon}
       </div>
-      <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{title}</h4>
-      <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{description}</p>
+      <h4 className="text-xl font-bold text-slate-900 mb-2">{title}</h4>
+      <p className="text-slate-600 text-sm leading-relaxed">{description}</p>
     </motion.div>
   );
 }

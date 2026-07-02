@@ -29,24 +29,24 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="max-w-3xl mx-auto">
-      <Link href="/news" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-sm font-medium text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all duration-300 mb-8">
+      <Link href="/news" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-white/60 transition-all duration-300 mb-8">
         <ArrowLeft className="w-4 h-4" />
         Retour aux actualités
       </Link>
 
-      <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] rounded-3xl p-8 md:p-12 relative">
+      <div className="bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-8 md:p-12 relative">
         {article.label && (
           <div className="mb-6">
-            <span className="px-3 py-1 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-slate-800 dark:text-slate-200 text-xs font-bold uppercase tracking-wider">
+            <span className="px-3 py-1 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-slate-800 text-xs font-bold uppercase tracking-wider">
               {article.label}
             </span>
           </div>
         )}
-        <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 leading-tight">
+        <h1 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
           {article.title}
         </h1>
         
-        <div className="flex items-center gap-4 text-sm font-medium text-slate-500 dark:text-slate-400 mb-10 pb-10 border-b border-black/5 dark:border-white/5">
+        <div className="flex items-center gap-4 text-sm font-medium text-slate-500 mb-10 pb-10 border-b border-black/5">
           <div className="flex items-center gap-1.5">
             <User className="w-4 h-4" />
             <span>{article.author}</span>
@@ -57,7 +57,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
 
-        <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-a:text-orange-500 prose-img:rounded-xl prose-p:mb-4 prose-p:leading-relaxed">
+        <div className="prose max-w-none prose-headings:text-slate-900 prose-a:text-orange-500 prose-img:rounded-xl prose-p:mb-4 prose-p:leading-relaxed">
           <Markdown
             components={{
               p: ({ node, ...props }) => <p className="whitespace-pre-line mb-4 leading-relaxed" {...props} />
@@ -74,4 +74,3 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     </div>
   );
 }
-

@@ -22,8 +22,8 @@ interface ShareButtonsProps {
 
 export function ShareButtons({ title, description }: ShareButtonsProps) {
   return (
-    <div className="mt-12 pt-8 border-t border-black/5 dark:border-white/5">
-      <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Partager cet article</h3>
+    <div className="mt-12 pt-8 border-t border-black/5">
+      <h3 className="text-lg font-semibold text-slate-900 mb-4">Partager cet article</h3>
       <div className="flex flex-wrap gap-3">
         <button
           onClick={() => {
@@ -34,7 +34,7 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
               toast.error("Partage non supporté sur cet appareil");
             }
           }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 hover:text-slate-900"
         >
           <Share2 className="w-4 h-4" />
           Partager
@@ -43,7 +43,7 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
           href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#1DA1F2]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 hover:text-[#1DA1F2]"
         >
           <Twitter className="w-4 h-4" />
           Twitter/X
@@ -52,7 +52,7 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
           href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#1877F2]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 hover:text-[#1877F2]"
         >
           <Facebook className="w-4 h-4" />
           Facebook
@@ -61,7 +61,7 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
           href={`https://www.linkedin.com/sharing/share-plugin/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(description || '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#0A66C2]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 hover:text-[#0A66C2]"
         >
           <Linkedin className="w-4 h-4" />
           LinkedIn
@@ -70,7 +70,7 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
           href={`https://www.instagram.com/share?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#E4405F]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 hover:text-[#E4405F]"
         >
           <Instagram className="w-4 h-4" />
           Instagram
@@ -79,7 +79,7 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
           href={`https://www.youtube.com/share?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#FF0000]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 hover:text-[#FF0000]"
         >
           <Youtube className="w-4 h-4" />
           YouTube
@@ -90,7 +90,7 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
             navigator.clipboard.writeText(url);
             toast.success("Lien copié !");
           }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 hover:text-slate-900"
         >
           <Share2 className="w-4 h-4" />
           Copier le lien
@@ -145,47 +145,47 @@ function CommentForm({ onAddComment, editingComment, onUpdateComment }: { onAddC
     <form onSubmit={handleSubmit} className="space-y-4 mb-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Nom</label>
+          <label className="block text-sm font-medium text-slate-700 mb-2">Nom</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
             placeholder="Votre nom"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
+          <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
             placeholder="email@example.com"
             required
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Avatar/Emoji</label>
+          <label className="block text-sm font-medium text-slate-700 mb-2">Avatar/Emoji</label>
           <div className="flex gap-2">
             <input
               type="text"
               value={avatar}
               onChange={(e) => setAvatar(e.target.value)}
-              className="flex-1 px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="flex-1 px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Ajoutez un emoji ou une URL"
             />
             <button
               type="button"
               onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-              className="px-3 py-2 rounded-lg bg-white/40 dark:bg-slate-900/40 border border-slate-300 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-orange-950/50 transition-colors"
+              className="px-3 py-2 rounded-lg bg-white/40 border border-slate-300 hover:bg-orange-50 transition-colors"
             >
               <Smile className="w-5 h-5" />
             </button>
           </div>
           {showEmojiPicker && (
-            <div className="absolute z-50 mt-2 p-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg shadow-lg grid grid-cols-10 gap-2 max-h-64 overflow-y-auto">
+            <div className="absolute z-50 mt-2 p-3 bg-white border border-slate-300 rounded-lg shadow-lg grid grid-cols-10 gap-2 max-h-64 overflow-y-auto">
               {emojiOptions.map((emoji) => (
                 <button
                   key={emoji}
@@ -194,7 +194,7 @@ function CommentForm({ onAddComment, editingComment, onUpdateComment }: { onAddC
                     setAvatar(avatar ? avatar + ' ' + emoji : emoji);
                     setShowEmojiPicker(false);
                   }}
-                  className="text-2xl hover:bg-slate-100 dark:hover:bg-slate-800 rounded p-1 transition-colors"
+                  className="text-2xl hover:bg-slate-100 rounded p-1 transition-colors"
                 >
                   {emoji}
                 </button>
@@ -205,14 +205,14 @@ function CommentForm({ onAddComment, editingComment, onUpdateComment }: { onAddC
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Note (optionnel)</label>
+        <label className="block text-sm font-medium text-slate-700 mb-2">Note (optionnel)</label>
         <div className="flex gap-2">
           {[1, 2, 3, 4, 5].map((value) => (
             <button
               key={value}
               type="button"
               onClick={() => setRating(value)}
-              className={`w-10 h-10 rounded-full border-2 transition-colors ${value <= rating ? 'bg-orange-500 border-orange-500 text-white' : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-orange-950/50'}`}
+              className={`w-10 h-10 rounded-full border-2 transition-colors ${value <= rating ? 'bg-orange-500 border-orange-500 text-white' : 'bg-white border-slate-300 hover:bg-orange-50'}`}
             >
               {value}
             </button>
@@ -221,12 +221,12 @@ function CommentForm({ onAddComment, editingComment, onUpdateComment }: { onAddC
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Commentaire</label>
+        <label className="block text-sm font-medium text-slate-700 mb-2">Commentaire</label>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={4}
-          className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
+          className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
           placeholder="Partagez votre avis..."
           required
         />
@@ -314,18 +314,18 @@ function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Commen
           width={48}
           height={48}
           unoptimized
-          className="w-12 h-12 rounded-full object-cover border-2 border-orange-200 dark:border-orange-800"
+          className="w-12 h-12 rounded-full object-cover border-2 border-orange-200"
         />
       );
     } else if (comment.avatar && comment.avatar.match(/[^\u0000-\uFFFF]/)) {
       return (
-        <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-orange-200 dark:border-orange-800 flex items-center justify-center text-xl">
+        <div className="w-12 h-12 rounded-full bg-slate-200 border-2 border-orange-200 flex items-center justify-center text-xl">
           {comment.avatar}
         </div>
       );
     } else {
       return (
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 border-2 border-orange-200 dark:border-orange-800 flex items-center justify-center text-white font-semibold text-lg">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 border-2 border-orange-200 flex items-center justify-center text-white font-semibold text-lg">
           {comment.name
             .split(' ')
             .map(word => word.charAt(0))
@@ -338,23 +338,23 @@ function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Commen
   };
   
   return (
-    <div className="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 rounded-2xl p-6 transition-all hover:shadow-md">
+    <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6 transition-all hover:shadow-md">
       <div className="flex items-start gap-4 mb-4">
         {getAvatarElement()}
         <div className="flex-1">
           <div className="flex items-center justify-between mb-1">
-            <h4 className="font-semibold text-slate-900 dark:text-white">{comment.name}</h4>
-            <span className="text-xs text-slate-500 dark:text-slate-400">{formatDate(comment.timestamp)}</span>
+            <h4 className="font-semibold text-slate-900">{comment.name}</h4>
+            <span className="text-xs text-slate-500">{formatDate(comment.timestamp)}</span>
           </div>
-          <p className="text-sm text-slate-600 dark:text-slate-300 mb-2">{comment.email}</p>
+          <p className="text-sm text-slate-500 mb-2">{comment.email}</p>
           {comment.rating && (
             <div className="flex items-center gap-1 mb-2">
-              <span className="text-sm text-slate-600 dark:text-slate-300">Note:</span>
+              <span className="text-sm text-slate-600">Note:</span>
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
                   <ThumbsUp
                     key={i}
-                    className={`w-4 h-4 ${i < comment.rating! ? 'text-orange-500 fill-orange-500' : 'text-slate-300 dark:text-slate-600'}`}
+                    className={`w-4 h-4 ${i < comment.rating! ? 'text-orange-500 fill-orange-500' : 'text-slate-300'}`}
                   />
                 ))}
               </div>
@@ -363,19 +363,19 @@ function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Commen
         </div>
       </div>
       
-      <p className="text-slate-700 dark:text-slate-200 mb-4 leading-relaxed">{comment.message}</p>
+      <p className="text-slate-700 mb-4 leading-relaxed">{comment.message}</p>
       
-      <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+      <div className="flex items-center gap-4 pt-4 border-t border-slate-200">
         <button
           onClick={handleHelpful}
-          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-colors text-sm ${hasVoted === 'helpful' ? 'text-orange-500 bg-orange-100 dark:bg-orange-900/30' : hasVoted === 'unhelpful' ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-colors text-sm ${hasVoted === 'helpful' ? 'text-orange-500 bg-orange-100' : hasVoted === 'unhelpful' ? 'text-slate-400' : 'text-slate-600 hover:bg-slate-100'}`}
         >
           <ThumbsUp className="w-4 h-4" />
           Utile ({helpfulCount})
         </button>
         <button
           onClick={handleUnhelpful}
-          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-colors text-sm ${hasVoted === 'unhelpful' ? 'text-slate-500 bg-slate-100 dark:bg-slate-800' : hasVoted === 'helpful' ? 'text-slate-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-colors text-sm ${hasVoted === 'unhelpful' ? 'text-slate-500 bg-slate-100' : hasVoted === 'helpful' ? 'text-slate-400' : 'text-slate-600 hover:bg-slate-100'}`}
         >
           <ThumbsDown className="w-4 h-4" />
           Inutile ({unhelpfulCount})
@@ -383,7 +383,7 @@ function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Commen
         {onEdit && (
           <button
             onClick={() => onEdit(comment)}
-            className="flex items-center gap-2 px-3 py-1 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-sm"
+            className="flex items-center gap-2 px-3 py-1 rounded-full text-slate-600 hover:bg-slate-100 transition-colors text-sm"
           >
             <Edit className="w-4 h-4" />
             Modifier
@@ -395,7 +395,7 @@ function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Commen
               onDelete(commentId);
               toast.error("Commentaire supprimé !");
             }}
-            className="flex items-center gap-2 px-3 py-1 rounded-full text-slate-600 dark:text-slate-400 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors text-sm"
+            className="flex items-center gap-2 px-3 py-1 rounded-full text-slate-600 hover:bg-red-100 transition-colors text-sm"
           >
             <Trash2 className="w-4 h-4" />
             Supprimer
@@ -444,25 +444,25 @@ export function CommentSection({ articleSlug }: { articleSlug: string }) {
     <div className="mt-16">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+          <h3 className="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-2">
             <MessageCircle className="w-6 h-6 text-orange-500" />
             Commentaires ({comments.length})
           </h3>
-          <p className="text-slate-600 dark:text-slate-400">Partagez votre avis sur cet article</p>
+          <p className="text-slate-600">Partagez votre avis sur cet article</p>
         </div>
         {comments.length > 0 && (
           <div className="text-right">
-            <div className="text-sm text-slate-600 dark:text-slate-400 mb-1">Note moyenne</div>
+            <div className="text-sm text-slate-600 mb-1">Note moyenne</div>
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
                   <ThumbsUp
                     key={i}
-                    className={`w-5 h-5 ${i < Math.round(avgRating) ? 'text-orange-500 fill-orange-500' : 'text-slate-300 dark:text-slate-600'}`}
+                    className={`w-5 h-5 ${i < Math.round(avgRating) ? 'text-orange-500 fill-orange-500' : 'text-slate-300'}`}
                   />
                 ))}
               </div>
-              <span className="font-semibold text-slate-900 dark:text-white">{avgRating.toFixed(1)}/5</span>
+              <span className="font-semibold text-slate-900">{avgRating.toFixed(1)}/5</span>
             </div>
           </div>
         )}
@@ -483,10 +483,10 @@ export function CommentSection({ articleSlug }: { articleSlug: string }) {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 rounded-2xl">
+        <div className="text-center py-12 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl">
           <MessageCircle className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-          <h4 className="text-lg font-medium text-slate-700 dark:text-slate-300 mb-2">Soyez le premier à commenter</h4>
-          <p className="text-slate-500 dark:text-slate-400">Partagez vos thoughts et aidez les autres à découvrir cet article</p>
+          <h4 className="text-lg font-medium text-slate-700 mb-2">Soyez le premier à commenter</h4>
+          <p className="text-slate-500">Partagez vos thoughts et aidez les autres à découvrir cet article</p>
         </div>
       )}
     </div>
