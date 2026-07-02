@@ -83,26 +83,28 @@ export default function ProjectsPage() {
             <p className="text-purple-600 font-medium mb-4 italic">
               &quot;Avec mAI, passez à la vitesse supérieure !&quot;
             </p>
-            <p className="text-slate-600 text-sm leading-relaxed mb-6">
+            <p className="text-slate-600 text-sm leading-relaxed mb-3">
               L&apos;assistant IA de nouvelle génération, conçu pour fluidifier
               votre workflow et booster votre créativité au quotidien.
             </p>
 
-            <Link
-            href="/projects/mai"
-            className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
-          >
-            Découvrir mAI
-            <ExternalLink className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/projects/mai"
-            className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
-          >
-            Voir plus
-          </Link>
+            <div className="flex flex-wrap items-center gap-3 my-3">
+              <Link
+                href="/projects/mai"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
+              >
+                Découvrir mAI
+                <ExternalLink className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/projects/mai"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
+              >
+                Voir plus
+              </Link>
+            </div>
 
-            <div className="mt-auto pt-6 border-t border-black/5 w-full">
+            <div className="mt-auto pt-3 border-t border-black/5 w-full">
               <GithubActivity repo="mDevsLabs/mAI" title="Commits Récents" />
             </div>
           </div>
@@ -151,26 +153,28 @@ export default function ProjectsPage() {
               &quot;Avec mSearch, recherchez en toute sécurité !&quot;
             </p>
 
-            <p className="text-slate-600 text-sm leading-relaxed mb-6">
+            <p className="text-slate-600 text-sm leading-relaxed mb-3">
               Un outil de recherche unifié ultra-rapide, téléchargeable et natif
               pour tous vos appareils.
             </p>
 
-            <Link
-              href="/projects/msearch"
-              className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
-            >
-              Découvrir mSearch
-              <ExternalLink className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/projects/msearch"
-              className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
-            >
-              Voir plus
-            </Link>
+            <div className="flex flex-wrap items-center gap-3 my-3">
+              <Link
+                href="/projects/msearch"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
+              >
+                Découvrir mSearch
+                <ExternalLink className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/projects/msearch"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
+              >
+                Voir plus
+              </Link>
+            </div>
 
-            <div className="mt-auto pt-6 border-t border-black/5 w-full">
+            <div className="mt-auto pt-3 border-t border-black/5 w-full">
               <GithubActivity repo="mDevsLabs/mSearch" title="Commits Récents" />
             </div>
           </div>
