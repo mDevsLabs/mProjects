@@ -106,40 +106,40 @@ export default function MaiProjectPage() {
             interface fluide, intuitive et hautement personnalisable.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <a
               href="https://mai-officiel.vercel.app"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors"
             >
               Découvrir mAI
-              <ExternalLink className="w-5 h-5" />
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <a
               href="https://github.com/mDevsLabs/mAI"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors"
             >
               GitHub
-              <Github className="w-5 h-5" />
+              <Github className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
             <Link
               href="/changelog/mai"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors"
             >
               Changelog
-              <BookOpen className="w-5 h-5" />
+              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
             <a
               href="https://github.com/mDevsLabs/mAI/releases"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors"
             >
               Télécharger mAI
-              <Download className="w-5 h-5" />
+              <Download className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
           </div>
         </div>
