@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import {
   Key,
   Copy,
@@ -286,6 +286,9 @@ export default function ApiPage() {
   const handleRevokeKey = (id: string) => {
     const keyToRevoke = apiKeys.find((k) => k.id === id);
     if (!keyToRevoke) return;
+    
+    // Fermer les toasts de confirmation précédents pour éviter le cumul
+    toast.dismiss();
     
     toast(
       (t) => (
@@ -1156,7 +1159,6 @@ print(response.json())`,
           </div>
         </div>
       </section>
-      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 }

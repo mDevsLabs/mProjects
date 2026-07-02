@@ -7,7 +7,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     <>
       {children}
       <SonnerToaster
-        position="bottom-right"
+        position="top-right"
         toastOptions={{
           className: "bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-2xl text-slate-700",
           success: {
@@ -21,7 +21,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
           },
         }}
         gutter={8}
-        containerStyle={{ bottom: '24px', right: '24px' }}
+        containerStyle={{ top: '24px', right: '24px' }}
       />
     </>
   );
