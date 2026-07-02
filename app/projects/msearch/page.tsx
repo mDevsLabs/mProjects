@@ -10,6 +10,7 @@ import {
   Download,
   Globe,
   Github,
+  BookOpen,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -38,7 +39,17 @@ export default function MsearchProjectPage() {
           className="flex flex-col gap-4"
         >
           <div className="flex items-center gap-6">
-            <div className="w-20 h-20 md:w-28 md:h-28 rounded-3xl md:rounded-full bg-white/30 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] flex items-center justify-center p-4">
+            <motion.div
+              animate={{
+                filter: [
+                  "drop-shadow(0 0 0px rgba(59, 130, 246, 0))",
+                  "drop-shadow(0 0 15px rgba(59, 130, 246, 0.3))",
+                  "drop-shadow(0 0 0px rgba(59, 130, 246, 0))",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="w-20 h-20 md:w-28 md:h-28 rounded-3xl md:rounded-full bg-white/30 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] flex items-center justify-center p-4"
+            >
               <Image
                 src="/msearch.PNG"
                 alt="mSearch logo"
@@ -47,7 +58,7 @@ export default function MsearchProjectPage() {
                 className="w-full h-full object-contain drop-shadow-md"
                 priority
               />
-            </div>
+            </motion.div>
             <div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-black italic tracking-tighter uppercase text-slate-900 drop-shadow-sm">
                 mSearch
@@ -96,6 +107,31 @@ export default function MsearchProjectPage() {
           <div className="flex flex-wrap gap-4">
             <a
               href="https://github.com/mDevsLabs/mSearch"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+            >
+              Découvrir mSearch
+              <ExternalLink className="w-5 h-5" />
+            </a>
+            <a
+              href="https://github.com/mDevsLabs/mSearch"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+            >
+              GitHub
+              <Github className="w-5 h-5" />
+            </a>
+            <Link
+              href="/changelog/msearch"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+            >
+              Changelog
+              <BookOpen className="w-5 h-5" />
+            </Link>
+            <a
+              href="https://github.com/mDevsLabs/mSearch/releases"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"

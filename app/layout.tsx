@@ -68,11 +68,11 @@ export default async function RootLayout({
               <div className="relative group text-xs md:text-sm text-slate-500 font-medium cursor-pointer">
                 <span className="hover:text-slate-900 transition-colors flex items-center gap-1">
                   Légal
-                  <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-rotate-180" />
                 </span>
 
-                {/* Liste de liens s'ouvrant vers le bas */}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-200 z-50">
+                {/* Liste de liens s'ouvrant vers le haut */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-200 z-50">
                   <div className="bg-white/95 backdrop-blur-xl border border-black/10 shadow-xl rounded-2xl p-1.5 min-w-[140px] flex flex-col gap-0.5">
                     <Link
                       href="/legal/privacy"
@@ -80,12 +80,12 @@ export default async function RootLayout({
                     >
                       Confidentialité
                     </Link>
-                    <Link
+                    <a
                       href="/legal/terms"
                       className="px-3 py-2 rounded-xl text-xs font-medium transition-colors text-slate-600 hover:bg-black/5 hover:text-slate-900 text-center"
                     >
                       CGU
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

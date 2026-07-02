@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
-import { GitCommit, Star, Zap, type LucideIcon } from "lucide-react";
+import { GitCommit, Star, Zap, type LucideIcon, ArrowLeft, ExternalLink } from "lucide-react";
 import Markdown from "react-markdown";
 import type { ChangelogsByProject } from "@/lib/changelog";
+import Link from "next/link";
 
 const iconMap: Record<string, LucideIcon> = {
   Star,
@@ -66,16 +67,28 @@ export default function ChangelogView({
   changelogs: ChangelogsByProject;
   filterProject?: "mai" | "msearch";
 }) {
+  const isSearch = filterProject === "msearch";
+  const projectColor = isSearch ? "blue" : "purple";
+  const projectName = isSearch ? "mSearch" : "mAI";
+  const projectRepo = isSearch ? "mDevsLabs/mSearch" : "mDevsLabs/mAI";
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="text-left mb-10 md:mb-16 space-y-2">
+        <Link
+          href="/projects"
+          className={`inline-flex items-center gap-2 text-${projectColor}-600 hover:text-${projectColor}-800 transition-colors mb-4`}
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Retour aux projets
+        </Link>
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900"
         >
           Notes de <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">
+          <span className={`text-transparent bg-clip-text bg-gradient-to-r from-${projectColor}-500 via-blue-500 to-emerald-500`}>
             Version
           </span>
         </motion.h1>
@@ -86,7 +99,8 @@ export default function ChangelogView({
           transition={{ delay: 0.1 }}
           className="text-slate-500 text-base md:text-lg font-light mt-2 md:mt-4"
         >
-          Suivez l&apos;évolution et les dernières mises à jour de nos projets.
+          Suivez l&apos;évolution et les dernières mises à jour de{' '}
+          <span className={`text-${projectColor}-600 font-semibold`}>{projectName}</span>.
         </motion.p>
       </div>
 
@@ -143,6 +157,17 @@ export default function ChangelogView({
                   </div>
                 )}
               </div>
+              <div className="mt-6 pt-4 border-t border-black/10 flex justify-end">
+                <a
+                  href={`https://github.com/${projectRepo}/releases`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`inline-flex items-center gap-1 text-${projectColor}-600 hover:text-${projectColor}-800 text-sm font-medium`}
+                >
+                  Voir toutes les releases
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
           </div>
         )}
@@ -198,6 +223,17 @@ export default function ChangelogView({
                     })}
                   </div>
                 )}
+              </div>
+              <div className="mt-6 pt-4 border-t border-black/10 flex justify-end">
+                <a
+                  href={`https://github.com/${projectRepo}/releases`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-medium`}
+                >
+                  Voir toutes les releases
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             </div>
           </div>
