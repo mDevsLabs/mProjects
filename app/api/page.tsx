@@ -737,7 +737,7 @@ print(response.json())`,
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
                   placeholder="dev@mprojects.io"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                 />
               </div>
 
@@ -748,7 +748,7 @@ print(response.json())`,
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                 />
               </div>
 
@@ -773,14 +773,14 @@ print(response.json())`,
                   value={newKeyName}
                   onChange={(e) => setNewKeyName(e.target.value)}
                   placeholder="Nom de la clé"
-                  className="px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
+                  className="px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                 />
                 <input
                   type="text"
                   value={newKeyNote}
                   onChange={(e) => setNewKeyNote(e.target.value)}
                   placeholder="Note (optionnel)"
-                  className="px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
+                  className="px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                 />
               </div>
               <div className="flex items-end gap-3">
@@ -794,7 +794,7 @@ print(response.json())`,
                     onChange={(e) => setNewKeyMaxUsage(parseInt(e.target.value) || 1000)}
                     min="1"
                     max="100000"
-                    className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900"
                   />
                 </div>
                 <button

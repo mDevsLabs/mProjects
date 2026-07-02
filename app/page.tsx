@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ArrowRight, Sparkles, Layers, Github, Twitter, Instagram, Youtube } from "lucide-react";
+import { SiOllama } from "react-icons/si";
 import Link from "next/link";
 
 export default function Home() {
@@ -60,6 +61,7 @@ export default function Home() {
             ), bg: "bg-black hover:bg-slate-900 text-white" },
             { name: "Instagram", href: "https://instagram.com/mDevsLabs", icon: <Instagram className="w-5 h-5" />, bg: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 hover:opacity-90 text-white" },
             { name: "YouTube", href: "https://youtube.com/@mDevsLabs", icon: <Youtube className="w-5 h-5" />, bg: "bg-[#FF0000] hover:bg-[#CC0000] text-white" },
+            { name: "Ollama", href: "https://ollama.com/mDevsLabs", icon: <SiOllama className="w-5 h-5" />, bg: "bg-black hover:bg-slate-900 text-white" },
           ].map((social, index) => (
             <motion.a
               key={social.name}
