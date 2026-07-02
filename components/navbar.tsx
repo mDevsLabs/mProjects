@@ -103,15 +103,15 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
 
                     {/* Dropdown */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-200 z-50">
-                      <div className="bg-white/98 bg-slate-900/98 backdrop-blur-xl border border-black/10 border-white/10 shadow-xl rounded-3xl p-1.5 min-w-[120px] flex flex-col gap-0.5">
+                      <div className="bg-white/98 backdrop-blur-xl border border-black/10 shadow-xl rounded-3xl p-1.5 min-w-[120px] flex flex-col gap-0.5">
                         {link.subitems.map((subitem) => (
                           <Link
                             key={subitem.name}
                             href={subitem.href}
                             className={`px-3 py-2 rounded-full text-xs font-medium transition-colors ${
                               pathname === subitem.href
-                                ? "bg-purple-50 bg-purple-500/20 text-purple-600 text-purple-400"
-                                : "text-slate-600 text-slate-300 hover:bg-black/5 hover:bg-white/10 hover:text-slate-900 hover:text-white"
+                                ? "bg-purple-50 text-purple-600 font-semibold"
+                                : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
                             }`}
                           >
                             {subitem.name}
@@ -200,8 +200,8 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`flex-1 px-4 py-3 text-sm font-semibold transition-colors flex items-center gap-2 rounded-2xl ${
                         isActive
-                          ? "bg-purple-500/10 text-purple-600 text-purple-400"
-                          : "text-slate-700 text-slate-200 hover:bg-black/5 hover:bg-white/10"
+                          ? "bg-purple-50 text-purple-600"
+                          : "text-slate-700 hover:bg-black/5 hover:text-slate-900"
                       }`}
                     >
                       {link.name}
@@ -209,7 +209,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                     {hasSubitems && (
                       <button
                         onClick={() => toggleMobileSubmenu(link.name)}
-                        className={`p-2.5 mr-1.5 rounded-xl hover:bg-black/5 hover:bg-white/10 text-slate-500 transition-transform ${
+                        className={`p-2.5 mr-1.5 rounded-xl hover:bg-black/5 text-slate-500 transition-transform ${
                           isSubmenuOpen ? "rotate-180" : ""
                         }`}
                         aria-label="Toggle submenu"
@@ -220,7 +220,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                   </div>
 
                   {hasSubitems && isSubmenuOpen && (
-                    <div className="pl-6 pr-4 pb-2 flex flex-col gap-1 bg-black/[0.02] bg-white/[0.02] border-t border-black/5 border-white/5">
+                    <div className="pl-6 pr-4 pb-2 flex flex-col gap-1 bg-black/[0.02] border-t border-black/5">
                       {link.subitems?.map((subitem) => (
                         <Link
                           key={subitem.name}
@@ -228,8 +228,8 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between ${
                             pathname === subitem.href
-                              ? "bg-purple-500/20 text-purple-600 text-purple-400"
-                              : "text-slate-600 text-slate-300 hover:bg-black/5 hover:bg-white/10"
+                              ? "bg-purple-50 text-purple-600"
+                              : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
                           }`}
                         >
                           <span>{subitem.name}</span>
@@ -244,12 +244,12 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
               );
             })}
 
-            <div className="flex gap-2 mt-3 pt-3 border-t border-black/5 border-white/5 justify-center">
+            <div className="flex gap-2 mt-3 pt-3 border-t border-black/5 justify-center">
               <a
                 href="https://github.com/mDevsLabs"
                 target="_blank"
                 rel="noreferrer"
-                className="p-3 rounded-full border border-black/10 border-white/10 bg-black/5 bg-white/10 hover:bg-black/10 hover:bg-white/20 transition-all text-slate-700 text-slate-200 flex justify-center w-full"
+                className="p-3 rounded-full border border-black/10 bg-black/5 hover:bg-black/10 transition-all text-slate-700 flex justify-center w-full"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
