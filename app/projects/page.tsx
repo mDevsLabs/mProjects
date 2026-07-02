@@ -89,12 +89,18 @@ export default function ProjectsPage() {
             </p>
 
             <Link
-              href="/projects/mai"
-              className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
-            >
-              Découvrir mAI
-              <ExternalLink className="w-4 h-4" />
-            </Link>
+            href="/projects/mai"
+            className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
+          >
+            Découvrir mAI
+            <ExternalLink className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/projects/mai"
+            className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
+          >
+            Voir plus
+          </Link>
 
             <div className="mt-auto pt-6 border-t border-black/5 w-full">
               <GithubActivity repo="mDevsLabs/mAI" title="Commits Récents" />
@@ -156,6 +162,12 @@ export default function ProjectsPage() {
             >
               Découvrir mSearch
               <ExternalLink className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/projects/msearch"
+              className="mt-6 mb-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
+            >
+              Voir plus
             </Link>
 
             <div className="mt-auto pt-6 border-t border-black/5 w-full">

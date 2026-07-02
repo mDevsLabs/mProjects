@@ -109,7 +109,7 @@ export default function MsearchProjectPage() {
               href="https://github.com/mDevsLabs/mSearch"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
             >
               Découvrir mSearch
               <ExternalLink className="w-5 h-5" />
@@ -118,14 +118,14 @@ export default function MsearchProjectPage() {
               href="https://github.com/mDevsLabs/mSearch"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
             >
               GitHub
               <Github className="w-5 h-5" />
             </a>
             <Link
               href="/changelog/msearch"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
             >
               Changelog
               <BookOpen className="w-5 h-5" />
@@ -134,7 +134,7 @@ export default function MsearchProjectPage() {
               href="https://github.com/mDevsLabs/mSearch/releases"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl md:rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold hover:bg-white/60 transition-colors"
             >
               Télécharger mSearch
               <Download className="w-5 h-5" />

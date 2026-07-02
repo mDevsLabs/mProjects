@@ -99,6 +99,8 @@ export default async function RootLayout({
           src="https://api.dashboard.instatus.com/widget?host=mprojects.instatus.com&code=1ac64775&locale=fr" 
           strategy="afterInteractive" 
         />
+        <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+        <script src="https://files.bpcontent.cloud/2026/05/02/11/20260502114920-JBX5UCAM.js" defer></script>
       </body>
     </html>
   );
