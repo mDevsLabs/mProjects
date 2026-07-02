@@ -1,4 +1,4 @@
-import { getNewsArticle } from '@/lib/news';
+import { getNewsArticle, getNewsArticles } from '@/lib/news';
 import PrintContent from '@/components/print-content';
 import { ArrowLeft, Download, Printer } from 'lucide-react';
 import Link from 'next/link';
