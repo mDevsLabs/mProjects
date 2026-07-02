@@ -10,6 +10,7 @@ import type { NewsArticle } from "@/lib/news";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Sheet } from "@/components/sheet";
 
 const navLinks = [
   { name: "Accueil", href: "/" },
@@ -36,11 +37,12 @@ const navLinks = [
 
 export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject; news?: NewsArticle[] }) {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, systemTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null);
   const [isCommandOpen, setIsCommandOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,6 +56,24 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
   const toggleMobileSubmenu = (name: string) => {
     setActiveMobileSubmenu(activeMobileSubmenu === name ? null : name);
   };
+
+  const getCurrentTheme = () => {
+    if (theme === "system") {
+      return systemTheme;
+    }
+    return theme;
+  };
+
+  const handleThemeSelect = (value: "light" | "dark" | "system") => {
+    setTheme(value);
+    setIsThemeMenuOpen(false);
+  };
+
+  const themeOptions = [
+    { value: "light", label: "Jour", icon: Sun },
+    { value: "dark", label: "Nuit", icon: Moon },
+    { value: "system", label: "Système", icon: Moon },
+  ];
 
   return (
     <>
@@ -142,17 +162,43 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
 
           {/* Actions */}
           <div className="flex items-center gap-2 md:gap-4">
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 border border-transparent rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center text-slate-600 dark:text-slate-300 group relative"
-              aria-label={theme === 'dark' ? 'Passer au mode jour' : 'Passer au mode sombre'}
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none px-2 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-medium rounded shadow-lg whitespace-nowrap z-50">
-                {theme === 'dark' ? 'Mode jour' : 'Mode sombre'}
-              </div>
-            </button>
+            {/* Theme Toggle with Dropdown */}
+            <div className="relative group">
+              <button
+                onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+                className="p-2 border border-transparent rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center text-slate-600 dark:text-slate-300 group relative"
+                aria-label="Choisir le thème"
+              >
+                {theme === 'dark' ? <Sun className="w-5 h-5" /> : theme === 'light' ? <Moon className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none px-2 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-medium rounded shadow-lg whitespace-nowrap z-50">
+                  {theme === 'dark' ? 'Mode jour' : theme === 'light' ? 'Mode nuit' : 'Système'}
+                </div>
+              </button>
+              {isThemeMenuOpen && (
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-2 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-200 z-50">
+                  <div className="bg-white/98 dark:bg-slate-900/98 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-xl rounded-3xl p-1.5 min-w-[140px] flex flex-col gap-0.5">
+                    {themeOptions.map((option) => {
+                      const Icon = option.icon;
+                      const isSelected = theme === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          onClick={() => handleThemeSelect(option.value as "light" | "dark" | "system")}
+                          className={`px-3 py-2 rounded-full text-xs font-medium transition-colors flex items-center gap-2 ${
+                            isSelected
+                              ? "bg-purple-50 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400"
+                              : "text-slate-600 dark:text-slate-300 hover:bg-black/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white"
+                          }`}
+                        >
+                          <Icon className="w-4 h-4" />
+                          {option.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Socials */}
             <div className="hidden md:flex gap-2">
@@ -196,105 +242,91 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="absolute top-[60px] left-4 right-4 bg-white/95 dark:bg-slate-950/95 backdrop-blur-3xl border border-black/10 dark:border-white/10 rounded-3xl p-4 flex flex-col gap-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] md:hidden z-50 max-h-[80vh] overflow-y-auto"
-            >
-              {navLinks.map((link) => {
-                const hasSubitems = !!link.subitems;
-                const isSubActive = hasSubitems && link.subitems?.some((sub) => pathname === sub.href);
-                const isActive = pathname === link.href || isSubActive;
-                const isSubmenuOpen = activeMobileSubmenu === link.name;
+        {/* Mobile Menu Sheet */}
+        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+          <nav className="flex flex-col gap-2 p-4">
+            {navLinks.map((link) => {
+              const hasSubitems = !!link.subitems;
+              const isSubActive = hasSubitems && link.subitems?.some((sub) => pathname === sub.href);
+              const isActive = pathname === link.href || isSubActive;
+              const isSubmenuOpen = activeMobileSubmenu === link.name;
 
-                return (
-                  <div key={link.name} className="flex flex-col rounded-2xl overflow-hidden">
-                    <div className="flex items-center justify-between w-full">
-                      <Link
-                        href={link.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`flex-1 px-4 py-3 text-sm font-semibold transition-colors flex items-center gap-2 rounded-2xl ${
-                          isActive
-                            ? "bg-purple-500/10 text-purple-600 dark:text-purple-400"
-                            : "text-slate-700 dark:text-slate-200 hover:bg-black/5 dark:hover:bg-white/10"
+              return (
+                <div key={link.name} className="flex flex-col rounded-2xl overflow-hidden">
+                  <div className="flex items-center justify-between w-full">
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex-1 px-4 py-3 text-sm font-semibold transition-colors flex items-center gap-2 rounded-2xl ${
+                        isActive
+                          ? "bg-purple-500/10 text-purple-600 dark:text-purple-400"
+                          : "text-slate-700 dark:text-slate-200 hover:bg-black/5 dark:hover:bg-white/10"
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                    {hasSubitems && (
+                      <button
+                        onClick={() => toggleMobileSubmenu(link.name)}
+                        className={`p-2.5 mr-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 transition-transform ${
+                          isSubmenuOpen ? "rotate-180" : ""
                         }`}
+                        aria-label="Toggle submenu"
                       >
-                        {link.name}
-                      </Link>
-                      {hasSubitems && (
-                        <button
-                          onClick={() => toggleMobileSubmenu(link.name)}
-                          className={`p-2.5 mr-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 transition-transform ${
-                            isSubmenuOpen ? "rotate-180" : ""
-                          }`}
-                          aria-label="Toggle submenu"
-                        >
-                          <ChevronDown className="w-4 h-4" />
-                        </button>
-                      )}
-                    </div>
-
-                    {hasSubitems && isSubmenuOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="pl-6 pr-4 pb-2 flex flex-col gap-1 bg-black/[0.02] dark:bg-white/[0.02] border-t border-black/5 dark:border-white/5"
-                      >
-                        {link.subitems?.map((subitem) => (
-                          <Link
-                            key={subitem.name}
-                            href={subitem.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between ${
-                              pathname === subitem.href
-                                ? "bg-purple-500/20 text-purple-600 dark:text-purple-400"
-                                : "text-slate-600 dark:text-slate-300 hover:bg-black/5 dark:hover:bg-white/10"
-                            }`}
-                          >
-                            <span>{subitem.name}</span>
-                            {pathname === subitem.href && (
-                              <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
-                            )}
-                          </Link>
-                        ))}
-                      </motion.div>
+                        <ChevronDown className="w-4 h-4" />
+                      </button>
                     )}
                   </div>
-                );
-              })}
 
-              <div className="flex gap-2 mt-3 pt-3 border-t border-black/5 dark:border-white/5 justify-center">
-                <a
-                  href="https://github.com/mDevsLabs"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-all text-slate-700 dark:text-slate-200 flex justify-center w-full"
-                  aria-label="GitHub"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://discord.gg/invite/fV7zwdGPpY"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3 rounded-full border border-indigo-500 bg-indigo-600 hover:bg-indigo-500 transition-all text-white flex justify-center w-full"
-                  aria-label="Discord"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
-                  </svg>
-                </a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  {hasSubitems && isSubmenuOpen && (
+                    <div className="pl-6 pr-4 pb-2 flex flex-col gap-1 bg-black/[0.02] dark:bg-white/[0.02] border-t border-black/5 dark:border-white/5">
+                      {link.subitems?.map((subitem) => (
+                        <Link
+                          key={subitem.name}
+                          href={subitem.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between ${
+                            pathname === subitem.href
+                              ? "bg-purple-500/20 text-purple-600 dark:text-purple-400"
+                              : "text-slate-600 dark:text-slate-300 hover:bg-black/5 dark:hover:bg-white/10"
+                          }`}
+                        >
+                          <span>{subitem.name}</span>
+                          {pathname === subitem.href && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            <div className="flex gap-2 mt-3 pt-3 border-t border-black/5 dark:border-white/5 justify-center">
+              <a
+                href="https://github.com/mDevsLabs"
+                target="_blank"
+                rel="noreferrer"
+                className="p-3 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-all text-slate-700 dark:text-slate-200 flex justify-center w-full"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a
+                href="https://discord.gg/invite/fV7zwdGPpY"
+                target="_blank"
+                rel="noreferrer"
+                className="p-3 rounded-full border border-indigo-500 bg-indigo-600 hover:bg-indigo-500 transition-all text-white flex justify-center w-full"
+                aria-label="Discord"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
+                </svg>
+              </a>
+            </div>
+          </nav>
+        </Sheet>
       </header>
       <CommandMenu
         open={isCommandOpen}

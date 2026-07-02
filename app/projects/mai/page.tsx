@@ -10,6 +10,7 @@ import {
   Code,
   Layout,
   Download,
+  Cpu,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -153,6 +154,12 @@ export default function MaiProjectPage() {
             title="Outils Intégrés"
             description="Coloration syntaxique, rendu markdown et exécution de code simplifiée."
             delay={0.6}
+          />
+          <FeatureCard
+            icon={<Cpu className="w-6 h-6 text-purple-600" />}
+            title="Propulsé par LobeHub"
+            description="Une puissance de fonctionnalités et meilleure stabilité."
+            delay={0.7}
           />
         </div>
       </div>

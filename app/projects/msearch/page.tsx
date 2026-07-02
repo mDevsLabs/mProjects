@@ -9,6 +9,7 @@ import {
   Lock,
   Download,
   Globe,
+  Github,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -137,6 +138,18 @@ export default function MsearchProjectPage() {
             title="Multi-plateforme"
             description="Disponible et optimisé pour Windows, macOS et Linux."
             delay={0.5}
+          />
+          <FeatureCard
+            icon={<Github className="w-6 h-6 text-blue-600" />}
+            title="Projet Open Source"
+            description="Le code source est entièrement ouvert et accessible pour une transparence et sécurité totales."
+            delay={0.6}
+          />
+          <FeatureCard
+            icon={<Globe className="w-6 h-6 text-blue-600" />}
+            title="Propulsé par Min"
+            description="Construit sur une base solide de navigateur pour une expérience optimale."
+            delay={0.7}
           />
         </div>
       </div>

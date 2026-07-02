@@ -52,13 +52,13 @@ export default function ProjectsPage() {
           </div>
 
           <div className="flex flex-col h-full relative z-10">
-            <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
+            <div className="w-20 h-20 rounded-full bg-white/30 dark:bg-slate-900/30 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] mb-4 flex items-center justify-center p-3">
               <Image
                 src="/mai.png"
                 alt="mAI logo"
-                width={64}
-                height={64}
-                sizes="64px"
+                width={80}
+                height={80}
+                sizes="80px"
                 className="w-full h-full object-contain drop-shadow-md"
               />
             </div>

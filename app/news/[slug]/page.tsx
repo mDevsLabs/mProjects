@@ -1,29 +1,11 @@
-export type Comment = {
-  id: string;
-  name: string;
-  email: string;
-  avatar?: string;
-  message: string;
-  timestamp: number;
-  rating?: number;
-};
-
-export type ArticleWithInteractions = {
-  slug: string;
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-  description?: string;
-  label?: string;
-};
-
-import { getNewsArticle, getNewsArticles } from '@/lib/news';
+import { getNewsArticle } from '@/lib/news';
 import Markdown from 'react-markdown';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { ShareButtons, CommentSection } from './ArticleClient';
+import { Share2 } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 const formatDate = (dateStr: any) => {
   if (typeof dateStr !== 'string') return String(dateStr || '');
@@ -49,7 +31,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="max-w-3xl mx-auto">
-      <Link href="/news" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-sm font-medium text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors mb-8">
+      <Link href="/news" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm text-sm font-medium text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all duration-300 mb-8">
         <ArrowLeft className="w-4 h-4" />
         Retour aux actualités
       </Link>
@@ -93,4 +75,15 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <CommentSection articleSlug={resolvedParams.slug} />
     </div>
   );
+}
+
+export async function generateStaticParamsForPrint() {
+  const articles = getNewsArticles();
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
+}
+
+export function getArticleForPrint(slug: string) {
+  return getNewsArticle(slug);
 }

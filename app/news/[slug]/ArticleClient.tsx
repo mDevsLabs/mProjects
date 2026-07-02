@@ -1,8 +1,7 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ThumbsUp, ThumbsDown, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin, Instagram, Youtube, Edit, Trash2 } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 export type Comment = {
   id: string;
@@ -29,6 +28,8 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
             const url = window.location.href;
             if (navigator.share) {
               navigator.share({ title, text: description, url });
+            } else {
+              toast.error("Partage non supporté sur cet appareil");
             }
           }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
@@ -85,7 +86,7 @@ export function ShareButtons({ title, description }: ShareButtonsProps) {
           onClick={() => {
             const url = window.location.href;
             navigator.clipboard.writeText(url);
-            alert('Lien copié !');
+            toast.success("Lien copié !");
           }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-white/60 dark:border-slate-800/60 shadow-sm hover:shadow-md transition-all text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
         >
@@ -109,7 +110,10 @@ function CommentForm({ onAddComment, editingComment, onUpdateComment }: { onAddC
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !message) return;
+    if (!name || !email || !message) {
+      toast.error("Veuillez remplir tous les champs obligatoires");
+      return;
+    }
     
     const newComment: Comment = {
       id: editingComment?.id || Date.now().toString(),
@@ -123,8 +127,10 @@ function CommentForm({ onAddComment, editingComment, onUpdateComment }: { onAddC
     
     if (onUpdateComment) {
       onUpdateComment(newComment);
+      toast.success("Commentaire mis à jour !");
     } else {
       onAddComment(newComment);
+      toast.success("Commentaire publié !");
     }
     setName('');
     setEmail('');
@@ -204,7 +210,8 @@ function CommentForm({ onAddComment, editingComment, onUpdateComment }: { onAddC
               key={value}
               type="button"
               onClick={() => setRating(value)}
-              className={`w-10 h-10 rounded-full border-2 transition-colors ${value <= rating ? 'bg-orange-500 border-orange-500 text-white' : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-orange-950/50'}`}>
+              className={`w-10 h-10 rounded-full border-2 transition-colors ${value <= rating ? 'bg-orange-500 border-orange-500 text-white' : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-700 hover:bg-orange-50 dark:hover:bg-orange-950/50'}`}
+            >
               {value}
             </button>
           ))}
@@ -382,7 +389,10 @@ function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Commen
         )}
         {onDelete && (
           <button
-            onClick={() => onDelete(commentId)}
+            onClick={() => {
+              onDelete(commentId);
+              toast.error("Commentaire supprimé !");
+            }}
             className="flex items-center gap-2 px-3 py-1 rounded-full text-slate-600 dark:text-slate-400 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors text-sm"
           >
             <Trash2 className="w-4 h-4" />
