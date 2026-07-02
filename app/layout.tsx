@@ -3,7 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { BackToTop } from "@/components/back-to-top";
-import { ToastProvider } from "@/components/ui/index";
+import { ToastProvider, CookieBanner } from "@/components/ui/index";
 import { getChangelogs } from "@/lib/changelog";
 import { getNewsArticles } from "@/lib/news";
 import { Inter, Space_Grotesk } from "next/font/google";
@@ -52,6 +52,7 @@ export default async function RootLayout({
         <ThemeProvider enableSystem={false} attribute="class" defaultTheme="light">
           <ToastProvider>
             <Navbar changelogs={changelogs} news={news} />
+            <CookieBanner />
             {/* Background Orbs */}
             <div className="absolute -top-24 -left-24 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
             <div className="absolute top-1/2 -right-24 w-80 h-80 bg-blue-400/20 dark:bg-blue-600/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>

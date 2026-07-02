@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Scale, ArrowLeft, ShieldAlert, Cpu, Search } from "lucide-react";
+import { Scale, ArrowLeft, ShieldAlert, Cpu, Search, FileText, Lock, ExternalLink, Zap } from "lucide-react";
 import Link from "next/link";
 
 export default function TermsPage() {
@@ -29,7 +29,7 @@ export default function TermsPage() {
           Conditions Générales <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">d'Utilisation</span> ⚖️
         </h1>
 
-        <p className="text-slate-500 dark:text-slate-400 font-light mb-10 text-base md:text-lg">
+<p className="text-slate-500 dark:text-slate-400 font-light mb-10 text-base md:text-lg">
           Dernière mise à jour : 1er juillet 2026. Conditions d'utilisation applicables aux projets mAI et mSearch développés par mDevsLabs.
         </p>
 
@@ -37,30 +37,89 @@ export default function TermsPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Cpu className="w-5 h-5 text-purple-500" />
-              1. Utilisation de mAI
+              1. Acceptation des Conditions
             </h2>
             <p className="leading-relaxed font-light">
-              Le service mAI utilise des technologies d'intelligence artificielle pour traiter vos requêtes et générer des réponses. En utilisant mAI, vous vous engagez à ne pas utiliser l'outil à des fins malveillantes, illégales ou abusives, et à respecter les règles de notre communauté.
+              En accédant ou en utilisant les services mAI et mSearch, vous acceptez d'être lié par ces Conditions Générales d'Utilisation. Si vous n'acceptez pas l'intégralité de ces conditions, vous ne pouvez pas accéder aux services ni les utiliser.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Search className="w-5 h-5 text-blue-500" />
-              2. Utilisation de mSearch
+              2. Description des Services
             </h2>
             <p className="leading-relaxed font-light">
-              mSearch est un navigateur minimaliste et sécurisé. Les résultats de recherche sont fournis sans altération commerciale ni manipulation publicitaire. Vous acceptez d'utiliser mSearch dans le respect des lois relatives aux droits d'auteur et à la cybersécurité.
+              <strong>mAI</strong> est un assistant personnel alimenté par l'intelligence artificielle qui fournit des réponses, de l'aide et des suggestions basées sur les technologies d'apprentissage automatique avancées. Le service peut inclure l'accès aux dernières avancées en traitement du langage naturel, génération de texte, compréhension de la parole et d'autres fonctionnalités d'IA.
+            </p>
+            <p className="leading-relaxed font-light mt-2">
+              <strong>mSearch</strong> est un navigateur web minimaliste et sécurisé qui intègre une barre de recherche unifiée avec divers moteurs de recherche. Le navigateur inclut un bloqueur de publicités et de traqueurs intégré pour protéger votre vie privée en ligne.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <ShieldAlert className="w-5 h-5 text-orange-500" />
-              3. Limitation de responsabilité
+              3. Limitation de Responsabilité
             </h2>
             <p className="leading-relaxed font-light">
-              mDevsLabs fournit ses projets à titre expérimental et communautaire. Bien que nous fassions de notre mieux pour assurer la stabilité et l'exactitude des informations, nous ne pouvons être tenus responsables d'éventuels dysfonctionnements, pertes de données ou erreurs générées par les modèles d'IA.
+              mDevsLabs fournit ses projets à titre expérimental et communautaire. Bien que nous fassions de notre mieux pour assurer la stabilité et l'exactitude des informations, nous ne pouvons être tenus responsables d'éventuels dysfonctionnements, pertes de données ou erreurs générées par les modèles d'IA. Les services sont fournis "tels quels" sans garanties d'aucune sorte, express ou implicite.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <FileText className="w-5 h-5 text-emerald-500" />
+              4. Données et Propriété Intellectuelle
+            </h2>
+            <p className="leading-relaxed font-light">
+              Toutes les données, y compris mais sans s'y limiter, votre historique de conversation, vos paramètres et vos préférences, vous appartiennent. mDevsLabs conserve une copie uniquement pour améliorer l'expérience utilisateur et développer le service.
+            </p>
+            <p className="leading-relaxed font-light mt-2">
+              Sauf indication contraire, tous les contenus et fonctionnalités inclus dans les projets, ainsi que toute amélioration, correction de bugs ou version ultérieure, sont la propriété exclusive de mDevsLabs.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <Lock className="w-5 h-5 text-purple-500" />
+              5. Confidentialité et Sécurité
+            </h2>
+            <p className="leading-relaxed font-light">
+              La protection de vos données personnelles est d'une grande importance pour nous. Nous traitons vos informations conformément à nos politiques de confidentialité et aux réglementations applicables. Les services stockent certains attributs de données pour améliorer la personnalisation et la sécurité. Vous donnez votre consentement exprès pour que ces données soient utilisées conformément à ces politiques.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <ExternalLink className="w-5 h-5 text-blue-500" />
+              6. Liens Externes et Intégrations
+            </h2>
+            <p className="leading-relaxed font-light">
+              Les services peuvent contenir des liens vers des sites web tiers et des intégrations avec des services tiers (tels que LobeHub pour mAI et Min Browser pour mSearch). mDevsLabs n'est pas responsable du contenu, des politiques de confidentialité ou des pratiques de ces sites tiers.
+            </p>
+            <p className="leading-relaxed font-light mt-2">
+              mDevsLabs n'exerce aucun contrôle sur et ne s'assume aucune responsabilité d'aucune sorte liée à ces ressources tierces. Votre utilisation des services contient une délégation de confiance à ces autres sites web. Vous reconnaissez et acceptez qu'il est de votre responsabilité de prendre toutes les mesures pour protéger votre vie privée et sécuriser votre système lors du téléchargement et de l'utilisation de ces intégrations tierces.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <Zap className="w-5 h-5 text-emerald-500" />
+              7. Conditions d'Utilisation Acceptables
+            </h2>
+            <p className="leading-relaxed font-light">
+              En utilisant ces services, vous vous engagez à ne pas violer les droits de propriété intellectuelle ou de savoir-faire de mDevsLabs ou de tiers ; ne pas utiliser les services à des fins illégales, malveillantes ou nuisibles ; ne pas interférer avec le fonctionnement des services ou tenter d'y accéder sans autorisation ; ne pas représenter quelqu'un d'autre lors de l'utilisation des services ; ne pas transmettre de contenu illégal, diffamatoire, haineux ou autrement répréhensible ; ne pas utiliser les services à des fins publicitaires ou promotionnelles sans consentement ; ne pas essayer de contourner toute mesure de sécurité ou de protection ; et ne pas utiliser les services de manière abusive ou excessive.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <ArrowLeft className="w-5 h-5 text-orange-500" />
+              8. Clôture du Compte
+            </h2>
+            <p className="leading-relaxed font-light">
+              Vous pouvez arrêter d'utiliser les services et fermer votre compte à tout moment en accédant aux paramètres du service et en suivant la procédure de fermeture de compte. Après la clôture, votre accès aux services sera révoqué et vous perdrez tous les droits d'utilisation des services.
             </p>
           </section>
         </div>
