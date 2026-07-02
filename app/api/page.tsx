@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import toast, { Toaster } from "react-hot-toast";
 import {
   Key,
   Copy,
@@ -35,6 +36,10 @@ interface ApiKey {
   name: string;
   createdAt: string;
   status: "active" | "revoked";
+  maxUsage: number;
+  usageCount: number;
+  note: string;
+  shownOnce: boolean;
 }
 
 interface UserAccount {
@@ -121,6 +126,8 @@ export default function ApiPage() {
 
   // Clé pour nouvelle création
   const [newKeyName, setNewKeyName] = useState("");
+  const [newKeyMaxUsage, setNewKeyMaxUsage] = useState(1000);
+  const [newKeyNote, setNewKeyNote] = useState("");
 
   // Playground States
   const [playgroundKey, setPlaygroundKey] = useState("");
@@ -153,7 +160,14 @@ export default function ApiPage() {
     let keysList: ApiKey[] = [];
     if (storedKeys) {
       try {
-        keysList = JSON.parse(storedKeys);
+        const parsedKeys = JSON.parse(storedKeys);
+        keysList = parsedKeys.map((k: ApiKey) => ({
+          ...k,
+          maxUsage: k.maxUsage ?? 1000,
+          usageCount: k.usageCount ?? 0,
+          note: k.note ?? "",
+          shownOnce: k.shownOnce ?? false,
+        }));
       } catch (e) {
         console.error("Erreur lecture clés API:", e);
       }
@@ -167,6 +181,10 @@ export default function ApiPage() {
         name: "Clé de démonstration",
         createdAt: new Date().toLocaleDateString("fr-FR"),
         status: "active",
+        maxUsage: 1000,
+        usageCount: 0,
+        note: "Clé générée automatiquement lors de la première visite",
+        shownOnce: false,
       };
       keysList = [defaultKey];
       localStorage.setItem("mprojects_api_keys", JSON.stringify(keysList));
@@ -222,6 +240,10 @@ export default function ApiPage() {
       name: `Clé principale (${emailInput.split("@")[0]})`,
       createdAt: new Date().toLocaleDateString("fr-FR"),
       status: "active",
+      maxUsage: 1000,
+      usageCount: 0,
+      note: "",
+      shownOnce: false,
     };
     const updatedKeys = [newKeyObj, ...apiKeys];
     saveKeysToStorage(updatedKeys);
@@ -246,19 +268,55 @@ export default function ApiPage() {
       name: keyName,
       createdAt: new Date().toLocaleDateString("fr-FR"),
       status: "active",
+      maxUsage: newKeyMaxUsage,
+      usageCount: 0,
+      note: newKeyNote.trim(),
+      shownOnce: false,
     };
     const updatedKeys = [newKeyObj, ...apiKeys];
     saveKeysToStorage(updatedKeys);
     setNewKeyName("");
+    setNewKeyMaxUsage(1000);
+    setNewKeyNote("");
+    toast.success(`Clé API "${keyName}" créée avec succès !`, { icon: "🔐" });
     setPlaygroundKey(keyStr);
   };
 
   // Révocation d'une clé API
   const handleRevokeKey = (id: string) => {
-    const updatedKeys = apiKeys.map((k) =>
-      k.id === id ? { ...k, status: "revoked" as const } : k
+    const keyToRevoke = apiKeys.find((k) => k.id === id);
+    if (!keyToRevoke) return;
+    
+    toast(
+      (t) => (
+        <div className="flex flex-col gap-2">
+          <span>
+            Révoquer la clé <strong>{keyToRevoke.name}</strong> ?
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={() => {
+                const updatedKeys = apiKeys.map((k) =>
+                  k.id === id ? { ...k, status: "revoked" as const } : k
+                );
+                saveKeysToStorage(updatedKeys);
+                toast.success(`Clé "${keyToRevoke.name}" révoquée`, { id: t.id });
+              }}
+              className="px-3 py-1.5 rounded-lg bg-red-600 text-white text-xs font-bold hover:bg-red-700 transition-colors"
+            >
+              Oui, révoquer
+            </button>
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="px-3 py-1.5 rounded-lg bg-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-300 transition-colors"
+            >
+              Annuler
+            </button>
+          </div>
+        </div>
+      ),
+      { duration: 10000 }
     );
-    saveKeysToStorage(updatedKeys);
   };
 
   // Basculer la visibilité d'une clé
@@ -324,7 +382,34 @@ export default function ApiPage() {
             2
           )
         );
+      } else if (matchingKey.usageCount >= matchingKey.maxUsage) {
+        // Usage limit reached
+        const updatedKeys = apiKeys.map((k) =>
+          k.id === matchingKey.id ? { ...k, status: "revoked" as const } : k
+        );
+        saveKeysToStorage(updatedKeys);
+        toast.error(`Limite d'utilisation atteinte pour "${matchingKey.name}". La clé a été révoquée.`, { icon: "⚠️" });
+        setResponseStatus({ code: 429, text: "429 Usage Limit Exceeded", time: responseDuration });
+        setResponseData(
+          JSON.stringify(
+            {
+              error: {
+                message: "Limite d'utilisation dépassée. Cette clé a été révoquée.",
+                type: "usage_limit_error",
+                code: "usage_limit_exceeded",
+              },
+            },
+            null,
+            2
+          )
+        );
       } else {
+        // Increment usage count
+        const updatedKeys = apiKeys.map((k) =>
+          k.id === matchingKey.id ? { ...k, usageCount: k.usageCount + 1 } : k
+        );
+        saveKeysToStorage(updatedKeys);
+        
         // HTTP 200 OK - Réponses JSON réalistes et dynamiques pour les 10 endpoints
         setResponseStatus({ code: 200, text: "200 OK", time: responseDuration });
 
@@ -656,20 +741,47 @@ print(response.json())`,
         ) : (
           <div className="space-y-6">
             {/* Création de nouvelle clé */}
-            <div className="flex flex-col sm:flex-row gap-3 bg-white/60 border border-white/80 p-4 rounded-2xl shadow-sm">
-              <input
-                type="text"
-                value={newKeyName}
-                onChange={(e) => setNewKeyName(e.target.value)}
-                placeholder="Nom de la clé (ex: Production App, Test Bot...)"
-                className="flex-1 px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
-              />
-              <button
-                onClick={handleGenerateKey}
-                className="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md transition-colors flex items-center justify-center gap-2 shrink-0"
-              >
-                <Plus className="w-4 h-4" /> Générer une nouvelle clé API
-              </button>
+            <div className="space-y-4 bg-white/60 border border-white/80 p-4 rounded-2xl shadow-sm">
+              <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <Plus className="w-4 h-4 text-purple-600" /> Générer une nouvelle clé API
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input
+                  type="text"
+                  value={newKeyName}
+                  onChange={(e) => setNewKeyName(e.target.value)}
+                  placeholder="Nom de la clé"
+                  className="px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                />
+                <input
+                  type="text"
+                  value={newKeyNote}
+                  onChange={(e) => setNewKeyNote(e.target.value)}
+                  placeholder="Note (optionnel)"
+                  className="px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                />
+              </div>
+              <div className="flex items-end gap-3">
+                <div className="flex-1">
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    Usage maximum <span className="text-slate-400 font-normal">(requêtes)</span>
+                  </label>
+                  <input
+                    type="number"
+                    value={newKeyMaxUsage}
+                    onChange={(e) => setNewKeyMaxUsage(parseInt(e.target.value) || 1000)}
+                    min="1"
+                    max="100000"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                  />
+                </div>
+                <button
+                  onClick={handleGenerateKey}
+                  className="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md transition-colors flex items-center justify-center gap-2 shrink-0"
+                >
+                  <Plus className="w-4 h-4" /> Générer
+                </button>
+              </div>
             </div>
 
             {/* Liste des clés API */}
@@ -686,12 +798,13 @@ print(response.json())`,
                     const isVisible = visibleKeys[k.id];
                     const isCopied = copiedKeyId === k.id;
                     const isRevoked = k.status === "revoked";
+                    const isUsageLimitReached = k.usageCount >= k.maxUsage;
 
                     return (
                       <div
                         key={k.id}
                         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl border transition-all ${
-                          isRevoked
+                          isRevoked || isUsageLimitReached
                             ? "bg-slate-100/50 border-slate-200 opacity-60"
                             : "bg-white/70 border-white/90 shadow-sm hover:shadow"
                         }`}
@@ -703,6 +816,10 @@ print(response.json())`,
                               <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-bold uppercase">
                                 Révoquée
                               </span>
+                            ) : isUsageLimitReached ? (
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-bold uppercase">
+                                Limite atteinte
+                              </span>
                             ) : (
                               <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold uppercase">
                                 Active
@@ -710,41 +827,70 @@ print(response.json())`,
                             )}
                             <span className="text-[11px] text-slate-400">({k.createdAt})</span>
                           </div>
-                          <div className="font-mono text-xs text-purple-700 font-bold tracking-wider bg-purple-50/80 border border-purple-100 px-3 py-1.5 rounded-xl inline-block">
-                            {isVisible ? k.key : maskKey(k.key)}
+                          {k.note && (
+                            <p className="text-xs text-slate-500 italic">{k.note}</p>
+                          )}
+                          <div className="flex items-center gap-3 text-xs text-slate-500">
+                            <span>Usage: {k.usageCount}/{k.maxUsage}</span>
+                            <div className="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-purple-500 transition-width"
+                                style={{ width: `${Math.min(100, (k.usageCount / k.maxUsage) * 100)}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                          <div
+                            className={`font-mono text-xs text-purple-700 font-bold tracking-wider bg-purple-50/80 border border-purple-100 px-3 py-1.5 rounded-xl inline-block cursor-pointer transition-all ${
+                              k.shownOnce ? "" : "hover:bg-purple-100"
+                            }`}
+                            onClick={() => {
+                              if (!k.shownOnce && !isRevoked && !isUsageLimitReached) {
+                                const updatedKeys = apiKeys.map((key) =>
+                                  key.id === k.id ? { ...key, shownOnce: true } : key
+                                );
+                                saveKeysToStorage(updatedKeys);
+                                setPlaygroundKey(k.key);
+                              }
+                            }}
+                            title={k.shownOnce ? "Clé déjà affichée" : "Cliquez pour afficher la clé"}
+                          >
+                            {isVisible || k.shownOnce ? k.key : maskKey(k.key)}
                           </div>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => toggleKeyVisibility(k.id)}
-                            className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors"
-                            title={isVisible ? "Masquer" : "Afficher"}
-                          >
-                            {isVisible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                          </button>
+                          {!k.shownOnce && !isRevoked && !isUsageLimitReached && (
+                            <button
+                              onClick={() => toggleKeyVisibility(k.id)}
+                              className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors"
+                              title="Afficher la clé"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </button>
+                          )}
 
-                          <button
-                            onClick={() => copyToClipboard(k.key, k.id)}
-                            disabled={isRevoked}
-                            className={`px-3 py-2 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-colors ${
-                              isCopied
-                                ? "bg-emerald-600 text-white border-emerald-600"
-                                : "bg-white border-slate-200 hover:bg-slate-50 text-slate-700"
-                            }`}
-                          >
-                            {isCopied ? (
-                              <>
-                                <Check className="w-3.5 h-3.5" /> Copié !
-                              </>
-                            ) : (
-                              <>
-                                <Copy className="w-3.5 h-3.5" /> Copier
-                              </>
-                            )}
-                          </button>
+                          {k.shownOnce && !isRevoked && !isUsageLimitReached && (
+                            <button
+                              onClick={() => copyToClipboard(k.key, k.id)}
+                              className={`px-3 py-2 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-colors ${
+                                isCopied
+                                  ? "bg-emerald-600 text-white border-emerald-600"
+                                  : "bg-white border-slate-200 hover:bg-slate-50 text-slate-700"
+                              }`}
+                            >
+                              {isCopied ? (
+                                <>
+                                  <Check className="w-3.5 h-3.5" /> Copié !
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="w-3.5 h-3.5" /> Copier
+                                </>
+                              )}
+                            </button>
+                          )}
 
-                          {!isRevoked && (
+                          {!isRevoked && !isUsageLimitReached && (
                             <button
                               onClick={() => handleRevokeKey(k.id)}
                               className="p-2 rounded-xl bg-white border border-red-200 hover:bg-red-50 text-red-600 transition-colors"
@@ -1010,6 +1156,7 @@ print(response.json())`,
           </div>
         </div>
       </section>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 }
