@@ -32,6 +32,14 @@ const navLinks = [
       { name: "mSearch", href: "/changelog/msearch" },
     ],
   },
+  {
+    name: "Plus",
+    href: "#",
+    subitems: [
+      { name: "API", href: "/api" },
+      { name: "Modèles", href: "/models" },
+    ],
+  },
 ];
 
 export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject; news?: NewsArticle[] }) {
