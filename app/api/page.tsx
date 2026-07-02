@@ -51,7 +51,7 @@ interface EndpointChoice {
   defaultBody?: string;
 }
 
-// Liste des 10 endpoints requis par les spécifications
+// Liste des endpoints de l'API v1
 const ENDPOINTS: EndpointChoice[] = [
   {
     id: "get-models",
@@ -81,74 +81,6 @@ const ENDPOINTS: EndpointChoice[] = [
     ),
   },
   {
-    id: "images-generate",
-    method: "POST",
-    path: "/v1/images/generate",
-    name: "POST /v1/images/generate",
-    description: "Génère une image à partir d'une description textuelle",
-    defaultBody: JSON.stringify(
-      {
-        prompt: "Un paysage futuriste avec style verre liquide et néons violet",
-        size: "1024x1024",
-        n: 1,
-      },
-      null,
-      2
-    ),
-  },
-  {
-    id: "embeddings",
-    method: "POST",
-    path: "/v1/embeddings",
-    name: "POST /v1/embeddings",
-    description: "Calcule le vecteur d'embedding d'un texte",
-    defaultBody: JSON.stringify(
-      {
-        model: "m-embed-v1",
-        input: "mProjects est une plateforme de développement IA locale.",
-      },
-      null,
-      2
-    ),
-  },
-  {
-    id: "audio-transcriptions",
-    method: "POST",
-    path: "/v1/audio/transcriptions",
-    name: "POST /v1/audio/transcriptions",
-    description: "Transcrit un fichier audio en texte",
-    defaultBody: JSON.stringify(
-      {
-        file_url: "https://mprojects-officiel.vercel.app/demo/speech.mp3",
-        model: "m-whisper-v1",
-        language: "fr",
-      },
-      null,
-      2
-    ),
-  },
-  {
-    id: "get-usage",
-    method: "GET",
-    path: "/v1/usage",
-    name: "GET /v1/usage",
-    description: "Statistiques de consommation d'API pour le mois en cours",
-  },
-  {
-    id: "moderations",
-    method: "POST",
-    path: "/v1/moderations",
-    name: "POST /v1/moderations",
-    description: "Vérifie la sécurité et conformité d'un contenu textuel",
-    defaultBody: JSON.stringify(
-      {
-        input: "Ceci est un test de sécurité du contenu.",
-      },
-      null,
-      2
-    ),
-  },
-  {
     id: "get-model-detail",
     method: "GET",
     path: "/v1/models/mai-1",
@@ -156,36 +88,11 @@ const ENDPOINTS: EndpointChoice[] = [
     description: "Obtient les métadonnées détaillées du modèle mAI-1",
   },
   {
-    id: "vision-analyze",
-    method: "POST",
-    path: "/v1/vision/analyze",
-    name: "POST /v1/vision/analyze",
-    description: "Analyse une image par le modèle multimodal mAI-1",
-    defaultBody: JSON.stringify(
-      {
-        model: "mai-1",
-        image_url: "https://mprojects-officiel.vercel.app/mai-1/mai-1.png",
-        prompt: "Quels composants UI voyez-vous dans cette image ?",
-      },
-      null,
-      2
-    ),
-  },
-  {
-    id: "fine-tuning-jobs",
-    method: "POST",
-    path: "/v1/fine-tuning/jobs",
-    name: "POST /v1/fine-tuning/jobs",
-    description: "Lance un travail de fine-tuning personnalisé sur mAI-1-Light",
-    defaultBody: JSON.stringify(
-      {
-        training_file: "file-99a38k2m71",
-        model: "mai-1-light",
-        hyperparameters: { n_epochs: 4, batch_size: 8 },
-      },
-      null,
-      2
-    ),
+    id: "get-model-detail-light",
+    method: "GET",
+    path: "/v1/models/mai-1-light",
+    name: "GET /v1/models/mai-1-light",
+    description: "Obtient les métadonnées détaillées du modèle mAI-1-Light",
   },
 ];
 
@@ -485,106 +392,6 @@ export default function ApiPage() {
             };
             break;
 
-          case "images-generate":
-            resultJson = {
-              created: Math.floor(Date.now() / 1000),
-              data: [
-                {
-                  url: `https://mprojects-officiel.vercel.app/images/generated/gen-${Math.random()
-                    .toString(36)
-                    .substring(2, 10)}.png`,
-                  revised_prompt:
-                    "Futuristic liquid glass UI design with glowing violet gradients and sleek dark mode aesthetic",
-                },
-              ],
-            };
-            break;
-
-          case "embeddings":
-            resultJson = {
-              object: "list",
-              data: [
-                {
-                  object: "embedding",
-                  index: 0,
-                  embedding: Array.from({ length: 8 }, () =>
-                    parseFloat((Math.random() * 2 - 1).toFixed(4))
-                  ),
-                },
-              ],
-              model: "m-embed-v1",
-              usage: {
-                prompt_tokens: 14,
-                total_tokens: 14,
-              },
-            };
-            break;
-
-          case "audio-transcriptions":
-            resultJson = {
-              text: "Bienvenue sur l'API officielle mProjects par mDevsLabs. L'IA haute performance à portée de main.",
-              language: "fr",
-              duration: 4.85,
-              segments: [
-                {
-                  id: 0,
-                  seek: 0,
-                  start: 0.0,
-                  end: 2.5,
-                  text: "Bienvenue sur l'API officielle mProjects par mDevsLabs.",
-                },
-                {
-                  id: 1,
-                  seek: 250,
-                  start: 2.5,
-                  end: 4.85,
-                  text: "L'IA haute performance à portée de main.",
-                },
-              ],
-            };
-            break;
-
-          case "get-usage":
-            resultJson = {
-              object: "usage_summary",
-              period: new Date().toISOString().substring(0, 7),
-              total_requests: 342,
-              tokens: {
-                prompt_tokens: 142000,
-                completion_tokens: 89500,
-                total_tokens: 231500,
-              },
-              cost_estimated_usd: 0.0,
-              quota_limit: "unlimited",
-            };
-            break;
-
-          case "moderations":
-            resultJson = {
-              id: `modr-${Math.random().toString(36).substring(2, 10)}`,
-              model: "m-moderation-v1",
-              results: [
-                {
-                  flagged: false,
-                  categories: {
-                    hate: false,
-                    harassment: false,
-                    "self-harm": false,
-                    sexual: false,
-                    violence: false,
-                  },
-                  category_scores: {
-                    hate: 0.0001,
-                    harassment: 0.0003,
-                    "self-harm": 0.00005,
-                    sexual: 0.00015,
-                    violence: 0.00008,
-                  },
-                },
-              ],
-            };
-            break;
-
           case "get-model-detail":
             resultJson = {
               id: "mai-1",
@@ -592,7 +399,7 @@ export default function ApiPage() {
               created: 1720656000,
               owned_by: "mDevsLabs",
               description:
-                "Assistant IA multimodal 12B parameters propulsé par Google Gemma 4 12B Unified.",
+                "Assistant IA multimodal 12B paramètres propulsé par Google Gemma 4 12B Unified.",
               status: "active",
               capabilities: {
                 chat: true,
@@ -604,35 +411,22 @@ export default function ApiPage() {
             };
             break;
 
-          case "vision-analyze":
+          case "get-model-detail-light":
             resultJson = {
-              id: `vis-${Math.random().toString(36).substring(2, 10)}`,
-              model: "mai-1",
-              analysis: {
-                description:
-                  "L'image soumise présente le modèle mAI-1 avec une esthétique Liquid Glass, affichant des métriques de contexte 256K et la compatibilité multimodale.",
-                detected_elements: [
-                  { label: "Bannière mAI-1", confidence: 0.99 },
-                  { label: "Design Liquid Glass", confidence: 0.97 },
-                  { label: "Tag Vision Multimodale", confidence: 0.94 },
-                ],
+              id: "mai-1-light",
+              object: "model",
+              created: 1720656000,
+              owned_by: "mDevsLabs",
+              description:
+                "Assistant IA local ultraléger et rapide 3B paramètres propulsé par IBM Granite 4.1 3B.",
+              status: "active",
+              capabilities: {
+                chat: true,
+                vision: false,
+                function_calling: true,
+                json_mode: true,
               },
-            };
-            break;
-
-          case "fine-tuning-jobs":
-            resultJson = {
-              id: `ftjob-${Math.random().toString(36).substring(2, 10)}`,
-              object: "fine_tuning.job",
-              model: "mai-1-light",
-              created_at: Math.floor(Date.now() / 1000),
-              status: "running",
-              trained_tokens: 250000,
-              hyperparameters: {
-                n_epochs: 4,
-                batch_size: 8,
-                learning_rate_multiplier: 1.5,
-              },
+              context_window: 131072,
             };
             break;
 
@@ -734,7 +528,7 @@ print(response.json())`,
           <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-600 mb-4">
             <Zap className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 mb-2">Haute Latence Basse</h3>
+          <h3 className="text-lg font-bold text-slate-900 mb-2">Latence Basse</h3>
           <p className="text-slate-600 text-sm leading-relaxed">
             Infrastructure optimisée offrant un temps de réponse en millisecondes et une haute disponibilité.
           </p>
@@ -981,7 +775,7 @@ print(response.json())`,
               Playground / Zone de Test API Interactive
             </h2>
             <p className="text-slate-500 text-xs md:text-sm">
-              Tester en direct les 10 endpoints avec validation de votre clé Bearer en temps réel.
+              Tester en direct les endpoints avec validation de votre clé Bearer en temps réel.
             </p>
           </div>
         </div>
@@ -1028,10 +822,10 @@ print(response.json())`,
               </div>
             </div>
 
-            {/* Menu Déroulant des 10 Endpoints */}
+            {/* Menu Déroulant des Endpoints */}
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                Endpoint API (10 Requêtes au Choix)
+                Endpoint API (Requêtes au Choix)
               </label>
               <select
                 value={selectedEndpointId}

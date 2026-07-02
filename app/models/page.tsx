@@ -12,7 +12,7 @@ const models = [
     num: "01",
     badge: "12B • Vision • 256K",
     description:
-      "Assistant IA local puissant, multimodal et orienté productivité. Propulsé par Google Gemma 4 12B Unified, conçu pour le raisonnement, le code et l'analyse d'images.",
+      "Assistant IA local puissant, multimodal et orienté productivité. Propulsé par Gemma 4 12B, conçu pour le raisonnement, le code et l'analyse d'images.",
     tagline: "La version complète et surpuissante de la famille mAI.",
     parameters: "12B",
     vision: true,

@@ -24,15 +24,15 @@
 ## 🧬 Base du modèle
 
 | Élément | Valeur |
-|---|---|
-| Nom | `mAI-1-Light` |
-| Base | `granite4.1:3b` |
-| Famille | IBM Granite 4.1 |
-| Taille | Classe 3B |
-| Quantization Ollama par défaut | `Q4_K_M` |
-| Taille approximative | ~2.1 GB |
-| Contexte Ollama | jusqu’à 128K tokens |
-| Licence base | Apache 2.0 |
+| :--- | :--- |
+| **Nom** | `mAI-1-Light` |
+| **Base Ollama** | `granite4.1:3b` |
+| **Famille** | IBM Granite 4.1 |
+| **Taille** | Classe 3B |
+| **Quantization Ollama par défaut** | `Q4_K_M` |
+| **Taille approximative** | ~2.1 GB |
+| **Contexte Ollama** | jusqu’à 128K tokens |
+| **Licence base** | Apache 2.0 |
 
 ---
 

@@ -287,9 +287,6 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <h3 className="font-bold text-slate-900 text-base">{app.name}</h3>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 font-semibold uppercase">
-                    Ollama Launch
-                  </span>
                 </div>
                 <p className="text-xs text-slate-500 mb-3">{app.description}</p>
                 <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs overflow-x-auto border border-slate-800">

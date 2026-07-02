@@ -2,7 +2,6 @@
 
 import { Search, Github, DiscIcon as Discord, Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
 import { CommandMenu } from "@/components/command-menu";
 import type { ChangelogsByProject } from "@/lib/changelog";
 import type { NewsArticle } from "@/lib/news";
@@ -11,7 +10,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sheet } from "@/components/sheet";
 
-const navLinks = [
+interface NavSubItem {
+  name: string;
+  href: string;
+  subitems?: { name: string; href: string }[];
+}
+
+interface NavItem {
+  name: string;
+  href: string;
+  subitems?: NavSubItem[];
+}
+
+const navLinks: NavItem[] = [
   { name: "Accueil", href: "/" },
   { name: "L'équipe", href: "/about" },
   { name: "Actualités", href: "/news" },
@@ -25,11 +36,12 @@ const navLinks = [
     ],
   },
   {
-    name: "Notes de version",
-    href: "/changelog",
+    name: "Modèles",
+    href: "/models",
     subitems: [
-      { name: "mAI", href: "/changelog/mai" },
-      { name: "mSearch", href: "/changelog/msearch" },
+      { name: "Tout", href: "/models" },
+      { name: "mAI-1", href: "/models/mai-1" },
+      { name: "mAI-1-Light", href: "/models/mai-1-light" },
     ],
   },
   {
@@ -37,15 +49,36 @@ const navLinks = [
     href: "#",
     subitems: [
       { name: "API", href: "/api" },
-      { name: "Modèles", href: "/models" },
+      {
+        name: "Notes de version",
+        href: "/changelog",
+        subitems: [
+          { name: "Tout", href: "/changelog" },
+          { name: "mAI", href: "/changelog/mai" },
+          { name: "mSearch", href: "/changelog/msearch" },
+        ],
+      },
     ],
   },
 ];
+
+function checkSubActive(sub: NavSubItem, pathname: string): boolean {
+  if (pathname === sub.href) return true;
+  if (sub.subitems && sub.subitems.some((nested) => pathname === nested.href)) return true;
+  return false;
+}
+
+function checkLinkActive(link: NavItem, pathname: string): boolean {
+  if (link.href !== "#" && pathname === link.href) return true;
+  if (link.subitems && link.subitems.some((sub) => checkSubActive(sub, pathname))) return true;
+  return false;
+}
 
 export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject; news?: NewsArticle[] }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null);
+  const [activeMobileNestedSubmenu, setActiveMobileNestedSubmenu] = useState<string | null>(null);
   const [isCommandOpen, setIsCommandOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -60,6 +93,10 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
 
   const toggleMobileSubmenu = (name: string) => {
     setActiveMobileSubmenu(activeMobileSubmenu === name ? null : name);
+  };
+
+  const toggleMobileNestedSubmenu = (name: string) => {
+    setActiveMobileNestedSubmenu(activeMobileNestedSubmenu === name ? null : name);
   };
 
   return (
@@ -90,10 +127,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
             {navLinks.map((link) => {
-              const isActive =
-                pathname === link.href ||
-                (link.subitems &&
-                  link.subitems.some((sub) => pathname === sub.href));
+              const isActive = checkLinkActive(link, pathname);
 
               if (link.subitems) {
                 return (
@@ -107,24 +141,67 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                       }`}
                     >
                       <span className="relative z-10">{link.name}</span>
+                      <ChevronDown className="w-3.5 h-3.5 opacity-60 group-hover:rotate-180 transition-transform duration-200" />
                     </Link>
 
-                    {/* Dropdown */}
+                    {/* Premier niveau de Dropdown */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-200 z-50">
-                      <div className="bg-white/98 backdrop-blur-xl border border-black/10 shadow-xl rounded-3xl p-1.5 min-w-[120px] flex flex-col gap-0.5">
-                        {link.subitems.map((subitem) => (
-                          <Link
-                            key={subitem.name}
-                            href={subitem.href}
-                            className={`px-3 py-2 rounded-full text-xs font-medium transition-colors ${
-                              pathname === subitem.href
-                                ? "bg-purple-50 text-purple-600 font-semibold"
-                                : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
-                            }`}
-                          >
-                            {subitem.name}
-                          </Link>
-                        ))}
+                      <div className="bg-white/98 backdrop-blur-xl border border-black/10 shadow-xl rounded-3xl p-1.5 min-w-[140px] flex flex-col gap-0.5">
+                        {link.subitems.map((subitem) => {
+                          const isSubActive = checkSubActive(subitem, pathname);
+                          const hasNested = !!subitem.subitems;
+
+                          if (hasNested) {
+                            return (
+                              <div key={subitem.name} className="relative group/nested flex flex-col">
+                                <Link
+                                  href={subitem.href}
+                                  className={`px-3 py-2 rounded-full text-xs font-medium transition-colors flex items-center justify-between gap-2 ${
+                                    isSubActive
+                                      ? "bg-purple-50 text-purple-600 font-semibold"
+                                      : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
+                                  }`}
+                                >
+                                  <span>{subitem.name}</span>
+                                  <ChevronDown className="w-3 h-3 -rotate-90 text-slate-400 group-hover/nested:translate-x-0.5 transition-transform" />
+                                </Link>
+
+                                {/* Sous-menu flyout à droite */}
+                                <div className="absolute left-full top-0 ml-1.5 opacity-0 translate-x-1 invisible group-hover/nested:opacity-100 group-hover/nested:translate-x-0 group-hover/nested:visible transition-all duration-200 z-50">
+                                  <div className="bg-white/98 backdrop-blur-xl border border-black/10 shadow-xl rounded-3xl p-1.5 min-w-[130px] flex flex-col gap-0.5">
+                                    {subitem.subitems?.map((nested) => (
+                                      <Link
+                                        key={nested.name}
+                                        href={nested.href}
+                                        className={`px-3 py-2 rounded-full text-xs font-medium transition-colors ${
+                                          pathname === nested.href
+                                            ? "bg-purple-50 text-purple-600 font-semibold"
+                                            : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
+                                        }`}
+                                      >
+                                        {nested.name}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }
+
+                          return (
+                            <Link
+                              key={subitem.name}
+                              href={subitem.href}
+                              className={`px-3 py-2 rounded-full text-xs font-medium transition-colors ${
+                                isSubActive
+                                  ? "bg-purple-50 text-purple-600 font-semibold"
+                                  : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
+                              }`}
+                            >
+                              {subitem.name}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -196,15 +273,14 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
           <nav className="flex flex-col gap-2 p-4">
             {navLinks.map((link) => {
               const hasSubitems = !!link.subitems;
-              const isSubActive = hasSubitems && link.subitems?.some((sub) => pathname === sub.href);
-              const isActive = pathname === link.href || isSubActive;
+              const isActive = checkLinkActive(link, pathname);
               const isSubmenuOpen = activeMobileSubmenu === link.name;
 
               return (
                 <div key={link.name} className="flex flex-col rounded-2xl overflow-hidden">
                   <div className="flex items-center justify-between w-full">
                     <Link
-                      href={link.href}
+                      href={link.href === "#" ? (link.subitems?.[0]?.href || "#") : link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`flex-1 px-4 py-3 text-sm font-semibold transition-colors flex items-center gap-2 rounded-2xl ${
                         isActive
@@ -229,23 +305,61 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
 
                   {hasSubitems && isSubmenuOpen && (
                     <div className="pl-6 pr-4 pb-2 flex flex-col gap-1 bg-black/[0.02] border-t border-black/5">
-                      {link.subitems?.map((subitem) => (
-                        <Link
-                          key={subitem.name}
-                          href={subitem.href}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between ${
-                            pathname === subitem.href
-                              ? "bg-purple-50 text-purple-600"
-                              : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
-                          }`}
-                        >
-                          <span>{subitem.name}</span>
-                          {pathname === subitem.href && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
-                          )}
-                        </Link>
-                      ))}
+                      {link.subitems?.map((subitem) => {
+                        const hasNested = !!subitem.subitems;
+                        const isNestedOpen = activeMobileNestedSubmenu === subitem.name;
+                        const isSubActive = checkSubActive(subitem, pathname);
+
+                        return (
+                          <div key={subitem.name} className="flex flex-col">
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href={subitem.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className={`flex-1 px-4 py-2.5 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between ${
+                                  isSubActive
+                                    ? "bg-purple-50 text-purple-600"
+                                    : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
+                                }`}
+                              >
+                                <span>{subitem.name}</span>
+                                {pathname === subitem.href && (
+                                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                                )}
+                              </Link>
+                              {hasNested && (
+                                <button
+                                  onClick={() => toggleMobileNestedSubmenu(subitem.name)}
+                                  className={`p-2 rounded-lg hover:bg-black/5 text-slate-500 transition-transform ${
+                                    isNestedOpen ? "rotate-180" : ""
+                                  }`}
+                                >
+                                  <ChevronDown className="w-3.5 h-3.5" />
+                                </button>
+                              )}
+                            </div>
+
+                            {hasNested && isNestedOpen && (
+                              <div className="pl-4 pr-2 py-1 flex flex-col gap-1 border-l-2 border-purple-200 ml-3 my-1">
+                                {subitem.subitems?.map((nested) => (
+                                  <Link
+                                    key={nested.name}
+                                    href={nested.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center justify-between ${
+                                      pathname === nested.href
+                                        ? "bg-purple-100/60 text-purple-700 font-semibold"
+                                        : "text-slate-600 hover:bg-black/5"
+                                    }`}
+                                  >
+                                    <span>{nested.name}</span>
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   )}
                 </div>

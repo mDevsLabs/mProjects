@@ -75,14 +75,14 @@ export function CommandMenu({
                   className="text-xs font-semibold text-slate-500 px-2 py-2"
                 >
                   <Command.Item
-                    onSelect={() => runCommand(() => router.push("/projects"))}
+                    onSelect={() => runCommand(() => router.push("/projects/mai"))}
                     className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors"
                   >
                     <Folder className="w-4 h-4 text-purple-500" />
                     <span>mAI - Intelligence Artificielle</span>
                   </Command.Item>
                   <Command.Item
-                    onSelect={() => runCommand(() => router.push("/projects"))}
+                    onSelect={() => runCommand(() => router.push("/projects/msearch"))}
                     className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors"
                   >
                     <Folder className="w-4 h-4 text-blue-500" />
@@ -98,7 +98,7 @@ export function CommandMenu({
                     <Command.Item
                       key={`mai-${change.version}`}
                       onSelect={() =>
-                        runCommand(() => router.push("/changelog"))
+                        runCommand(() => router.push("/changelog/mai"))
                       }
                       className="flex flex-col px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors mb-1"
                     >
@@ -123,7 +123,7 @@ export function CommandMenu({
                     <Command.Item
                       key={`msearch-${change.version}`}
                       onSelect={() =>
-                        runCommand(() => router.push("/changelog"))
+                        runCommand(() => router.push("/changelog/msearch"))
                       }
                       className="flex flex-col px-3 py-2 text-sm text-slate-700 rounded-lg cursor-pointer aria-selected:bg-black/5 aria-selected:text-slate-900 transition-colors mb-1"
                     >
