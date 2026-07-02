@@ -1,4 +1,4 @@
-import { getNewsArticle } from '@/lib/news';
+import { getNewsArticle, getNewsArticles } from '@/lib/news';
 import Markdown from 'react-markdown';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
