@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ThumbsUp, ThumbsDown, MessageCircle, Send, Smile, Share2, Twitter, Facebook, Linkedin, Instagram, Youtube, Edit, Trash2 } from 'lucide-react';
