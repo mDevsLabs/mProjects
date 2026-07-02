@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { ShareButtons, CommentSection } from './ArticleClient';
-import { Share2 } from 'lucide-react';
-import { toast } from 'react-hot-toast';
 
 const formatDate = (dateStr: any) => {
   if (typeof dateStr !== 'string') return String(dateStr || '');
@@ -77,13 +75,3 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   );
 }
 
-export async function generateStaticParamsForPrint() {
-  const articles = getNewsArticles();
-  return articles.map((article) => ({
-    slug: article.slug,
-  }));
-}
-
-export function getArticleForPrint(slug: string) {
-  return getNewsArticle(slug);
-}
