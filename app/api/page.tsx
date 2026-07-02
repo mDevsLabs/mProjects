@@ -322,9 +322,28 @@ export default function ApiPage() {
     );
   };
 
-  // Basculer la visibilité d'une clé
+  // Basculer la visibilité d'une clé avec gestion de la sécurité
   const toggleKeyVisibility = (id: string) => {
-    setVisibleKeys((prev) => ({ ...prev, [id]: !prev[id] }));
+    const key = apiKeys.find((k) => k.id === id);
+    if (!key) return;
+
+    if (key.shownOnce && !visibleKeys[id]) {
+      toast.error("Par mesure de sécurité, cette clé API ne peut plus être affichée car elle a déjà été révélée par le passé.", {
+        icon: "🔒",
+      });
+      return;
+    }
+
+    setVisibleKeys((prev) => {
+      const isNowVisible = !prev[id];
+      if (isNowVisible && !key.shownOnce) {
+        const updatedKeys = apiKeys.map((k) =>
+          k.id === id ? { ...k, shownOnce: true } : k
+        );
+        setTimeout(() => saveKeysToStorage(updatedKeys), 0);
+      }
+      return { ...prev, [id]: isNowVisible };
+    });
   };
 
   // Copier une clé API
@@ -700,13 +719,13 @@ print(response.json())`,
             </div>
 
             {/* Formulaire Auth */}
-            <form onSubmit={handleAuthSubmit} className="bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-6 shadow-sm space-y-4">
+            <form onSubmit={handleAuthSubmit} className="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] space-y-4">
               <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
                 <User className="w-4 h-4 text-purple-600" /> Espace Développeur (Inscription / Connexion)
               </h4>
 
               {authError && (
-                <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs font-medium">
+                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-700 text-xs font-medium">
                   {authError}
                 </div>
               )}
@@ -718,7 +737,7 @@ print(response.json())`,
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
                   placeholder="dev@mprojects.io"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                 />
               </div>
 
@@ -729,13 +748,13 @@ print(response.json())`,
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-sm shadow-md hover:opacity-95 transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-slate-900 font-bold text-sm shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:bg-white/60 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <LogIn className="w-4 h-4" /> Se connecter / Créer mon compte
               </button>
@@ -744,7 +763,7 @@ print(response.json())`,
         ) : (
           <div className="space-y-6">
             {/* Création de nouvelle clé */}
-            <div className="space-y-4 bg-white/60 border border-white/80 p-4 rounded-2xl shadow-sm">
+            <div className="space-y-4 bg-white/40 backdrop-blur-md border border-white/60 p-4 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
               <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                 <Plus className="w-4 h-4 text-purple-600" /> Générer une nouvelle clé API
               </h4>
@@ -754,14 +773,14 @@ print(response.json())`,
                   value={newKeyName}
                   onChange={(e) => setNewKeyName(e.target.value)}
                   placeholder="Nom de la clé"
-                  className="px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                  className="px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                 />
                 <input
                   type="text"
                   value={newKeyNote}
                   onChange={(e) => setNewKeyNote(e.target.value)}
                   placeholder="Note (optionnel)"
-                  className="px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                  className="px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                 />
               </div>
               <div className="flex items-end gap-3">
@@ -775,12 +794,12 @@ print(response.json())`,
                     onChange={(e) => setNewKeyMaxUsage(parseInt(e.target.value) || 1000)}
                     min="1"
                     max="100000"
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900"
                   />
                 </div>
                 <button
                   onClick={handleGenerateKey}
-                  className="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md transition-colors flex items-center justify-center gap-2 shrink-0"
+                  className="px-6 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-slate-900 font-bold text-sm shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:bg-white/60 transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer"
                 >
                   <Plus className="w-4 h-4" /> Générer
                 </button>
@@ -809,22 +828,22 @@ print(response.json())`,
                         className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl border transition-all ${
                           isRevoked || isUsageLimitReached
                             ? "bg-slate-100/50 border-slate-200 opacity-60"
-                            : "bg-white/70 border-white/90 shadow-sm hover:shadow"
+                            : "bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:shadow-md"
                         }`}
                       >
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
                             <span className="font-bold text-slate-900 text-sm">{k.name}</span>
                             {isRevoked ? (
-                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-bold uppercase">
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/10 text-red-700 border border-red-500/20 font-bold uppercase">
                                 Révoquée
                               </span>
                             ) : isUsageLimitReached ? (
-                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-bold uppercase">
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 border border-amber-500/20 font-bold uppercase">
                                 Limite atteinte
                               </span>
                             ) : (
-                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold uppercase">
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 border border-emerald-500/20 font-bold uppercase">
                                 Active
                               </span>
                             )}
@@ -843,47 +862,64 @@ print(response.json())`,
                             </div>
                           </div>
                           <div
-                            className={`font-mono text-xs text-purple-700 font-bold tracking-wider bg-purple-50/80 border border-purple-100 px-3 py-1.5 rounded-xl inline-block cursor-pointer transition-all ${
-                              k.shownOnce ? "" : "hover:bg-purple-100"
+                            className={`font-mono text-xs text-purple-700 font-bold tracking-wider bg-purple-50/40 border border-purple-100/60 px-3 py-1.5 rounded-xl inline-block cursor-pointer transition-all ${
+                              k.shownOnce ? "cursor-not-allowed opacity-80" : "hover:bg-purple-100/50"
                             }`}
                             onClick={() => {
                               if (!k.shownOnce && !isRevoked && !isUsageLimitReached) {
-                                const updatedKeys = apiKeys.map((key) =>
-                                  key.id === k.id ? { ...key, shownOnce: true } : key
-                                );
-                                saveKeysToStorage(updatedKeys);
-                                setPlaygroundKey(k.key);
+                                toggleKeyVisibility(k.id);
+                              } else if (k.shownOnce) {
+                                toast.error("Par mesure de sécurité, cette clé API ne peut plus être affichée car elle a déjà été révélée par le passé.", {
+                                  icon: "🔒",
+                                });
                               }
                             }}
-                            title={k.shownOnce ? "Clé déjà affichée" : "Cliquez pour afficher la clé"}
+                            title={k.shownOnce ? "Cette clé ne peut plus être révélée" : "Cliquez pour afficher la clé"}
                           >
-                            {isVisible || k.shownOnce ? k.key : maskKey(k.key)}
+                            {isVisible ? k.key : maskKey(k.key)}
                           </div>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          {!k.shownOnce && !isRevoked && !isUsageLimitReached && (
+                          {!isRevoked && !isUsageLimitReached && (
                             <button
-                              onClick={() => toggleKeyVisibility(k.id)}
-                              className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 transition-colors"
-                              title="Afficher la clé"
+                              onClick={() => {
+                                if (k.shownOnce && !isVisible) {
+                                  toast.error("Par mesure de sécurité, cette clé API ne peut plus être affichée car elle a déjà été révélée par le passé.", {
+                                    icon: "🔒",
+                                  });
+                                } else {
+                                  toggleKeyVisibility(k.id);
+                                }
+                              }}
+                              className="p-2 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 hover:bg-white/60 text-slate-600 transition-colors shadow-sm cursor-pointer"
+                              title={isVisible ? "Masquer la clé" : "Afficher la clé"}
                             >
-                              <Eye className="w-4 h-4" />
+                              {isVisible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                             </button>
                           )}
 
-                          {k.shownOnce && !isRevoked && !isUsageLimitReached && (
+                          {!isRevoked && !isUsageLimitReached && (
                             <button
-                              onClick={() => copyToClipboard(k.key, k.id)}
-                              className={`px-3 py-2 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-colors ${
+                              onClick={() => {
+                                if (k.shownOnce && !isVisible) {
+                                  toast.error("Par mesure de sécurité, vous ne pouvez pas copier cette clé car elle a déjà été révélée par le passé.", {
+                                    icon: "🔒",
+                                  });
+                                } else {
+                                  copyToClipboard(k.key, k.id);
+                                  toast.success("Clé API copiée !", { icon: "📋" });
+                                }
+                              }}
+                              className={`px-3 py-2 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all duration-300 cursor-pointer ${
                                 isCopied
-                                  ? "bg-emerald-600 text-white border-emerald-600"
-                                  : "bg-white border-slate-200 hover:bg-slate-50 text-slate-700"
+                                  ? "bg-emerald-500/20 text-emerald-700 border-emerald-500/30 backdrop-blur-md shadow-sm"
+                                  : "bg-white/40 backdrop-blur-md border border-white/60 hover:bg-white/60 text-slate-700 shadow-sm"
                               }`}
                             >
                               {isCopied ? (
                                 <>
-                                  <Check className="w-3.5 h-3.5" /> Copié !
+                                  <Check className="w-3.5 h-3.5 animate-pulse" /> Copié !
                                 </>
                               ) : (
                                 <>
@@ -896,7 +932,7 @@ print(response.json())`,
                           {!isRevoked && !isUsageLimitReached && (
                             <button
                               onClick={() => handleRevokeKey(k.id)}
-                              className="p-2 rounded-xl bg-white border border-red-200 hover:bg-red-50 text-red-600 transition-colors"
+                              className="p-2 rounded-xl bg-red-500/10 backdrop-blur-md border border-red-500/20 hover:bg-red-500/20 text-red-600 transition-colors shadow-sm cursor-pointer"
                               title="Révoquer la clé"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -1008,16 +1044,16 @@ print(response.json())`,
             <button
               onClick={handleRunPlaygroundRequest}
               disabled={isLoadingRequest}
-              className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white font-black text-sm uppercase tracking-wider shadow-lg hover:opacity-95 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-2xl bg-white/40 backdrop-blur-md border border-white/60 text-slate-900 font-bold hover:bg-white/60 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]"
             >
               {isLoadingRequest ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-4 h-4 border-2 border-slate-900 border-t-transparent rounded-full animate-spin"></div>
                   Exécution en cours...
                 </>
               ) : (
                 <>
-                  <Play className="w-4 h-4 fill-white" /> Envoyer la Requête
+                  <Play className="w-4 h-4 fill-slate-900 stroke-slate-900" /> Envoyer la Requête
                 </>
               )}
             </button>
