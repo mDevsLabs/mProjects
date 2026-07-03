@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
+const DEFAULT_IMAGE = 'https://upload.fs.fr/6iSzjnfokS.png';
+
 export type NewsArticle = {
   slug: string;
   title: string;
@@ -8,6 +10,7 @@ export type NewsArticle = {
   author: string;
   date: string;
   label?: string;
+  image?: string;
   content: string;
 };
 
@@ -41,6 +44,7 @@ export function getNewsArticles(): NewsArticle[] {
           author: metadata.author || 'Inconnu',
           date: metadata.date || 'Date inconnue',
           label: metadata.label,
+          image: metadata.image || DEFAULT_IMAGE,
           content: mdContent
         });
       } catch (e) {
@@ -71,6 +75,7 @@ export function getNewsArticle(slug: string): NewsArticle | null {
         author: metadata.author || 'Inconnu',
         date: metadata.date || 'Date inconnue',
         label: metadata.label,
+        image: metadata.image || DEFAULT_IMAGE,
         content: mdContent
       };
     } catch (e) {
