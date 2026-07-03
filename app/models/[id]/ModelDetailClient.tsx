@@ -14,7 +14,6 @@ import {
   Sparkles,
   ArrowLeft,
   Share2,
-  ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -335,36 +334,36 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
           <div className="prose max-w-none prose-headings:text-slate-900 prose-a:text-purple-600 prose-p:text-slate-700 prose-p:leading-relaxed prose-li:text-slate-700">
             <Markdown
               components={{
-                h1: ({ node, ...props }) => (
+                h1: ({ node: _node, ...props }) => (
                   <h1 className="text-3xl font-black text-slate-900 mt-6 mb-4" {...props} />
                 ),
-                h2: ({ node, ...props }) => (
+                h2: ({ node: _node, ...props }) => (
                   <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4 pb-2 border-b border-black/5" {...props} />
                 ),
-                h3: ({ node, ...props }) => (
+                h3: ({ node: _node, ...props }) => (
                   <h3 className="text-xl font-semibold text-slate-900 mt-6 mb-3" {...props} />
                 ),
-                p: ({ node, ...props }) => (
+                p: ({ node: _node, ...props }) => (
                   <p className="mb-4 leading-relaxed text-slate-700" {...props} />
                 ),
-                ul: ({ node, ...props }) => (
+                ul: ({ node: _node, ...props }) => (
                   <ul className="list-disc list-inside space-y-2 mb-6 text-slate-700" {...props} />
                 ),
-                ol: ({ node, ...props }) => (
+                ol: ({ node: _node, ...props }) => (
                   <ol className="list-decimal list-inside space-y-2 mb-6 text-slate-700" {...props} />
                 ),
-                table: ({ node, ...props }) => (
+                table: ({ node: _node, ...props }) => (
                   <div className="overflow-x-auto my-6 rounded-2xl border border-white/60 shadow-sm bg-white/30 backdrop-blur-md">
                     <table className="w-full text-sm text-left text-slate-700 border-collapse" {...props} />
                   </div>
                 ),
-                th: ({ node, ...props }) => (
+                th: ({ node: _node, ...props }) => (
                   <th className="px-4 py-3 font-bold text-slate-900 bg-slate-900/5 border-b border-black/10" {...props} />
                 ),
-                td: ({ node, ...props }) => (
+                td: ({ node: _node, ...props }) => (
                   <td className="px-4 py-3 border-b border-black/5 text-slate-700" {...props} />
                 ),
-                code: ({ node, className, children, ...props }) => {
+                code: ({ node: _node, className, children, ...props }) => {
                   const isInline = !className;
                   return isInline ? (
                     <code className="bg-purple-100/60 text-purple-800 px-1.5 py-0.5 rounded text-xs font-mono font-semibold" {...props}>
@@ -376,13 +375,13 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                     </code>
                   );
                 },
-                pre: ({ node, ...props }) => (
+                pre: ({ node: _node, ...props }) => (
                   <pre className="bg-slate-950 text-slate-100 p-4 rounded-2xl overflow-x-auto my-6 font-mono text-xs border border-slate-800 shadow-md" {...props} />
                 ),
-                blockquote: ({ node, ...props }) => (
+                blockquote: ({ node: _node, ...props }) => (
                   <blockquote className="border-l-4 border-purple-500 bg-purple-50/50 italic p-4 rounded-r-2xl my-6 text-slate-700 shadow-sm" {...props} />
                 ),
-                img: ({ node, src, alt, ...props }) => (
+                img: ({ node: _node, src, alt, ...props }) => (
                   <img
                     src={src}
                     alt={alt || "Image du modèle"}

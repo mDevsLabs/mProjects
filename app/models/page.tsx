@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ExternalLink, Cpu, Eye, EyeOff, Layers, Calendar, ArrowRight, Sparkles } from "lucide-react";
+import { Cpu, Eye, EyeOff, Layers, Calendar, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 

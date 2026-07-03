@@ -60,7 +60,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div className="prose max-w-none prose-headings:text-slate-900 prose-a:text-orange-500 prose-img:rounded-xl prose-p:mb-4 prose-p:leading-relaxed">
           <Markdown
             components={{
-              p: ({ node, ...props }) => <p className="whitespace-pre-line mb-4 leading-relaxed" {...props} />
+              p: ({ node: _node, ...props }) => <p className="whitespace-pre-line mb-4 leading-relaxed" {...props} />
             }}
           >
             {article.content}

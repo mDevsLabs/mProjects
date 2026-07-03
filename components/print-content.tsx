@@ -1,8 +1,5 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-
 interface PrintContentProps {
   title: string;
   content: string;
@@ -12,7 +9,6 @@ interface PrintContentProps {
 }
 
 export function PrintContent({ title, content, author, date, description }: PrintContentProps) {
-  const [isDark] = useState(false);
 
   return (
     <div 

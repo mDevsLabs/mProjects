@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Github, DiscIcon as Discord, Menu, X, ChevronDown } from "lucide-react";
+import { Github, Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { CommandMenu } from "@/components/command-menu";
 import type { ChangelogsByProject } from "@/lib/changelog";
@@ -48,7 +48,6 @@ const navLinks: NavItem[] = [
     name: "Plus",
     href: "#",
     subitems: [
-      { name: "API", href: "/api" },
       {
         name: "Notes de version",
         href: "/changelog",
@@ -56,6 +55,14 @@ const navLinks: NavItem[] = [
           { name: "Tout", href: "/changelog" },
           { name: "mAI", href: "/changelog/mai" },
           { name: "mSearch", href: "/changelog/msearch" },
+        ],
+      },
+      { name: "Télécharger", href: "/download" },
+      {
+        name: "API",
+        href: "/api",
+        subitems: [
+          { name: "Documentation (Bêta)", href: "/docs" },
         ],
       },
     ],

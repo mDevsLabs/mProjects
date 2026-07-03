@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import {
-  ExternalLink,
-  Sparkles,
-  Search,
-  Download,
-  ArrowRight,
-} from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { GithubActivity } from "@/components/github-activity";
 import Image from "next/image";

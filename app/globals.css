@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-space-grotesk: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 @theme {
   --color-background: #ffffff;
   --color-foreground: #000000;
+  --font-sans: var(--font-sans);
+  --font-space-grotesk: var(--font-space-grotesk);
+}
+
+.inter-variable {
+  font-family: var(--font-sans);
+}
+
+.space-grotesk-variable {
+  font-family: var(--font-space-grotesk);
 }
 
 body {

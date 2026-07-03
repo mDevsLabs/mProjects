@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import toast from "react-hot-toast";
 import {
   Key,
@@ -9,7 +9,6 @@ import {
   Check,
   Play,
   User,
-  Lock,
   Shield,
   Terminal,
   Code,
@@ -24,9 +23,7 @@ import {
   LogOut,
   LogIn,
   CheckCircle2,
-  Server,
   Layers,
-  Cpu,
 } from "lucide-react";
 
 // Types

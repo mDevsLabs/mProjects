@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles, Layers, Github, Twitter, Instagram, Youtube } from "lucide-react";
+import { ArrowRight, Layers, Github, Instagram, Youtube } from "lucide-react";
 import { SiOllama } from "react-icons/si";
 import Link from "next/link";
 import { MaiModal } from "@/components/mai-modal";

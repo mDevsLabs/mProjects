@@ -6,20 +6,17 @@ import { BackToTop } from "@/components/back-to-top";
 import { ToastProvider, CookieBanner } from "@/components/ui/index";
 import { getChangelogs } from "@/lib/changelog";
 import { getNewsArticles } from "@/lib/news";
-import { Inter, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = {
+  variable: "font-sans inter-variable",
+};
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-});
+const spaceGrotesk = {
+  variable: "font-space-grotesk space-grotesk-variable",
+};
 
 export const metadata: Metadata = {
   title: {
