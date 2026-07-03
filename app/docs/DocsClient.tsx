@@ -9,7 +9,6 @@ import {
   FileText,
   Clock,
   Layers,
-  Sparkles,
   Copy,
   Check,
   Share2,
@@ -138,10 +137,6 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
             <BookOpen className="w-7 h-7" />
           </div>
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider mb-1">
-              <Sparkles className="w-3.5 h-3.5" />
-              Documentation officielle (Bêta)
-            </div>
             <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
               Centre de Documentation mProjects
             </h1>
