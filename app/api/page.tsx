@@ -96,6 +96,35 @@ const ENDPOINTS: EndpointChoice[] = [
     name: "GET /v1/models/mai-1-light",
     description: "Obtient les métadonnées détaillées du modèle mAI-1-Light",
   },
+  {
+    id: "create-embeddings",
+    method: "POST",
+    path: "/v1/embeddings",
+    name: "POST /v1/embeddings",
+    description: "Génère des embeddings vectoriels pour un texte donné",
+    defaultBody: JSON.stringify(
+      {
+        model: "text-embedding-mai",
+        input: "mDevsLabs est une équipe passionnée d'intelligence artificielle.",
+      },
+      null,
+      2
+    ),
+  },
+  {
+    id: "content-moderation",
+    method: "POST",
+    path: "/v1/moderations",
+    name: "POST /v1/moderations",
+    description: "Vérifie si un contenu respecte les règles de sécurité",
+    defaultBody: JSON.stringify(
+      {
+        input: "Ceci est un exemple de texte à modérer.",
+      },
+      null,
+      2
+    ),
+  },
 ];
 
 // Générateur de clé unique au format exact : mp-[10 caractères alphanumériques]-[5 chiffres]
@@ -534,6 +563,50 @@ export default function ApiPage() {
             };
             break;
 
+          case "create-embeddings":
+            resultJson = {
+              object: "list",
+              data: [
+                {
+                  object: "embedding",
+                  index: 0,
+                  embedding: Array.from({ length: 8 }, () => parseFloat((Math.random() * 2 - 1).toFixed(6))),
+                }
+              ],
+              model: "text-embedding-mai",
+              usage: {
+                prompt_tokens: 12,
+                total_tokens: 12,
+              }
+            };
+            break;
+
+          case "content-moderation":
+            resultJson = {
+              id: `modr-${Math.random().toString(36).substring(2, 12)}`,
+              model: "text-moderation-mai",
+              results: [
+                {
+                  flagged: false,
+                  categories: {
+                    sexual: false,
+                    hate: false,
+                    harassment: false,
+                    self_harm: false,
+                    violence: false,
+                  },
+                  category_scores: {
+                    sexual: 0.0001,
+                    hate: 0.0002,
+                    harassment: 0.0003,
+                    self_harm: 0.0001,
+                    violence: 0.0005,
+                  }
+                }
+              ]
+            };
+            break;
+
           default:
             resultJson = { status: "success", message: "Requête exécutée avec succès." };
         }
@@ -545,50 +618,39 @@ export default function ApiPage() {
     }, 450);
   };
 
-  // Exemples de code pour la doc
-  const codeExamples = {
-    curl: `curl -X POST https://mprojects-officiel.vercel.app/api/v1/chat/completions \\
-  -H "Authorization: Bearer ${playgroundKey || "mp-k9x2m7p1q4-84920"}" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "model": "mai-1",
-    "messages": [
-      {"role": "user", "content": "Bonjour !"}
-    ]
-  }'`,
-    javascript: `const response = await fetch("https://mprojects-officiel.vercel.app/api/v1/chat/completions", {
-  method: "POST",
+  // Exemples de code dynamiques pour la doc
+  const getDynamicCodeExamples = () => {
+    const activeEndpoint = ENDPOINTS.find((e) => e.id === selectedEndpointId) || ENDPOINTS[0];
+    const key = playgroundKey || "mp-k9x2m7p1q4-84920";
+    const method = activeEndpoint.method;
+    const url = `https://mprojects-officiel.vercel.app/api${activeEndpoint.path}`;
+    const hasBody = method === "POST";
+
+    return {
+      curl: `curl -X ${method} ${url} \\
+  -H "Authorization: Bearer ${key}"${hasBody ? ` \\\n  -H "Content-Type: application/json" \\\n  -d '${requestBody.trim().replace(/'/g, "'\\''")}'` : ""}`,
+      javascript: `const response = await fetch("${url}", {
+  method: "${method}",
   headers: {
-    "Authorization": "Bearer ${playgroundKey || "mp-k9x2m7p1q4-84920"}",
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    model: "mai-1",
-    messages: [
-      { role: "user", content: "Bonjour !" }
-    ]
-  })
+    "Authorization": "Bearer ${key}"${hasBody ? `,\n    "Content-Type": "application/json"` : ""}
+  }${hasBody ? `,\n  body: JSON.stringify(${requestBody.trim()})` : ""}
 });
 
 const data = await response.json();
 console.log(data);`,
-    python: `import requests
+      python: `import requests
 
-url = "https://mprojects-officiel.vercel.app/api/v1/chat/completions"
+url = "${url}"
 headers = {
-    "Authorization": "Bearer ${playgroundKey || "mp-k9x2m7p1q4-84920"}",
-    "Content-Type": "application/json"
+    "Authorization": "Bearer ${key}"${hasBody ? `,\n    "Content-Type": "application/json"` : ""}
 }
-payload = {
-    "model": "mai-1",
-    "messages": [
-        {"role": "user", "content": "Bonjour !"}
-    ]
-}
+${hasBody ? `payload = ${requestBody.trim()}\nresponse = requests.post(url, headers=headers, json=payload)` : `response = requests.get(url, headers=headers)`}
 
-response = requests.post(url, headers=headers, json=payload)
 print(response.json())`,
+    };
   };
+
+  const codeExamples = getDynamicCodeExamples();
 
   if (!isHydrated) {
     return (

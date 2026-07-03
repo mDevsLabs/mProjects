@@ -62,14 +62,23 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
       <div className="mb-6 pb-6 border-b border-slate-200">
         <form method="GET" className="space-y-4">
           <div className="relative w-full max-w-md">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
             <input
               type="text"
               name="q"
               defaultValue={searchQuery}
               placeholder="Rechercher dans les actualités..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm"
+              className="w-full pl-10 pr-10 py-3 rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm transition-all placeholder:text-slate-400"
             />
+            {searchQuery && (
+              <a
+                href="/news"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-black/5 transition-colors flex items-center justify-center"
+                title="Effacer la recherche"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+              </a>
+            )}
           </div>
           
           <div className="flex flex-col sm:flex-row items-end gap-4 lg:pt-0 lg:border-t-0 border-t border-slate-200 pt-4">

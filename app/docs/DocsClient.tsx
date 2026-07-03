@@ -129,30 +129,25 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full">
-      {/* Header Banner */}
-      <div className="bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-700 flex items-center justify-center shrink-0 shadow-sm">
-            <BookOpen className="w-7 h-7" />
-          </div>
-          <div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
-              Documentation <br className="hidden sm:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">
-                mProjects
-              </span>
-            </h1>
-            <p className="text-slate-600 text-sm mt-1">
-              Guides techniques, spécifications d&apos;API et références de la suite mDevsLabs.
-            </p>
-          </div>
+    <div className="flex flex-col gap-10 md:gap-16 w-full">
+      {/* Hero Section */}
+      <div className="text-left space-y-2 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
+            Documentation <br className="hidden sm:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">
+              mProjects
+            </span>
+          </h1>
+          <p className="text-slate-500 text-base md:text-lg font-light mt-2 md:mt-4 max-w-2xl">
+            Guides techniques, spécifications d&apos;API et références de la suite mDevsLabs.
+          </p>
         </div>
 
         {/* Bouton Mobile Toggle Sidebar */}
         <button
           onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
-          className="lg:hidden flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm self-stretch"
+          className="lg:hidden flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm whitespace-nowrap self-start md:self-auto"
         >
           <Menu className="w-4 h-4" />
           {isMobileSidebarOpen ? "Fermer le menu" : "Parcourir la documentation"}
