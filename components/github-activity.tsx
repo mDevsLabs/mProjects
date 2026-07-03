@@ -10,10 +10,15 @@ export function GithubActivity({ repo, title = "Activité Récente" }: { repo?: 
   useEffect(() => {
     const fetchCommits = async () => {
       try {
+        const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+        const headers: HeadersInit = {};
+        if (token) {
+          headers['Authorization'] = `token ${token}`;
+        }
         const url = repo
           ? `https://api.github.com/repos/${repo}/commits?per_page=5`
           : `https://api.github.com/users/mDevsLabs/events/public?per_page=10`;
-        const res = await fetch(url);
+        const res = await fetch(url, { headers });
         if (!res.ok) throw new Error("Failed");
         const data = await res.json();
 

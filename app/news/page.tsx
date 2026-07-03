@@ -1,6 +1,6 @@
 import { getNewsArticles } from '@/lib/news';
 import Link from 'next/link';
-import { Calendar, User, Trash2 } from 'lucide-react';
+import { Calendar, User, Trash2, Search } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 export const metadata = {
@@ -50,10 +50,8 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
   return (
     <div className="max-w-4xl mx-auto">
       <div className="text-left mb-10 md:mb-16 space-y-2">
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">
-            Actualités
-          </span>
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
+          <span className="text-blue-600">Actualités</span>
         </h1>
         
         <p className="text-slate-500 text-base md:text-lg font-light mt-2 md:mt-4">
@@ -62,33 +60,20 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
       </div>
 
       <div className="mb-12 pb-8 border-b border-slate-200">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-orange-500" />
-            <h2 className="text-xl font-bold text-slate-900">Filtrer par date</h2>
-          </div>
-          {(startDate || endDate || searchQuery || authorFilter) && (
-            <a
-              href={resetFilters()}
-              className="flex items-center gap-2 px-3 py-1 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors"
-            >
-              <Trash2 className="w-4 h-4" />
-              Réinitialiser
-            </a>
-          )}
-        </div>
-        
-        <form method="GET" className="flex flex-col sm:flex-row items-end gap-4 lg:pt-0 lg:border-t-0 border-t border-slate-200 pt-4">
-          <div className="w-full sm:w-auto">
-            <label className="block text-xs font-medium text-slate-600 mb-1">Rechercher</label>
+        <div className="mb-4">
+          <div className="relative w-full max-w-md">
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               name="q"
               defaultValue={searchQuery}
-              placeholder="Mot-clé..."
-              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              placeholder="Rechercher dans les actualités..."
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
+        </div>
+        
+        <form method="GET" className="flex flex-col sm:flex-row items-end gap-4 lg:pt-0 lg:border-t-0 border-t border-slate-200 pt-4">
           <input type="hidden" name="q" value={searchQuery} />
           <div className="w-full sm:w-auto">
             <label className="block text-xs font-medium text-slate-600 mb-1">Date de début</label>
@@ -96,7 +81,7 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
               type="date"
               name="start"
               defaultValue={startDate}
-              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="w-full sm:w-auto">
@@ -105,7 +90,7 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
               type="date"
               name="end"
               defaultValue={endDate}
-              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="w-full sm:w-auto">
@@ -113,7 +98,7 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
             <select
               name="author"
               defaultValue={authorFilter}
-              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Tous les auteurs</option>
               {authors.map(author => (
@@ -124,11 +109,20 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
           <div className="w-full sm:w-auto">
             <button
               type="submit"
-              className="w-full sm:w-auto px-4 py-2 rounded-lg bg-orange-500 text-white text-sm font-medium hover:bg-orange-600 transition-colors"
+              className="w-full sm:w-auto px-4 py-2 rounded-lg bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors"
             >
               Filtrer
             </button>
           </div>
+          {(startDate || endDate || searchQuery || authorFilter) && (
+            <a
+              href={resetFilters()}
+              className="flex items-center gap-2 px-3 py-1 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors self-start"
+            >
+              <Trash2 className="w-4 h-4" />
+              Réinitialiser
+            </a>
+          )}
         </form>
       </div>
 

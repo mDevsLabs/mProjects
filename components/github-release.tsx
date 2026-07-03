@@ -17,9 +17,14 @@ export function GithubRelease({
   useEffect(() => {
     const fetchReleases = async () => {
       try {
+        const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+        const headers: HeadersInit = {};
+        if (token) {
+          headers['Authorization'] = `token ${token}`;
+        }
         const [latestRes, allRes] = await Promise.all([
-          fetch(`https://api.github.com/repos/${repo}/releases/latest`),
-          showPreRelease ? fetch(`https://api.github.com/repos/${repo}/releases`) : Promise.resolve(null),
+          fetch(`https://api.github.com/repos/${repo}/releases/latest`, { headers }),
+          showPreRelease ? fetch(`https://api.github.com/repos/${repo}/releases`, { headers }) : Promise.resolve(null),
         ]);
 
         if (latestRes.ok) {

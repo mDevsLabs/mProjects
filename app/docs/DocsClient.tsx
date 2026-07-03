@@ -137,8 +137,8 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
             <BookOpen className="w-7 h-7" />
           </div>
           <div>
-            <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-              Centre de Documentation mProjects
+            <h1 className="text-3xl md:text-4xl font-black tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
+              <span className="text-blue-600">Documentation mProjects</span>
             </h1>
             <p className="text-slate-600 text-sm mt-1">
               Guides techniques, spécifications d&apos;API et références de la suite mDevsLabs.
