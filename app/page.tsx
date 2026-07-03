@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Sparkles, Layers, Github, Twitter, Instagram, Youtube } from "lucide-react";
 import { SiOllama } from "react-icons/si";
 import Link from "next/link";
+import { MaiModal } from "@/components/mai-modal";
 
 export default function Home() {
   return (
@@ -81,6 +82,7 @@ export default function Home() {
           ))}
         </div>
       </motion.div>
+      <MaiModal />
     </div>
   );
 }
