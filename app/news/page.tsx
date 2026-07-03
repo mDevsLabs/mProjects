@@ -49,9 +49,9 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
   
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="text-left mb-10 md:mb-16 space-y-2">
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
-          <span className="text-blue-600">Actualités</span>
+      <div className="text-left mb-6 md:mb-8 space-y-2">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
+          Actualités
         </h1>
         
         <p className="text-slate-500 text-base md:text-lg font-light mt-2 md:mt-4">
@@ -59,8 +59,8 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
         </p>
       </div>
 
-      <div className="mb-12 pb-8 border-b border-slate-200">
-        <div className="mb-4">
+      <div className="mb-6 pb-6 border-b border-slate-200">
+        <form method="GET" className="space-y-4">
           <div className="relative w-full max-w-md">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
@@ -68,61 +68,60 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
               name="q"
               defaultValue={searchQuery}
               placeholder="Rechercher dans les actualités..."
-              className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm"
             />
           </div>
-        </div>
-        
-        <form method="GET" className="flex flex-col sm:flex-row items-end gap-4 lg:pt-0 lg:border-t-0 border-t border-slate-200 pt-4">
-          <input type="hidden" name="q" value={searchQuery} />
-          <div className="w-full sm:w-auto">
-            <label className="block text-xs font-medium text-slate-600 mb-1">Date de début</label>
-            <input
-              type="date"
-              name="start"
-              defaultValue={startDate}
-              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+          
+          <div className="flex flex-col sm:flex-row items-end gap-4 lg:pt-0 lg:border-t-0 border-t border-slate-200 pt-4">
+            <div className="w-full sm:w-auto">
+              <label className="block text-xs font-medium text-slate-600 mb-1">Date de début</label>
+              <input
+                type="date"
+                name="start"
+                defaultValue={startDate}
+                className="w-full sm:w-auto px-3 py-2 rounded-xl border border-white/60 bg-white/40 backdrop-blur-md text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm"
+              />
+            </div>
+            <div className="w-full sm:w-auto">
+              <label className="block text-xs font-medium text-slate-600 mb-1">Date de fin</label>
+              <input
+                type="date"
+                name="end"
+                defaultValue={endDate}
+                className="w-full sm:w-auto px-3 py-2 rounded-xl border border-white/60 bg-white/40 backdrop-blur-md text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm"
+              />
+            </div>
+            <div className="w-full sm:w-auto">
+              <label className="block text-xs font-medium text-slate-600 mb-1">Auteur</label>
+              <select
+                name="author"
+                defaultValue={authorFilter}
+                className="w-full sm:w-auto px-3 py-2 rounded-xl border border-white/60 bg-white/40 backdrop-blur-md text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm"
+              >
+                <option value="">Tous les auteurs</option>
+                {authors.map(author => (
+                  <option key={author} value={author}>{author}</option>
+                ))}
+              </select>
+            </div>
+            <div className="w-full sm:w-auto flex gap-2">
+              <button
+                type="submit"
+                className="w-full sm:w-auto px-6 py-2 rounded-xl bg-slate-900 text-white text-sm font-bold hover:bg-slate-800 transition-all shadow-md"
+              >
+                Filtrer
+              </button>
+              {(startDate || endDate || searchQuery || authorFilter) && (
+                <a
+                  href={resetFilters()}
+                  className="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-white/40 backdrop-blur-md border border-white/60 rounded-xl transition-colors"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Réinitialiser
+                </a>
+              )}
+            </div>
           </div>
-          <div className="w-full sm:w-auto">
-            <label className="block text-xs font-medium text-slate-600 mb-1">Date de fin</label>
-            <input
-              type="date"
-              name="end"
-              defaultValue={endDate}
-              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div className="w-full sm:w-auto">
-            <label className="block text-xs font-medium text-slate-600 mb-1">Auteur</label>
-            <select
-              name="author"
-              defaultValue={authorFilter}
-              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">Tous les auteurs</option>
-              {authors.map(author => (
-                <option key={author} value={author}>{author}</option>
-              ))}
-            </select>
-          </div>
-          <div className="w-full sm:w-auto">
-            <button
-              type="submit"
-              className="w-full sm:w-auto px-4 py-2 rounded-lg bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors"
-            >
-              Filtrer
-            </button>
-          </div>
-          {(startDate || endDate || searchQuery || authorFilter) && (
-            <a
-              href={resetFilters()}
-              className="flex items-center gap-2 px-3 py-1 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors self-start"
-            >
-              <Trash2 className="w-4 h-4" />
-              Réinitialiser
-            </a>
-          )}
         </form>
       </div>
 

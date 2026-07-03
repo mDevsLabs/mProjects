@@ -42,7 +42,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </span>
           </div>
         )}
-        <h1 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900 mb-6">
           {article.title}
         </h1>
         

@@ -62,7 +62,7 @@ export default function MaiProjectPage() {
               />
             </motion.div>
             <div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black italic tracking-tighter uppercase text-slate-900 drop-shadow-sm">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900 drop-shadow-sm">
                 mAI
               </h1>
               <p className="text-purple-600 font-medium text-lg italic mt-1">

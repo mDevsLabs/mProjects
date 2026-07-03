@@ -137,8 +137,11 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
             <BookOpen className="w-7 h-7" />
           </div>
           <div>
-            <h1 className="text-3xl md:text-4xl font-black tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
-              <span className="text-blue-600">Documentation mProjects</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
+              Documentation <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">
+                mProjects
+              </span>
             </h1>
             <p className="text-slate-600 text-sm mt-1">
               Guides techniques, spécifications d&apos;API et références de la suite mDevsLabs.
@@ -149,7 +152,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
         {/* Bouton Mobile Toggle Sidebar */}
         <button
           onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
-          className="lg:hidden flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/60 border border-white/80 text-slate-800 text-sm font-semibold shadow-sm hover:bg-white transition-all self-stretch justify-center"
+          className="lg:hidden flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm self-stretch"
         >
           <Menu className="w-4 h-4" />
           {isMobileSidebarOpen ? "Fermer le menu" : "Parcourir la documentation"}
@@ -172,7 +175,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
               placeholder="Rechercher un document, guide, API..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-9 py-2.5 rounded-2xl bg-white/60 border border-white/80 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-all shadow-inner"
+              className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm"
             />
             {searchQuery && (
               <button

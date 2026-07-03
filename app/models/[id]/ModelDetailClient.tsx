@@ -134,7 +134,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                 <Sparkles className="w-3.5 h-3.5" />
                 {model.badge}
               </div>
-              <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+              <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase text-slate-900">
                 {model.name}
               </h1>
               <p className="text-slate-600 text-base mt-2 max-w-xl">

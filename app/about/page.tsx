@@ -8,26 +8,30 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col gap-16 md:gap-24 relative z-10">
       {/* Hero Section */}
-      <div className="text-center max-w-3xl mx-auto px-4 mt-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+      <div className="text-left space-y-2">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900"
         >
-          <div className="inline-flex items-center justify-center p-4 mb-6 rounded-full bg-orange-100 text-orange-600">
-            <Users className="w-8 h-8" />
-          </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black italic tracking-tighter uppercase text-slate-900 mb-6">
-            L&apos;équipe <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">mDevsLabs</span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-500 font-light">
-            Une équipe passionnée qui développe des outils innovants, transparents et accessibles pour simplifier votre quotidien numérique. 🚀✨
-          </p>
-        </motion.div>
+          L&apos;équipe <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">
+            mDevsLabs
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="text-slate-500 text-base md:text-lg font-light mt-2 md:mt-4 max-w-2xl"
+        >
+          Une équipe passionnée qui développe des outils innovants, transparents et accessibles pour simplifier votre quotidien numérique. 🚀✨
+        </motion.p>
       </div>
 
       {/* Objectifs Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto px-4 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +82,7 @@ export default function AboutPage() {
       </div>
 
       {/* CTA */}
-      <div className="text-center max-w-2xl mx-auto px-4 mb-8">
+      <div className="text-center max-w-2xl mx-auto w-full mb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,10 +97,10 @@ export default function AboutPage() {
           </p>
           <Link
             href="/projects"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-slate-900 text-white font-bold hover:scale-105 transition-transform shadow-xl"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm"
           >
             Explorer les projets
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4.5 h-4.5" />
           </Link>
         </motion.div>
       </div>
