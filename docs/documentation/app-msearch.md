@@ -1,5 +1,5 @@
 ---
-title: "mSearch - Moteur de Recherche Intelligent & Vectoriel"
+title: "mSearch"
 description: "Recherche sémantique hybride, indexation vectorielle et intégration avec les modèles mAI."
 category: "Applications"
 order: 2

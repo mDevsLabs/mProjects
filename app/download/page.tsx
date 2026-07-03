@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Download, ExternalLink, Copy, Check, Terminal, Sparkles } from "lucide-react";
+import { Download, ExternalLink, Copy, Check, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 
@@ -27,10 +27,7 @@ export default function DownloadPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900"
         >
-          Télécharger <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">
-            mDevsLabs
-          </span>
+          Télécharger
         </motion.h1>
 
         <motion.p
@@ -64,10 +61,6 @@ export default function DownloadPage() {
                 />
               </div>
               <div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-700 text-xs font-bold uppercase tracking-wider mb-2">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  Assistant IA Multimodal
-                </div>
                 <h2 className="text-3xl font-black text-slate-900 tracking-tight">mAI</h2>
                 <p className="text-slate-600 text-sm mt-1 max-w-xl">
                   L&apos;assistant IA local de nouvelle génération pour booster votre productivité au quotidien.
@@ -92,7 +85,7 @@ export default function DownloadPage() {
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm"
               >
-                <Sparkles className="w-4 h-4 text-purple-500" />
+                <Sparkles className="w-4 h-4 text-slate-900" />
                 Canal Canary
                 <ExternalLink className="w-3.5 h-3.5 opacity-70" />
               </a>
@@ -120,10 +113,6 @@ export default function DownloadPage() {
                 />
               </div>
               <div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  Moteur de Recherche Rapide
-                </div>
                 <h2 className="text-3xl font-black text-slate-900 tracking-tight">mSearch</h2>
                 <p className="text-slate-600 text-sm mt-1 max-w-xl">
                   Un outil de recherche unifié, ultra-rapide et respectueux de votre vie privée.
@@ -151,59 +140,35 @@ export default function DownloadPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 space-y-6"
+          className="group bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 relative overflow-hidden"
         >
-          <div className="flex items-center gap-3 border-b border-black/5 pb-4">
-            <div className="p-2.5 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-600">
-              <Terminal className="w-6 h-6" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-                Modèles IA Locaux (Ollama)
-              </h2>
-              <p className="text-slate-600 text-sm">
-                Exécutez nos modèles Open-Weights localement via la ligne de commande Ollama.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Sous-partie mAI-1 */}
-            <div className="p-6 rounded-2xl bg-white/50 backdrop-blur-md border border-white/70 shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start md:items-center gap-5">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-3 shrink-0">
+                <Image
+                  src="/mai-1/mai-1-carre.png"
+                  alt="mAI-1 logo"
+                  width={80}
+                  height={80}
+                  sizes="80px"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
               <div>
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-14 h-14 rounded-xl bg-white/60 border border-white/80 shadow-sm flex items-center justify-center p-2 shrink-0">
-                    <Image
-                      src="/mai-1/mai-1-carre.png"
-                      alt="mAI-1 logo"
-                      width={56}
-                      height={56}
-                      sizes="56px"
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900">mAI-1</h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-bold uppercase">
-                        12B • Vision • 256K
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-slate-600 text-xs mb-4 leading-relaxed">
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">mAI-1</h2>
+                <p className="text-slate-600 text-sm mt-1 max-w-xl">
                   Assistant IA local puissant et multimodal. Raisonnement complexe, génération de code et analyse d&apos;images.
                 </p>
-
-                <div className="p-3.5 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs overflow-x-auto border border-slate-800 shadow-inner flex items-center justify-between gap-3">
-                  <code className="text-purple-300 font-semibold">ollama run mDevsLabs/mAI-1</code>
+                <div className="mt-3 p-3.5 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex items-center justify-between gap-3 max-w-md">
+                  <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1</code>
                 </div>
               </div>
+            </div>
 
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
               <button
                 onClick={() => handleCopy("ollama run mDevsLabs/mAI-1", "mai-1", "mAI-1")}
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm whitespace-nowrap"
               >
                 {copiedKey === "mai-1" ? (
                   <>
@@ -218,43 +183,43 @@ export default function DownloadPage() {
                 )}
               </button>
             </div>
+          </div>
+        </motion.section>
 
-            {/* Sous-partie mAI-1-Light */}
-            <div className="p-6 rounded-2xl bg-white/50 backdrop-blur-md border border-white/70 shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-4">
+        {/* Section 4 : mAI-1-Light */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="group bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 hover:border-blue-500/30 transition-all duration-300 relative overflow-hidden"
+        >
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start md:items-center gap-5">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-3 shrink-0">
+                <Image
+                  src="/mai-1-light/mai-1-light-carre.png"
+                  alt="mAI-1-Light logo"
+                  width={80}
+                  height={80}
+                  sizes="80px"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
               <div>
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-14 h-14 rounded-xl bg-white/60 border border-white/80 shadow-sm flex items-center justify-center p-2 shrink-0">
-                    <Image
-                      src="/mai-1-light/mai-1-light-carre.png"
-                      alt="mAI-1-Light logo"
-                      width={56}
-                      height={56}
-                      sizes="56px"
-                      className="w-full h-full object-cover rounded-lg"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900">mAI-1-Light</h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-bold uppercase">
-                        3B • Rapide • 128K
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-slate-600 text-xs mb-4 leading-relaxed">
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">mAI-1-Light</h2>
+                <p className="text-slate-600 text-sm mt-1 max-w-xl">
                   Assistant IA local ultra-léger et ultra-rapide. Optimisé pour tourner sur n&apos;importe quelle machine.
                 </p>
-
-                <div className="p-3.5 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs overflow-x-auto border border-slate-800 shadow-inner flex items-center justify-between gap-3">
-                  <code className="text-blue-300 font-semibold">ollama run mDevsLabs/mAI-1-Light</code>
+                <div className="mt-3 p-3.5 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex items-center justify-between gap-3 max-w-md">
+                  <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1-Light</code>
                 </div>
               </div>
+            </div>
 
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
               <button
                 onClick={() => handleCopy("ollama run mDevsLabs/mAI-1-Light", "mai-1-light", "mAI-1-Light")}
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm whitespace-nowrap"
               >
                 {copiedKey === "mai-1-light" ? (
                   <>

@@ -1,5 +1,5 @@
 ---
-title: "Installation et Exécution avec Ollama"
+title: "Installation"
 description: "Guide étape par étape pour déployer les modèles mAI via Ollama en local."
 category: "Guides"
 order: 1

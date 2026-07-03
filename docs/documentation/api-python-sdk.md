@@ -1,5 +1,5 @@
 ---
-title: "SDK Python mDevsLabs (mdevslabs-python)"
+title: "SDK Python"
 description: "Guide d'installation et exemples de code Python pour interagir avec les API mAI."
 category: "API"
 order: 2

@@ -1,5 +1,5 @@
 ---
-title: "mAI - Assistant IA Local & Multimodal"
+title: "mAI"
 description: "Présentation complète et architecture de l'assistant mAI propulsé par Gemma 4 et Ollama."
 category: "Applications"
 order: 1

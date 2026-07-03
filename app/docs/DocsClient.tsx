@@ -163,9 +163,9 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
 
       {/* Main Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Sidebar Latérale (Column 4 of 12) */}
+        {/* Sidebar Latérale (Column 5 of 12) */}
         <aside
-          className={`lg:col-span-4 flex flex-col gap-4 bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-5 transition-all ${
+          className={`lg:col-span-5 flex flex-col gap-4 bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-5 transition-all ${
             isMobileSidebarOpen ? "block" : "hidden lg:flex"
           }`}
         >
@@ -255,8 +255,8 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
           </div>
         </aside>
 
-        {/* Volet Principal de Lecture (Column 8 of 12) */}
-        <main className="lg:col-span-8 bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-10 min-h-[600px] flex flex-col justify-between">
+        {/* Volet Principal de Lecture (Column 7 of 12) */}
+        <main className="lg:col-span-7 bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-10 min-h-[600px] flex flex-col justify-between">
           {activeDoc ? (
             <div className="flex flex-col gap-6">
               {/* En-tête du document */}

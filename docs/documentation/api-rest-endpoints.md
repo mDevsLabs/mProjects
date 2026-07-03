@@ -1,5 +1,5 @@
 ---
-title: "Spécifications de l'API REST v1"
+title: "Endpoints REST"
 description: "Documentation complète des endpoints HTTP pour chat, completion et embeddings."
 category: "API"
 order: 1

@@ -1,5 +1,5 @@
 ---
-title: "mProjects - Hub de Projets & Documentation mDevsLabs"
+title: "mProjects"
 description: "Portail centralisé de suivi des versions, actualités et documentation technique."
 category: "Applications"
 order: 3

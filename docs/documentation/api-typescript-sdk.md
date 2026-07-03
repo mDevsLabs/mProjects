@@ -1,5 +1,5 @@
 ---
-title: "SDK TypeScript / JavaScript (@mdevslabs/sdk)"
+title: "SDK TypeScript"
 description: "Intégration Web & Node.js avec streaming de réponses et typage strict."
 category: "API"
 order: 3

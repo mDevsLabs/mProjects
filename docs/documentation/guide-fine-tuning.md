@@ -1,5 +1,5 @@
 ---
-title: "Fine-Tuning de Modèles avec LoRA et QLoRA"
+title: "Fine-Tuning"
 description: "Méthodologie pour adapter les modèles mAI à vos jeux de données métiers."
 category: "Guides"
 order: 4

@@ -1,5 +1,5 @@
 ---
-title: "Benchmarks de Performance & Latence"
+title: "Benchmarks"
 description: "Mesures de débit tokens/seconde, temps de premier token (TTFT) et empreinte mémoire VRAM."
 category: "Architecture"
 order: 5

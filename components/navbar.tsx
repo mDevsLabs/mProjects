@@ -58,13 +58,8 @@ const navLinks: NavItem[] = [
         ],
       },
       { name: "Télécharger", href: "/download" },
-      {
-        name: "API",
-        href: "/api",
-        subitems: [
-          { name: "Documentation (Bêta)", href: "/docs" },
-        ],
-      },
+      { name: "API", href: "/api" },
+      { name: "Documentation", href: "/docs" },
     ],
   },
 ];

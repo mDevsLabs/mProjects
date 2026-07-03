@@ -1,6 +1,6 @@
 ---
-title: "mDevsLabs Agent Framework"
-description: "Architecture multi-agents, outils d'exécution (tool calls) et orchestration."
+title: "Framework"
+description: "Framework de connecteurs d'API, outils d'exécution (tool calls) et orchestration."
 category: "API"
 order: 4
 ---

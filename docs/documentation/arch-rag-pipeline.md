@@ -1,5 +1,5 @@
 ---
-title: "Pipeline RAG & Retrieval-Augmented Generation"
+title: "RAG Pipeline"
 description: "Fonctionnement interne de la recherche documentaire et réinjection du contexte."
 category: "Architecture"
 order: 2

@@ -1,5 +1,5 @@
 ---
-title: "Indexation Vectorielle & Graphes HNSW"
+title: "Indexation"
 description: "Algorithmes de recherche de plus proches voisins et gestion des index vectoriels."
 category: "Architecture"
 order: 3

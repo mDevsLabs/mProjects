@@ -1,5 +1,5 @@
 ---
-title: "Authentification API, Clés API & Contrôle d'Accès"
+title: "Auth & Sécurité"
 description: "Gestion des jetons JWT, clés d'API, quotas de requêtes et rôles RBAC."
 category: "API"
 order: 5

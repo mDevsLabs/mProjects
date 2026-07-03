@@ -1,5 +1,5 @@
 ---
-title: "Sécurité, Confidentialité & Conformité RGPD"
+title: "Confidentialité"
 description: "Protection des données locales, anonymisation et isolation du réseau."
 category: "Guides"
 order: 7

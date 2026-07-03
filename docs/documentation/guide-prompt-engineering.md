@@ -1,5 +1,5 @@
 ---
-title: "Prompt Engineering & Structuration de Contextes"
+title: "Prompts"
 description: "Meilleures pratiques de rédaction de prompts et d'utilisation de formats structurés (JSON/XML)."
 category: "Guides"
 order: 5

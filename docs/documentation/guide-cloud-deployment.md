@@ -1,5 +1,5 @@
 ---
-title: "Déploiement Cloud sur Kubernetes & mDevsLabs Cloud"
+title: "Déploiement"
 description: "Guide de mise en production de clusters mAI avec mise à l'échelle automatique."
 category: "Guides"
 order: 3

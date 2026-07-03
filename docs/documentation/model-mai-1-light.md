@@ -1,5 +1,5 @@
 ---
-title: "mAI-1-Light - Modèle Ultra-Léger (2B)"
+title: "mAI-1-Light"
 description: "Modèle compact optimisé pour l'exécution rapide sur GPU modeste ou CPU."
 category: "Modèles d'IA"
 order: 2

@@ -1,5 +1,5 @@
 ---
-title: "Formats de Stockage : GGUF, Safetensors & Quantification"
+title: "Format Modèles"
 description: "Structure des fichiers de poids, schémas de quantification (Q4_K_M, Q8_0) et chargement."
 category: "Architecture"
 order: 4

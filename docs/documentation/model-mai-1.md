@@ -1,5 +1,5 @@
 ---
-title: "mAI-1 - Modèle Multimodal Flagship (12B)"
+title: "mAI-1"
 description: "Spécifications, capacités de raisonnement et performances du modèle principal mAI-1."
 category: "Modèles d'IA"
 order: 1

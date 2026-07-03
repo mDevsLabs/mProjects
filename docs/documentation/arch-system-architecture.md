@@ -1,5 +1,5 @@
 ---
-title: "Architecture Système globale de mDevsLabs"
+title: "Architecture"
 description: "Vue d'ensemble des modules, microservices et flux de données de la suite mDevsLabs."
 category: "Architecture"
 order: 1

@@ -1,5 +1,5 @@
 ---
-title: "Gestion de la Mémoire Contextuelle"
+title: "Mémoire"
 description: "Gestion des fenêtres glissantes, mémoire à long terme et compression du contexte."
 category: "Guides"
 order: 6
