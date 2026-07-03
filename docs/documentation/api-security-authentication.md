@@ -34,8 +34,7 @@ Les clés API disposent de portées (*scopes*) granulaires :
 
 ## ⚡ Limites de Débit (Rate Limiting)
 
-| Plan | Quota Requêtes / Min (RPM) | Quota Tokens / Min (TPM) |
-| --- | --- | --- |
-| **Community / Free** | 60 RPM | 100 000 TPM |
-| **Pro Developer** | 600 RPM | 1 000 000 TPM |
-| **Enterprise Dedicated** | Illimité | Illimité |
+- **Community / Free** : 60 RPM (Requêtes / Min), 100 000 TPM (Tokens / Min)
+- **Pro Developer** : 600 RPM, 1 000 000 TPM
+- **Enterprise Dedicated** : Illimité
+

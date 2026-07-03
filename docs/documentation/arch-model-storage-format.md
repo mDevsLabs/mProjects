@@ -27,9 +27,8 @@ Format universel extensible développé pour `llama.cpp` et `ollama`. Il contien
 
 ## 📊 Matrice des Quantifications mDevsLabs
 
-| Format Quantification | Précision Perplexité | Taille Fichier (12B) | Usage Recommandé |
-| --- | --- | --- | --- |
-| **Q4_K_M** | 98.2% du FP16 | 7.2 Go | Usage général local (Laptops/Desktops) |
-| **Q5_K_M** | 99.1% du FP16 | 8.6 Go | Bon équilibre qualité/vitesse |
-| **Q8_0** | 99.9% du FP16 | 13.1 Go | Inférence sans perte mesurable |
-| **FP16** | 100.0% (Référence) | 24.5 Go | Serveurs GPU de production |
+- **Q4_K_M** : Précision Perplexité de 98.2% du FP16, Taille Fichier de 7.2 Go, Usage général local (Laptops/Desktops)
+- **Q5_K_M** : Précision Perplexité de 99.1% du FP16, Taille Fichier de 8.6 Go, Bon équilibre qualité/vitesse
+- **Q8_0** : Précision Perplexité de 99.9% du FP16, Taille Fichier de 13.1 Go, Inférence sans perte mesurable
+- **FP16** : Précision Perplexité de 100.0% (Référence), Taille Fichier de 24.5 Go, Serveurs GPU de production
+

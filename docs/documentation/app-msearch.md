@@ -59,8 +59,7 @@ curl -X POST http://localhost:8080/v1/search \
 
 ## 📊 Benchmark vs Solutions Traditionnelles
 
-| Solution | Temps Moyen (ms) | Precision@5 | Coverage Sémantique |
-| --- | --- | --- | --- |
-| **mSearch Hybride** | **12 ms** | **94.2%** | **Très Élevée** |
-| BM25 Standard | 8 ms | 68.5% | Faible |
-| Vector Search Pur | 22 ms | 81.0% | Moyenne |
+- **mSearch Hybride** : Temps Moyen 12 ms, Precision@5 94.2%, Coverage Sémantique Très Élevée
+- **BM25 Standard** : Temps Moyen 8 ms, Precision@5 68.5%, Coverage Sémantique Faible
+- **Vector Search Pur** : Temps Moyen 22 ms, Precision@5 81.0%, Coverage Sémantique Moyenne
+

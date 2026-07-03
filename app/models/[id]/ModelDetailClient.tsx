@@ -130,7 +130,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
               />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-700 text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles className="w-3.5 h-3.5" />
                 {model.badge}
               </div>
@@ -179,7 +179,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="p-4 rounded-2xl bg-white/50 backdrop-blur-md border border-white/70 shadow-sm flex flex-col gap-1">
             <div className="flex items-center gap-2 text-slate-500 text-xs font-medium">
-              <Cpu className="w-4 h-4 text-purple-500" />
+              <Cpu className="w-4 h-4 text-blue-500" />
               Paramètres
             </div>
             <span className="text-xl font-black text-slate-900">{model.parameters}</span>
@@ -218,9 +218,9 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
       </div>
 
       {/* Section Commande d'installation Ollama principale */}
-      <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-purple-950 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden border border-slate-800">
+      <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden border border-slate-800">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2.5 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30">
+          <div className="p-2.5 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30">
             <Terminal className="w-5 h-5" />
           </div>
           <div>
@@ -232,14 +232,14 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
         </div>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 font-mono text-sm shadow-inner">
-          <code className="text-purple-300 font-bold select-all break-all">
+          <code className="text-blue-300 font-bold select-all break-all">
             {mainCommand}
           </code>
 
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => handleCopy(mainCommand, "main", model.name)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white text-xs font-semibold transition-all shadow"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-semibold transition-all shadow"
             >
               {copiedKey === "main" ? (
                 <>
@@ -327,11 +327,11 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
       {model.readmeContent && (
         <div className="bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-10">
           <h2 className="text-2xl font-black text-slate-900 mb-6 pb-4 border-b border-black/10 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-purple-600" />
+            <Sparkles className="w-5 h-5 text-blue-600" />
             Documentation Officielle (README.md)
           </h2>
 
-          <div className="prose max-w-none prose-headings:text-slate-900 prose-a:text-purple-600 prose-p:text-slate-700 prose-p:leading-relaxed prose-li:text-slate-700">
+          <div className="prose max-w-none prose-headings:text-slate-900 prose-a:text-blue-600 prose-p:text-slate-700 prose-p:leading-relaxed prose-li:text-slate-700">
             <Markdown
               components={{
                 h1: ({ node: _node, ...props }) => (
@@ -366,7 +366,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                 code: ({ node: _node, className, children, ...props }) => {
                   const isInline = !className;
                   return isInline ? (
-                    <code className="bg-purple-100/60 text-purple-800 px-1.5 py-0.5 rounded text-xs font-mono font-semibold" {...props}>
+                    <code className="bg-blue-100/60 text-blue-800 px-1.5 py-0.5 rounded text-xs font-mono font-semibold" {...props}>
                       {children}
                     </code>
                   ) : (
@@ -379,7 +379,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                   <pre className="bg-slate-950 text-slate-100 p-4 rounded-2xl overflow-x-auto my-6 font-mono text-xs border border-slate-800 shadow-md" {...props} />
                 ),
                 blockquote: ({ node: _node, ...props }) => (
-                  <blockquote className="border-l-4 border-purple-500 bg-purple-50/50 italic p-4 rounded-r-2xl my-6 text-slate-700 shadow-sm" {...props} />
+                  <blockquote className="border-l-4 border-blue-500 bg-blue-50/50 italic p-4 rounded-r-2xl my-6 text-slate-700 shadow-sm" {...props} />
                 ),
                 img: ({ node: _node, src, alt, ...props }) => (
                   <img

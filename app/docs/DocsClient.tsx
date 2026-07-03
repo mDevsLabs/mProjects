@@ -134,11 +134,11 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
       {/* Header Banner */}
       <div className="bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-700 flex items-center justify-center shrink-0 shadow-sm">
+          <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-700 flex items-center justify-center shrink-0 shadow-sm">
             <BookOpen className="w-7 h-7" />
           </div>
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-700 text-xs font-bold uppercase tracking-wider mb-1">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider mb-1">
               <Sparkles className="w-3.5 h-3.5" />
               Documentation officielle (Bêta)
             </div>
@@ -177,7 +177,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
               placeholder="Rechercher un document, guide, API..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-9 py-2.5 rounded-2xl bg-white/60 border border-white/80 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/40 transition-all shadow-inner"
+              className="w-full pl-10 pr-9 py-2.5 rounded-2xl bg-white/60 border border-white/80 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-all shadow-inner"
             />
             {searchQuery && (
               <button
@@ -194,7 +194,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
           <div className="flex items-center justify-between px-2 text-xs font-semibold text-slate-500 border-b border-black/5 pb-2">
             <span>{filteredDocs.length} document(s) trouvé(s)</span>
             {searchQuery && (
-              <span className="text-purple-600 font-medium">Recherche active</span>
+              <span className="text-blue-600 font-medium">Recherche active</span>
             )}
           </div>
 
@@ -212,7 +212,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                   <div key={category} className="flex flex-col gap-2">
                     <div className="flex items-center justify-between px-2 text-xs font-bold text-slate-800 uppercase tracking-wider">
                       <div className="flex items-center gap-1.5">
-                        <Layers className="w-3.5 h-3.5 text-purple-600" />
+                        <Layers className="w-3.5 h-3.5 text-blue-600" />
                         {category}
                       </div>
                       <span className="px-2 py-0.5 rounded-full bg-slate-900/5 text-[10px] text-slate-600">
@@ -232,7 +232,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                             }}
                             className={`w-full text-left px-3 py-2.5 rounded-2xl text-xs font-medium transition-all flex items-center justify-between group ${
                               isSelected
-                                ? "bg-purple-600 text-white font-semibold shadow-md shadow-purple-500/20"
+                                ? "bg-blue-600 text-white font-semibold shadow-md shadow-blue-500/20"
                                 : "text-slate-700 hover:bg-white/60 hover:text-slate-900"
                             }`}
                           >
@@ -263,7 +263,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
               <div className="border-b border-black/10 pb-6 flex flex-col gap-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-700 text-xs font-bold uppercase tracking-wider">
+                    <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider">
                       {activeDoc.category}
                     </span>
                     <span className="inline-flex items-center gap-1 text-slate-500 text-xs font-medium">
@@ -384,7 +384,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                       const isInline = !className;
                       return isInline ? (
                         <code
-                          className="bg-purple-100/60 text-purple-800 px-1.5 py-0.5 rounded text-xs font-mono font-semibold"
+                          className="bg-blue-100/60 text-blue-800 px-1.5 py-0.5 rounded text-xs font-mono font-semibold"
                           {...props}
                         >
                           {children}
@@ -403,14 +403,14 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                     ),
                     blockquote: ({ node: _node, ...props }) => (
                       <blockquote
-                        className="border-l-4 border-purple-500 bg-purple-50/50 italic p-4 rounded-r-2xl my-6 text-slate-700 shadow-sm"
+                        className="border-l-4 border-blue-500 bg-blue-50/50 italic p-4 rounded-r-2xl my-6 text-slate-700 shadow-sm"
                         {...props}
                       />
                     ),
                     a: ({ node: _node, href, children, ...props }) => (
                       <a
                         href={href}
-                        className="text-purple-600 hover:text-purple-800 underline font-medium transition-colors"
+                        className="text-blue-600 hover:text-blue-800 underline font-medium transition-colors"
                         target={href?.startsWith("http") ? "_blank" : "_self"}
                         rel={href?.startsWith("http") ? "noreferrer" : undefined}
                         {...props}
@@ -427,7 +427,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
           ) : (
             /* Cas où la recherche ne retourne aucun résultat */
             <div className="flex flex-col items-center justify-center text-center py-16 px-4 my-auto">
-              <div className="w-16 h-16 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 flex items-center justify-center mb-4">
+              <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 flex items-center justify-center mb-4">
                 <FileQuestion className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-2">
@@ -438,7 +438,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
               </p>
               <button
                 onClick={() => setSearchQuery("")}
-                className="px-6 py-2.5 rounded-full bg-purple-600 text-white font-semibold text-sm hover:bg-purple-700 transition-colors shadow-md shadow-purple-500/20"
+                className="px-6 py-2.5 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-500/20"
               >
                 Réinitialiser la recherche
               </button>

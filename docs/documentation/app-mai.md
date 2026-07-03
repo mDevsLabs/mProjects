@@ -56,12 +56,10 @@ ollama run mdevslabs/mai:latest
 
 ## ⚙️ Configuration Recommandée
 
-| Composant | Configuration Minimale | Configuration Recommandée |
-| --- | --- | --- |
-| **RAM** | 16 Go DDR4 | 32 Go DDR5 |
-| **GPU** | NVIDIA RTX 3060 (8 Go VRAM) | NVIDIA RTX 4080/4090 (16+ Go VRAM) |
-| **Stockage** | 20 Go SSD NVMe | 50 Go SSD NVMe PCIe 4.0 |
-| **OS** | Linux / macOS / Windows WSL2 | Ubuntu 22.04 LTS / macOS Sonoma |
+- **RAM** : 16 Go DDR4 (minimale) / 32 Go DDR5 (recommandée)
+- **GPU** : NVIDIA RTX 3060 (8 Go VRAM) (minimale) / NVIDIA RTX 4080/4090 (16+ Go VRAM) (recommandée)
+- **Stockage** : 20 Go SSD NVMe (minimale) / 50 Go SSD NVMe PCIe 4.0 (recommandée)
+- **OS** : Linux / macOS / Windows WSL2 (minimale) / Ubuntu 22.04 LTS / macOS Sonoma (recommandée)
 
 ---
 
