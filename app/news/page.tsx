@@ -1,6 +1,7 @@
 import { getNewsArticles } from '@/lib/news';
 import Link from 'next/link';
 import { Calendar, User, Tag, Trash2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 export const metadata = {
   title: 'Actualités',
@@ -163,7 +164,7 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
         ) : (
           sortedArticles.map((article) => (
             <Link key={article.slug} href={`/news/${article.slug}`}>
-              <div className="bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-4 md:p-6 flex flex-col relative overflow-hidden group hover:shadow-[0_8px_32px_0_rgba(249,115,22,0.2)] transition-all">
+              <div className="bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-4 md:p-6 flex flex-col relative overflow-hidden group hover:shadow-[0_8px_32px_0_rgba(249,115,22,0.2)] transition-all min-h-[320px] md:min-h-[350px]">
                 {article.image && (
                   <div className="relative h-40 md:h-48 mb-4 rounded-2xl overflow-hidden">
                     <img 
@@ -180,12 +181,23 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
                     </span>
                   </div>
                 )}
-                <h2 className="text-lg md:text-xl font-bold text-slate-900 mb-2 group-hover:text-orange-500 transition-colors">{article.title}</h2>
-                <p className="text-slate-600 mb-4 text-sm md:text-base max-h-16 md:max-h-20 overflow-hidden">{article.description}</p>
-                <div className="flex items-center gap-3 text-xs font-medium text-slate-500 mt-auto">
+                <h2 className="text-lg md:text-xl font-bold text-slate-900 mb-2 group-hover:text-orange-500 transition-colors leading-tight">{article.title}</h2>
+                <div className="space-y-2 mb-4 flex-1">
+                  <ReactMarkdown
+                    components={{
+                      p: (props: any) => <p className="mb-2 text-slate-600 text-sm md:text-base leading-relaxed max-h-24 md:max-h-32 overflow-hidden">{props.children}</p>,
+                      strong: (props: any) => <strong className="text-slate-800 font-semibold">{props.children}</strong>,
+                      em: (props: any) => <em className="text-slate-700">{props.children}</em>,
+                      br: () => <br />,
+                    }}
+                  >
+                    {article.description}
+                  </ReactMarkdown>
+                </div>
+                <div className="flex items-center gap-3 text-xs font-medium text-slate-500">
                   <div className="flex items-center gap-1">
                     <User className="w-3 h-3 md:w-4 h-4" />
-                    <span>{article.author}</span>
+                    <span className="font-medium">{article.author}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Calendar className="w-3 h-3 md:w-4 h-4" />
