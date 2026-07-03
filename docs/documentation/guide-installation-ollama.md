@@ -41,9 +41,6 @@ ollama pull mdevslabs/mai-1:latest
 
 # Pour la version légère mAI-1-Light (2B)
 ollama pull mdevslabs/mai-1-light:latest
-
-# Pour le modèle spécialisé en code mAI-Code
-ollama pull mdevslabs/mai-code:latest
 ```
 
 ---

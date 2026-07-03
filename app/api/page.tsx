@@ -37,6 +37,9 @@ interface ApiKey {
   usageCount: number;
   note: string;
   shownOnce: boolean;
+  plan?: "gratuit" | "pro" | "entreprise";
+  ipRestriction?: string;
+  domainRestriction?: string;
 }
 
 interface UserAccount {
@@ -154,6 +157,15 @@ export default function ApiPage() {
   const [newKeyName, setNewKeyName] = useState("");
   const [newKeyMaxUsage, setNewKeyMaxUsage] = useState(1000);
   const [newKeyNote, setNewKeyNote] = useState("");
+  const [newKeyPlan, setNewKeyPlan] = useState<"gratuit" | "pro" | "entreprise">("gratuit");
+  const [newKeyIp, setNewKeyIp] = useState("");
+  const [newKeyDomain, setNewKeyDomain] = useState("");
+
+  useEffect(() => {
+    if (newKeyPlan === "gratuit") setNewKeyMaxUsage(1000);
+    else if (newKeyPlan === "pro") setNewKeyMaxUsage(50000);
+    else if (newKeyPlan === "entreprise") setNewKeyMaxUsage(250000);
+  }, [newKeyPlan]);
 
   // Playground States
   const [playgroundKey, setPlaygroundKey] = useState("");
@@ -193,6 +205,9 @@ export default function ApiPage() {
           usageCount: k.usageCount ?? 0,
           note: k.note ?? "",
           shownOnce: k.shownOnce ?? false,
+          plan: k.plan ?? "gratuit",
+          ipRestriction: k.ipRestriction ?? "",
+          domainRestriction: k.domainRestriction ?? "",
         }));
       } catch (e) {
         console.error("Erreur lecture clés API:", e);
@@ -211,6 +226,9 @@ export default function ApiPage() {
         usageCount: 0,
         note: "Clé générée automatiquement lors de la première visite",
         shownOnce: false,
+        plan: "gratuit",
+        ipRestriction: "",
+        domainRestriction: "",
       };
       keysList = [defaultKey];
       localStorage.setItem("mprojects_api_keys", JSON.stringify(keysList));
@@ -298,12 +316,18 @@ export default function ApiPage() {
       usageCount: 0,
       note: newKeyNote.trim(),
       shownOnce: false,
+      plan: newKeyPlan,
+      ipRestriction: newKeyIp.trim(),
+      domainRestriction: newKeyDomain.trim(),
     };
     const updatedKeys = [newKeyObj, ...apiKeys];
     saveKeysToStorage(updatedKeys);
     setNewKeyName("");
     setNewKeyMaxUsage(1000);
     setNewKeyNote("");
+    setNewKeyPlan("gratuit");
+    setNewKeyIp("");
+    setNewKeyDomain("");
     toast.success(`Clé API "${keyName}" créée avec succès !`, { icon: "🔐" });
     setPlaygroundKey(keyStr);
   };
@@ -827,40 +851,71 @@ print(response.json())`,
                 <Plus className="w-4 h-4 text-purple-600" /> Générer une nouvelle clé API
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <input
-                  type="text"
-                  value={newKeyName}
-                  onChange={(e) => setNewKeyName(e.target.value)}
-                  placeholder="Nom de la clé"
-                  className="px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
-                />
-                <input
-                  type="text"
-                  value={newKeyNote}
-                  onChange={(e) => setNewKeyNote(e.target.value)}
-                  placeholder="Note (optionnel)"
-                  className="px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
-                />
-              </div>
-              <div className="flex items-end gap-3">
-                <div className="flex-1">
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Usage maximum <span className="text-slate-400 font-normal">(requêtes)</span>
-                  </label>
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Nom de la clé</label>
                   <input
-                    type="number"
-                    value={newKeyMaxUsage}
-                    onChange={(e) => setNewKeyMaxUsage(parseInt(e.target.value) || 1000)}
-                    min="1"
-                    max="100000"
-                    className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900"
+                    type="text"
+                    value={newKeyName}
+                    onChange={(e) => setNewKeyName(e.target.value)}
+                    placeholder="Nom de la clé"
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
                   />
                 </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Forfait & Quota</label>
+                  <select
+                    value={newKeyPlan}
+                    onChange={(e) => setNewKeyPlan(e.target.value as any)}
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900"
+                  >
+                    <option value="gratuit">Forfait Gratuit (1 000 req/mois)</option>
+                    <option value="pro">Forfait Pro (50 000 req/mois)</option>
+                    <option value="entreprise">Forfait Entreprise (250 000 req/mois)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Note de la clé (optionnelle)</label>
+                  <input
+                    type="text"
+                    value={newKeyNote}
+                    onChange={(e) => setNewKeyNote(e.target.value)}
+                    placeholder="Ex: Production, Dev portable..."
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1" title="Restreindre l'utilisation à cette IP">Restriction IP</label>
+                    <input
+                      type="text"
+                      value={newKeyIp}
+                      onChange={(e) => setNewKeyIp(e.target.value)}
+                      placeholder="Ex: 192.168.1.1"
+                      className="w-full px-3 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1" title="Restreindre l'utilisation à ce domaine HTTP">Domaine autorisé</label>
+                    <input
+                      type="text"
+                      value={newKeyDomain}
+                      onChange={(e) => setNewKeyDomain(e.target.value)}
+                      placeholder="Ex: *.site.com"
+                      className="w-full px-3 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500/30 text-slate-900 placeholder-slate-400"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-end pt-2">
                 <button
                   onClick={handleGenerateKey}
-                  className="px-6 py-2.5 rounded-xl bg-white/40 backdrop-blur-md border border-white/60 text-slate-900 font-bold text-sm shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:bg-white/60 transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer"
+                  className="px-6 py-3 rounded-xl bg-slate-950 text-white font-bold text-sm hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer shadow-md"
                 >
-                  <Plus className="w-4 h-4" /> Générer
+                  <Plus className="w-4 h-4" /> Générer la clé sécurisée
                 </button>
               </div>
             </div>
@@ -891,8 +946,17 @@ print(response.json())`,
                         }`}
                       >
                         <div className="space-y-1">
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-bold text-slate-900 text-sm">{k.name}</span>
+                            {k.plan && (
+                              <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
+                                k.plan === "entreprise" ? "bg-amber-500/10 text-amber-800 border border-amber-500/20" :
+                                k.plan === "pro" ? "bg-blue-500/10 text-blue-800 border border-blue-500/20" :
+                                "bg-slate-500/10 text-slate-700 border border-slate-500/20"
+                              }`}>
+                                Forfait {k.plan}
+                              </span>
+                            )}
                             {isRevoked ? (
                               <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/10 text-red-700 border border-red-500/20 font-bold uppercase">
                                 Révoquée
@@ -920,6 +984,20 @@ print(response.json())`,
                               ></div>
                             </div>
                           </div>
+                          {(k.ipRestriction || k.domainRestriction) && (
+                            <div className="flex items-center gap-3 text-[11px] text-slate-400 mt-1">
+                              {k.ipRestriction && (
+                                <span className="flex items-center gap-1 bg-white/40 border border-white/60 px-1.5 py-0.5 rounded">
+                                  <Shield className="w-3 h-3 text-blue-500 shrink-0" /> IP : <code>{k.ipRestriction}</code>
+                                </span>
+                              )}
+                              {k.domainRestriction && (
+                                <span className="flex items-center gap-1 bg-white/40 border border-white/60 px-1.5 py-0.5 rounded">
+                                  <Globe className="w-3 h-3 text-emerald-500 shrink-0" /> Domaine : <code>{k.domainRestriction}</code>
+                                </span>
+                              )}
+                            </div>
+                          )}
                           <div
                             className={`font-mono text-xs text-purple-700 font-bold tracking-wider bg-purple-50/40 border border-purple-100/60 px-3 py-1.5 rounded-xl inline-block cursor-pointer transition-all ${
                               k.shownOnce ? "cursor-not-allowed opacity-80" : "hover:bg-purple-100/50"

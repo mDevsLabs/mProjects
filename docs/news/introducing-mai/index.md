@@ -48,7 +48,7 @@ La supériorité technique de LobeHub repose sur trois piliers fondamentaux :
 
 ## 1. Une connectivité étendue
 
-Le framework prend en charge de manière native plus de 42 fournisseurs de modèles. Cette compatibilité s'étend des leaders historiques du marché de l'IA propriétaire aux architectures d'inférence ultra-rapides comme Groq, sans oublier l'exécution de modèles locaux en open source via Ollama. Cette flexibilité assure la pérennité de mAI face aux futures évolutions technologiques.
+Le framework prend en charge de manière native plus de 42 fournisseurs de modèles. Cette compatibilité s'étend des leaders historiques du marché de l'IA propriétaire aux architectures d'inférence ultra-rapides comme Groq, sans oublier l'exécution locale de modèles via Ollama. Cette flexibilité assure la pérennité de mAI face aux futures évolutions technologiques.
 
 ---
 

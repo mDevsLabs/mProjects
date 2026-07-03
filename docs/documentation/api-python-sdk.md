@@ -45,7 +45,7 @@ from mdevslabs import AsyncmDevsClient
 async def main():
     async with AsyncmDevsClient() as client:
         stream = await client.chat.stream(
-            model="mai-code",
+            model="mai-1",
             messages=[{"role": "user", "content": "Crée une classe FastAPI d'authentification."}]
         )
         async for chunk in stream:

@@ -31,6 +31,6 @@ L'ambition première du projet réside dans la simplification : proposer un poin
 
 ## LobeHub : La fondation technique d'excellence
 
-Le framework prend en charge de manière native plus de 42 fournisseurs de modèles. Cette compatibilité s'étend des leaders historiques du marché de l'IA propriétaire aux architectures d'inférence ultra-rapides comme Groq, sans oublier l'exécution de modèles locaux en open source via Ollama.
+Le framework prend en charge de manière native plus de 42 fournisseurs de modèles. Cette compatibilité s'étend des leaders historiques du marché de l'IA propriétaire aux architectures d'inférence ultra-rapides comme Groq, sans oublier l'exécution locale de modèles via Ollama.
 
 L'architecture place la confidentialité au centre de sa philosophie de conception en permettant l'utilisation de clés d'API personnelles.
