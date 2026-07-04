@@ -7,7 +7,8 @@ import Image from "next/image";
 import { toast } from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
-import { TbBrandVscode, TbBrandChrome } from "react-icons/tb";
+import { VscCode } from "react-icons/vsc";
+import { FaChrome } from "react-icons/fa";
 
 export default function DownloadPage() {
   const router = useRouter();
@@ -114,7 +115,7 @@ export default function DownloadPage() {
                 }
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm cursor-pointer"
               >
-                <TbBrandVscode className="w-5 h-5 text-blue-600" />
+                <VscCode className="w-5 h-5 text-slate-900" />
                 VS Code
               </button>
               <button
@@ -126,7 +127,7 @@ export default function DownloadPage() {
                 }
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm cursor-pointer"
               >
-                <TbBrandChrome className="w-5 h-5 text-amber-500" />
+                <FaChrome className="w-5 h-5 text-slate-900" />
                 Extension Navigateur
               </button>
             </div>

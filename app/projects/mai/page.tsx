@@ -17,7 +17,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { TbBrandVscode, TbBrandChrome } from "react-icons/tb";
+import { VscCode } from "react-icons/vsc";
+import { FaChrome } from "react-icons/fa";
 
 import { GithubRelease } from "@/components/github-release";
 
@@ -100,11 +101,11 @@ export default function MaiProjectPage() {
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-purple-400/30 rounded-full blur-[80px] -z-10"></div>
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-400/30 rounded-full blur-[80px] -z-10"></div>
 
-        <div className="relative z-10 max-w-3xl">
+        <div className="relative z-10 max-w-full">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
             L&apos;intelligence artificielle réinventée pour vous.
           </h2>
-          <p className="text-slate-600 text-lg leading-relaxed mb-8">
+          <p className="text-slate-600 text-lg leading-relaxed mb-8 max-w-3xl">
             mAI est votre assistant personnel de nouvelle génération, propulsé
             par
             <a
@@ -122,40 +123,40 @@ export default function MaiProjectPage() {
             interface fluide, intuitive et hautement personnalisable.
           </p>
 
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto pb-1 max-w-full whitespace-nowrap scrollbar-none">
             <a
               href="https://mai-officiel.vercel.app"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-xs sm:text-sm hover:bg-white/60 transition-colors shrink-0"
             >
               Découvrir mAI
-              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ExternalLink className="w-4 h-4" />
             </a>
             <a
               href="https://github.com/mDevsLabs/mAI"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-xs sm:text-sm hover:bg-white/60 transition-colors shrink-0"
             >
               GitHub
-              <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Github className="w-4 h-4" />
             </a>
             <Link
               href="/changelog/mai"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-xs sm:text-sm hover:bg-white/60 transition-colors shrink-0"
             >
               Changelog
-              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
+              <BookOpen className="w-4 h-4" />
             </Link>
             <a
               href="https://github.com/mDevsLabs/mAI/releases"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-xs sm:text-sm hover:bg-white/60 transition-colors shrink-0"
             >
               Télécharger mAI
-              <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Download className="w-4 h-4" />
             </a>
             <button
               onClick={() =>
@@ -164,10 +165,10 @@ export default function MaiProjectPage() {
                   "guide-extension-vscode"
                 )
               }
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-xs sm:text-sm hover:bg-white/60 transition-colors cursor-pointer shrink-0"
             >
               VS Code
-              <TbBrandVscode className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+              <VscCode className="w-4 h-4 text-slate-900" />
             </button>
             <button
               onClick={() =>
@@ -176,10 +177,10 @@ export default function MaiProjectPage() {
                   "guide-extension-navigateur"
                 )
               }
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-xs sm:text-sm hover:bg-white/60 transition-colors cursor-pointer shrink-0"
             >
               Extension Navigateur
-              <TbBrandChrome className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" />
+              <FaChrome className="w-4 h-4 text-slate-900" />
             </button>
           </div>
         </div>

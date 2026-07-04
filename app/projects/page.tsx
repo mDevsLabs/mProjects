@@ -93,12 +93,8 @@ export default function ProjectsPage() {
               </Link>
             </div>
 
-            <div className="mb-4">
+            <div className="mt-auto">
               <GithubRepoStats repo="mDevsLabs/mAI" />
-            </div>
-
-            <div className="mt-auto pt-3 border-t border-black/5 w-full">
-              <GithubActivity repo="mDevsLabs/mAI" title="Commits Récents" />
             </div>
           </div>
         </motion.div>
@@ -161,12 +157,8 @@ export default function ProjectsPage() {
               </Link>
             </div>
 
-            <div className="mb-4">
+            <div className="mt-auto">
               <GithubRepoStats repo="mDevsLabs/mSearch" />
-            </div>
-
-            <div className="mt-auto pt-3 border-t border-black/5 w-full">
-              <GithubActivity repo="mDevsLabs/mSearch" title="Commits Récents" />
             </div>
           </div>
         </motion.div>
