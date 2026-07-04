@@ -6,8 +6,24 @@ import { Download, ExternalLink, Copy, Check, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 
+import { useRouter } from "next/navigation";
+import { TbBrandVscode, TbBrandChrome } from "react-icons/tb";
+
 export default function DownloadPage() {
+  const router = useRouter();
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const handleDownloadAndRedirect = (downloadUrl: string, docSlug: string) => {
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = "";
+    a.target = "_blank";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    router.push(`/docs?doc=${docSlug}`);
+  };
 
   const handleCopy = (command: string, key: string, label: string) => {
     navigator.clipboard.writeText(command);
@@ -68,7 +84,7 @@ export default function DownloadPage() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
               <a
                 href="https://github.com/mDevsLabs/mAI/releases/latest"
                 target="_blank"
@@ -89,6 +105,30 @@ export default function DownloadPage() {
                 Canal Canary
                 <ExternalLink className="w-3.5 h-3.5 opacity-70" />
               </a>
+              <button
+                onClick={() =>
+                  handleDownloadAndRedirect(
+                    "https://upload.fs.fr/ObQWvEwYTk.zip",
+                    "guide-extension-vscode"
+                  )
+                }
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm cursor-pointer"
+              >
+                <TbBrandVscode className="w-5 h-5 text-blue-600" />
+                VS Code
+              </button>
+              <button
+                onClick={() =>
+                  handleDownloadAndRedirect(
+                    "https://upload.fs.fr/Zn7FIHWR6M.zip",
+                    "guide-extension-navigateur"
+                  )
+                }
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm cursor-pointer"
+              >
+                <TbBrandChrome className="w-5 h-5 text-amber-500" />
+                Extension Navigateur
+              </button>
             </div>
           </div>
         </motion.section>

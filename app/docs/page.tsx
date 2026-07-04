@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { getAllDocs } from '@/lib/docs';
 import { DocsClient } from './DocsClient';
 
@@ -12,7 +13,9 @@ export default function DocsPage() {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 py-4 md:py-8">
-      <DocsClient initialDocs={initialDocs} />
+      <Suspense fallback={<div className="p-8 text-center text-slate-500">Chargement de la documentation...</div>}>
+        <DocsClient initialDocs={initialDocs} />
+      </Suspense>
     </div>
   );
 }

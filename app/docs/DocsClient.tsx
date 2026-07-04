@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { normalizeText, type DocMetadata } from "@/lib/text-utils";
 import ReactMarkdown from "react-markdown";
 import {
@@ -24,10 +25,20 @@ interface DocsClientProps {
 }
 
 export function DocsClient({ initialDocs }: DocsClientProps) {
+  const searchParams = useSearchParams();
+  const docParam = searchParams.get("doc");
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSlug, setSelectedSlug] = useState<string>(
-    initialDocs.length > 0 ? initialDocs[0].slug : ""
+    docParam || (initialDocs.length > 0 ? initialDocs[0].slug : "")
   );
+
+  useEffect(() => {
+    if (docParam) {
+      setSelectedSlug(docParam);
+    }
+  }, [docParam]);
+
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 

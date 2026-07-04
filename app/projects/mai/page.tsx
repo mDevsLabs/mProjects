@@ -16,10 +16,26 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { TbBrandVscode, TbBrandChrome } from "react-icons/tb";
 
 import { GithubRelease } from "@/components/github-release";
 
 export default function MaiProjectPage() {
+  const router = useRouter();
+
+  const handleDownloadAndRedirect = (downloadUrl: string, docSlug: string) => {
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = "";
+    a.target = "_blank";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    router.push(`/docs?doc=${docSlug}`);
+  };
+
   return (
     <div className="flex flex-col gap-10 md:gap-16">
       {/* Header */}
@@ -141,6 +157,30 @@ export default function MaiProjectPage() {
               Télécharger mAI
               <Download className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
+            <button
+              onClick={() =>
+                handleDownloadAndRedirect(
+                  "https://upload.fs.fr/ObQWvEwYTk.zip",
+                  "guide-extension-vscode"
+                )
+              }
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors cursor-pointer"
+            >
+              VS Code
+              <TbBrandVscode className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+            </button>
+            <button
+              onClick={() =>
+                handleDownloadAndRedirect(
+                  "https://upload.fs.fr/Zn7FIHWR6M.zip",
+                  "guide-extension-navigateur"
+                )
+              }
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-sm sm:text-base hover:bg-white/60 transition-colors cursor-pointer"
+            >
+              Extension Navigateur
+              <TbBrandChrome className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" />
+            </button>
           </div>
         </div>
       </motion.div>

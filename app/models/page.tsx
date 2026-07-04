@@ -185,6 +185,82 @@ export default function ModelsPage() {
           </motion.div>
         ))}
       </div>
+
+      {/* Section Comparateur de Modèles */}
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-6 md:p-8 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]"
+      >
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider mb-4 w-fit">
+          Comparateur de Modèles
+        </div>
+        <h3 className="text-3xl font-black text-slate-900 tracking-tight mb-4">
+          Comparez les performances côte-à-côte
+        </h3>
+        <p className="text-slate-500 text-sm font-light mb-8 max-w-3xl">
+          Visualisez comment se positionnent nos modèles exclusifs <strong>mAI-1</strong> et <strong>mAI-1-Light</strong> face aux standards du marché pour choisir le moteur idéal pour vos intégrations en local.
+        </p>
+
+        {/* Tableau de comparaison */}
+        <div className="overflow-x-auto rounded-2xl border border-black/5 bg-white/20">
+          <table className="w-full text-left border-collapse text-sm text-slate-700">
+            <thead>
+              <tr className="bg-slate-900/5 border-b border-black/5">
+                <th className="p-4 font-bold text-slate-900">Modèle</th>
+                <th className="p-4 font-bold text-slate-900 text-center">Score MMLU</th>
+                <th className="p-4 font-bold text-slate-900 text-center">Vitesse d&apos;inférence</th>
+                <th className="p-4 font-bold text-slate-900 text-center">Taille RAM / VRAM (Min)</th>
+                <th className="p-4 font-bold text-slate-900">Cas d&apos;usage principal</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-black/5">
+              <tr className="bg-purple-500/5 font-semibold">
+                <td className="p-4 text-purple-700 font-bold flex items-center gap-2">
+                  <span>mAI-1 (12B)</span>
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-purple-500 text-white font-black uppercase">Flagship</span>
+                </td>
+                <td className="p-4 text-center font-bold">78.5%</td>
+                <td className="p-4 text-center text-emerald-600 font-bold">48 - 82 t/s</td>
+                <td className="p-4 text-center">7.2 Go (Q4_K_M)</td>
+                <td className="p-4">Vision, code complexe, raisonnement multimodal, RAG avancé</td>
+              </tr>
+              <tr className="bg-blue-500/5 font-semibold">
+                <td className="p-4 text-blue-700 font-bold flex items-center gap-2">
+                  <span>mAI-1-Light (3B)</span>
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-blue-500 text-white font-black uppercase">Léger</span>
+                </td>
+                <td className="p-4 text-center font-bold">65.2%</td>
+                <td className="p-4 text-center text-emerald-500 font-bold">112 - 145 t/s</td>
+                <td className="p-4 text-center">1.8 Go (Q4_K_M)</td>
+                <td className="p-4">Classification rapide, autocomplétion inline, résumés, usage mobile/edge</td>
+              </tr>
+              <tr className="hover:bg-black/[0.02] transition-colors">
+                <td className="p-4 font-bold text-slate-800">Llama-3 (8B)</td>
+                <td className="p-4 text-center">68.4%</td>
+                <td className="p-4 text-center">65 - 90 t/s</td>
+                <td className="p-4 text-center">5.2 Go</td>
+                <td className="p-4">Assistant généraliste, génération de texte standard, chat grand public</td>
+              </tr>
+              <tr className="hover:bg-black/[0.02] transition-colors">
+                <td className="p-4 font-bold text-slate-800">Gemma-2 (9B)</td>
+                <td className="p-4 text-center">71.3%</td>
+                <td className="p-4 text-center">55 - 75 t/s</td>
+                <td className="p-4 text-center">5.8 Go</td>
+                <td className="p-4">Raisonnement logique, rédaction guidée, instruction-following</td>
+              </tr>
+              <tr className="hover:bg-black/[0.02] transition-colors">
+                <td className="p-4 font-bold text-slate-800">Granite-3.1 (8B)</td>
+                <td className="p-4 text-center">67.8%</td>
+                <td className="p-4 text-center">70 - 95 t/s</td>
+                <td className="p-4 text-center">5.0 Go</td>
+                <td className="p-4">Triage de données, programmation basique, workflows d&apos;automatisation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </motion.section>
     </div>
   );
 }

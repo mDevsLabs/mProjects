@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { GithubActivity } from "@/components/github-activity";
+import { GithubRepoStats } from "@/components/github-repo-stats";
 import Image from "next/image";
 
 export default function ProjectsPage() {
@@ -92,6 +93,10 @@ export default function ProjectsPage() {
               </Link>
             </div>
 
+            <div className="mb-4">
+              <GithubRepoStats repo="mDevsLabs/mAI" />
+            </div>
+
             <div className="mt-auto pt-3 border-t border-black/5 w-full">
               <GithubActivity repo="mDevsLabs/mAI" title="Commits Récents" />
             </div>
@@ -154,6 +159,10 @@ export default function ProjectsPage() {
                 Découvrir mSearch
                 <ExternalLink className="w-4 h-4" />
               </Link>
+            </div>
+
+            <div className="mb-4">
+              <GithubRepoStats repo="mDevsLabs/mSearch" />
             </div>
 
             <div className="mt-auto pt-3 border-t border-black/5 w-full">
