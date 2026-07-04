@@ -175,13 +175,13 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
         >
           {/* Champ de recherche en temps réel */}
           <div className="relative w-full">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
             <input
               type="text"
               placeholder="Rechercher un document, guide, API..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-9 py-2.5 rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm"
+              className="w-full pl-10 pr-9 py-3 rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-sm"
             />
             {searchQuery && (
               <button
@@ -189,7 +189,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                 className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-black/5 transition-colors"
                 title="Effacer la recherche"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
               </button>
             )}
           </div>
@@ -215,8 +215,8 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                 return (
                   <div key={category} className="flex flex-col gap-2">
                     <div className="flex items-center justify-between px-2 text-xs font-bold text-slate-800 uppercase tracking-wider">
-                      <div className="flex items-center gap-1.5">
-                        <Layers className="w-3.5 h-3.5 text-blue-600" />
+                      <div className="flex items-center gap-2">
+                        <Layers className="w-4 h-4 text-blue-600" />
                         {category}
                       </div>
                       <span className="px-2 py-0.5 rounded-full bg-slate-900/5 text-[10px] text-slate-600">
@@ -234,7 +234,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                               setSelectedSlug(doc.slug);
                               setIsMobileSidebarOpen(false);
                             }}
-                            className={`w-full text-left px-3 py-2.5 rounded-2xl text-xs font-medium transition-all flex items-center justify-between group ${
+                            className={`w-full text-left px-3 py-3 rounded-2xl text-xs font-medium transition-all flex items-center justify-between group ${
                               isSelected
                                 ? "bg-blue-600 text-white font-semibold shadow-md shadow-blue-500/20"
                                 : "text-slate-700 hover:bg-white/60 hover:text-slate-900"
@@ -242,7 +242,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                           >
                             <span className="truncate pr-2">{doc.title}</span>
                             <ChevronRight
-                              className={`w-3.5 h-3.5 shrink-0 transition-transform ${
+                              className={`w-4 h-4 shrink-0 transition-transform ${
                                 isSelected
                                   ? "text-white translate-x-0.5"
                                   : "text-slate-400 group-hover:translate-x-0.5"
@@ -271,11 +271,11 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                       {activeDoc.category}
                     </span>
                     <span className="inline-flex items-center gap-1 text-slate-500 text-xs font-medium">
-                      <Clock className="w-3.5 h-3.5 text-slate-400" />
+                      <Clock className="w-4 h-4 text-slate-400" />
                       {calculateReadingTime(activeDoc.content)}
                     </span>
                     <span className="inline-flex items-center gap-1 text-slate-500 text-xs font-medium">
-                      <FileText className="w-3.5 h-3.5 text-slate-400" />
+                      <FileText className="w-4 h-4 text-slate-400" />
                       Ordre : {activeDoc.order}
                     </span>
                   </div>
@@ -289,12 +289,12 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                     >
                       {copiedKey === "content" ? (
                         <>
-                          <Check className="w-3.5 h-3.5 text-emerald-600" />
+                          <Check className="w-4 h-4 text-emerald-600" />
                           Copié
                         </>
                       ) : (
                         <>
-                          <Copy className="w-3.5 h-3.5" />
+                          <Copy className="w-4 h-4" />
                           Copier MD
                         </>
                       )}
@@ -304,7 +304,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 text-xs font-semibold transition-all shadow-sm"
                       title="Partager ce document"
                     >
-                      <Share2 className="w-3.5 h-3.5" />
+                      <Share2 className="w-4 h-4" />
                       Partager
                     </button>
                   </div>
@@ -442,7 +442,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
               </p>
               <button
                 onClick={() => setSearchQuery("")}
-                className="px-6 py-2.5 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-500/20"
+                className="px-6 py-3 rounded-full bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-500/20"
               >
                 Réinitialiser la recherche
               </button>

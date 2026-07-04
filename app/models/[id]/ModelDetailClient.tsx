@@ -33,6 +33,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const mainCommand = `ollama run ${model.ollamaTag}`;
+  const hfCommand = `hf download ${model.ollamaTag}`;
 
   const integrations: AppIntegration[] = [
     {
@@ -130,8 +131,8 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
               />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
+                <Sparkles className="w-4 h-4" />
                 {model.badge}
               </div>
               <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase text-slate-900">
@@ -217,51 +218,80 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
         </div>
       </div>
 
-      {/* Section Commande d'installation Ollama principale */}
+      {/* Section Commandes d'installation principale */}
       <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden border border-slate-800">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2.5 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30">
+          <div className="p-3 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30">
             <Terminal className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-bold">Installation & Lancement Direct Ollama</h2>
+            <h2 className="text-xl font-bold">Installation & Lancement Direct</h2>
             <p className="text-xs text-slate-400">
-              Téléchargez et exécutez le modèle directement dans votre terminal avec Ollama.
+              Téléchargez et exécutez le modèle directement dans votre terminal.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 font-mono text-sm shadow-inner">
-          <code className="text-blue-300 font-bold select-all break-all">
-            {mainCommand}
-          </code>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 font-mono text-sm shadow-inner">
+            <div className="flex flex-col gap-1">
+              <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Ollama</span>
+              <code className="text-blue-300 font-bold select-all break-all">
+                {mainCommand}
+              </code>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => handleCopy(mainCommand, "main", "Ollama")}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-semibold transition-all shadow"
+              >
+                {copiedKey === "main" ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-300" />
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    Copier
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => handleDownload(mainCommand, `run-${model.id}.sh`)}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all border border-slate-700 shadow"
+              >
+                <Download className="w-4 h-4" />
+                Script
+              </button>
+            </div>
+          </div>
 
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={() => handleCopy(mainCommand, "main", model.name)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-semibold transition-all shadow"
-            >
-              {copiedKey === "main" ? (
-                <>
-                  <Check className="w-4 h-4 text-emerald-300" />
-                  Copié !
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  Copier
-                </>
-              )}
-            </button>
-            <button
-              onClick={() =>
-                handleDownload(mainCommand, `run-${model.id}.sh`)
-              }
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all border border-slate-700 shadow"
-            >
-              <Download className="w-4 h-4" />
-              Télécharger
-            </button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 font-mono text-sm shadow-inner">
+            <div className="flex flex-col gap-1">
+              <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Hugging Face CLI</span>
+              <code className="text-[#FFD21E] font-bold select-all break-all">
+                {hfCommand}
+              </code>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => handleCopy(hfCommand, "hf", "Hugging Face")}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FFD21E] hover:bg-yellow-400 active:bg-yellow-500 text-slate-900 text-xs font-semibold transition-all shadow"
+              >
+                {copiedKey === "hf" ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-700" />
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    Copier
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -300,12 +330,12 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                 >
                   {copiedKey === app.id ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <Check className="w-4 h-4 text-emerald-600" />
                       Copié !
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5 text-slate-600" />
+                      <Copy className="w-4 h-4 text-slate-600" />
                       Copier
                     </>
                   )}
@@ -314,7 +344,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                   onClick={() => handleDownload(app.command, app.filename)}
                   className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 text-xs font-semibold transition-all shadow-sm"
                 >
-                  <Download className="w-3.5 h-3.5" />
+                  <Download className="w-4 h-4" />
                   Télécharger
                 </button>
               </div>

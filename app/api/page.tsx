@@ -689,7 +689,7 @@ print(response.json())`,
       {/* Hero Section */}
       <div className="text-left space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-700 text-xs font-bold uppercase tracking-wider mb-2">
-          <Sparkles className="w-3.5 h-3.5" /> Console Développeur & API v1
+          <Sparkles className="w-4 h-4" /> Console Développeur & API v1
         </div>
         <motion.h1
           initial={{ opacity: 0, y: -20 }}

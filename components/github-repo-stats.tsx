@@ -54,7 +54,7 @@ export function GithubRepoStats({ repo }: { repo: string }) {
   if (loading) {
     return (
       <div className="flex items-center gap-2 text-xs text-slate-400">
-        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+        <Loader2 className="w-4 h-4 animate-spin" />
         <span>Chargement des stats...</span>
       </div>
     );

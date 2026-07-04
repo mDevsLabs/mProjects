@@ -393,7 +393,7 @@ function CommentItem({ comment, commentId, onDelete, onEdit }: { comment: Commen
           <button
             onClick={() => {
               onDelete(commentId);
-              toast.error("Commentaire supprimé !");
+              toast.success("Commentaire supprimé !");
             }}
             className="flex items-center gap-2 px-3 py-1 rounded-full text-slate-600 hover:bg-red-100 transition-colors text-sm"
           >

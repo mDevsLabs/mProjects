@@ -100,7 +100,7 @@ export default function AboutPage() {
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm"
           >
             Explorer les projets
-            <ArrowRight className="w-4.5 h-4.5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
       </div>

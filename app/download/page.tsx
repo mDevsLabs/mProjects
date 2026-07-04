@@ -94,7 +94,7 @@ export default function DownloadPage() {
               >
                 <Download className="w-4 h-4" />
                 Canal Stable
-                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                <ExternalLink className="w-4 h-4 opacity-70" />
               </a>
               <a
                 href="https://github.com/mDevsLabs/mAI/releases?q=Canary&expanded=true"
@@ -104,7 +104,7 @@ export default function DownloadPage() {
               >
                 <Sparkles className="w-4 h-4 text-slate-900" />
                 Canal Canary
-                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                <ExternalLink className="w-4 h-4 opacity-70" />
               </a>
               <button
                 onClick={() =>
@@ -170,7 +170,7 @@ export default function DownloadPage() {
               >
                 <Download className="w-4 h-4" />
                 Canal Stable
-                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                <ExternalLink className="w-4 h-4 opacity-70" />
               </a>
             </div>
           </div>
@@ -200,18 +200,25 @@ export default function DownloadPage() {
                 <p className="text-slate-600 text-sm mt-1 max-w-xl">
                   Assistant IA local puissant et multimodal. Raisonnement complexe, génération de code et analyse d&apos;images.
                 </p>
-                <div className="mt-3 p-3.5 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex items-center justify-between gap-3 max-w-md">
-                  <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1</code>
+                <div className="mt-3 flex flex-col gap-2 max-w-md">
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Ollama</span>
+                    <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1</code>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Hugging Face CLI</span>
+                    <code className="text-slate-100 font-semibold">hf download mDevsLabs/mAI-1</code>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
               <button
-                onClick={() => handleCopy("ollama run mDevsLabs/mAI-1", "mai-1", "mAI-1")}
+                onClick={() => handleCopy("ollama run mDevsLabs/mAI-1", "mai-1-ollama", "mAI-1 Ollama")}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm whitespace-nowrap"
               >
-                {copiedKey === "mai-1" ? (
+                {copiedKey === "mai-1-ollama" ? (
                   <>
                     <Check className="w-4 h-4 text-emerald-400" />
                     Copié !
@@ -219,7 +226,23 @@ export default function DownloadPage() {
                 ) : (
                   <>
                     <Copy className="w-4 h-4" />
-                    Copier la commande
+                    Ollama
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => handleCopy("hf download mDevsLabs/mAI-1", "mai-1-hf", "mAI-1 Hugging Face")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#FFD21E] text-slate-900 font-bold hover:bg-yellow-400 transition-all shadow-md text-sm whitespace-nowrap"
+              >
+                {copiedKey === "mai-1-hf" ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-700" />
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    Hugging Face
                   </>
                 )}
               </button>
@@ -251,18 +274,25 @@ export default function DownloadPage() {
                 <p className="text-slate-600 text-sm mt-1 max-w-xl">
                   Assistant IA local ultra-léger et ultra-rapide. Optimisé pour tourner sur n&apos;importe quelle machine.
                 </p>
-                <div className="mt-3 p-3.5 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex items-center justify-between gap-3 max-w-md">
-                  <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1-Light</code>
+                <div className="mt-3 flex flex-col gap-2 max-w-md">
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Ollama</span>
+                    <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1-Light</code>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Hugging Face CLI</span>
+                    <code className="text-slate-100 font-semibold">hf download mDevsLabs/mAI-1-Light</code>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
               <button
-                onClick={() => handleCopy("ollama run mDevsLabs/mAI-1-Light", "mai-1-light", "mAI-1-Light")}
+                onClick={() => handleCopy("ollama run mDevsLabs/mAI-1-Light", "mai-1-light-ollama", "mAI-1-Light Ollama")}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm whitespace-nowrap"
               >
-                {copiedKey === "mai-1-light" ? (
+                {copiedKey === "mai-1-light-ollama" ? (
                   <>
                     <Check className="w-4 h-4 text-emerald-400" />
                     Copié !
@@ -270,7 +300,23 @@ export default function DownloadPage() {
                 ) : (
                   <>
                     <Copy className="w-4 h-4" />
-                    Copier la commande
+                    Ollama
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => handleCopy("hf download mDevsLabs/mAI-1-Light", "mai-1-light-hf", "mAI-1-Light Hugging Face")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#FFD21E] text-slate-900 font-bold hover:bg-yellow-400 transition-all shadow-md text-sm whitespace-nowrap"
+              >
+                {copiedKey === "mai-1-light-hf" ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-700" />
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    Hugging Face
                   </>
                 )}
               </button>

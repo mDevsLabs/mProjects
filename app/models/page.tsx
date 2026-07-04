@@ -92,7 +92,7 @@ export default function ModelsPage() {
             <div className="relative z-10">
               {/* En-tête avec image carrée et titre */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-20 h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-2.5 overflow-hidden shrink-0 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-20 h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-3 overflow-hidden shrink-0 group-hover:scale-105 transition-transform duration-300">
                   <Image
                     src={model.squareImage}
                     alt={`${model.name} square logo`}
@@ -107,7 +107,7 @@ export default function ModelsPage() {
                     {model.name}
                   </h2>
                   <p className="text-xs font-semibold text-purple-600 uppercase tracking-wider mt-1 flex items-center gap-1">
-                    <Sparkles className="w-3.5 h-3.5" />
+                    <Sparkles className="w-4 h-4" />
                     {model.tagline}
                   </p>
                 </div>
@@ -164,7 +164,7 @@ export default function ModelsPage() {
                 {model.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] px-2.5 py-1 rounded-full bg-white/50 backdrop-blur-md border border-white/70 shadow-sm text-slate-800 uppercase font-bold tracking-wider"
+                    className="text-[10px] px-2 py-1 rounded-full bg-white/50 backdrop-blur-md border border-white/70 shadow-sm text-slate-800 uppercase font-bold tracking-wider"
                   >
                     {tag}
                   </span>

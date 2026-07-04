@@ -5,13 +5,15 @@ category: "Guides"
 order: 1
 ---
 
-# Guide d'Installation et d'Exécution avec Ollama 🦙💻
+# Guide d'Installation et d'Exécution (Ollama & Hugging Face) 🦙🤗
 
-Ce guide détaille l'installation pas-à-pas de l'écosystème **mAI** sur votre machine locale via l'outil d'inférence universel **Ollama**.
+Ce guide détaille l'installation pas-à-pas de l'écosystème **mAI** sur votre machine locale via l'outil d'inférence universel **Ollama** ou via le **CLI Hugging Face**.
 
 ---
 
-## 📥 Étape 1 : Téléchargement et Installation d'Ollama
+## 📥 Étape 1 : Installation des Prérequis
+
+### Téléchargement et Installation d'Ollama
 
 ### Sur macOS & Linux
 
@@ -29,11 +31,21 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama --version
 ```
 
+### Installation du CLI Hugging Face
+
+Si vous préférez télécharger les modèles purs avec Hugging Face :
+
+```bash
+pip install -U "huggingface_hub[cli]"
+```
+
 ---
 
 ## 📦 Étape 2 : Téléchargement des Modèles mAI
 
-Vous pouvez télécharger n'importe quel modèle du registre officiel mDevsLabs :
+Vous pouvez télécharger n'importe quel modèle du registre officiel mDevsLabs.
+
+### Via Ollama
 
 ```bash
 # Pour le modèle général mAI-1 (12B)
@@ -41,6 +53,16 @@ ollama pull mdevslabs/mai-1:latest
 
 # Pour la version légère mAI-1-Light (2B)
 ollama pull mdevslabs/mai-1-light:latest
+```
+
+### Via Hugging Face CLI
+
+```bash
+# Pour le modèle général mAI-1
+hf download mDevsLabs/mAI-1
+
+# Pour la version légère mAI-1-Light
+hf download mDevsLabs/mAI-1-Light
 ```
 
 ---

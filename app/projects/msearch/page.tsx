@@ -104,7 +104,7 @@ export default function MsearchProjectPage() {
             distraction, où votre vie privée est la priorité absolue.
           </p>
 
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <a
               href="https://github.com/mDevsLabs/mSearch"
               target="_blank"
