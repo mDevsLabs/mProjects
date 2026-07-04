@@ -13,7 +13,7 @@ L'extension **mAI pour Visual Studio Code** apporte la puissance de votre assist
 
 ## 📥 1. Téléchargement & Extraction
 
-1. Téléchargez l'archive officielle de l'extension : [ObQWvEwYTk.zip](https://upload.fs.fr/ObQWvEwYTk.zip).
+1. Téléchargez l'archive officielle de l'extension : [mAI-VSCode.zip](https://upload.fs.fr/ObQWvEwYTk.zip).
 2. Décompressez l'archive ZIP sur votre ordinateur à l'aide de votre outil d'extraction préféré (7-Zip, WinRAR, ou l'outil natif de votre système).
 
 ---

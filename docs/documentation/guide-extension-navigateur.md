@@ -16,7 +16,7 @@ L'extension **mAI pour Navigateur** vous permet d'accéder à votre assistant IA
 
 ## 📥 1. Téléchargement
 
-1. Téléchargez l'archive officielle de l'extension : [Zn7FIHWR6M.zip](https://upload.fs.fr/Zn7FIHWR6M.zip).
+1. Téléchargez l'archive officielle de l'extension : [mAI-Web.zip](https://upload.fs.fr/Zn7FIHWR6M.zip).
 2. **Conservez le fichier ZIP tel quel** sur votre disque dur (ou décompressez-le dans un dossier dédié si votre navigateur requiert un dossier non empaqueté).
 
 ---

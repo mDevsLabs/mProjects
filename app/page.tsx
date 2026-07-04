@@ -83,6 +83,17 @@ export default function Home() {
         </div>
       </motion.div>
       <MaiModal />
+      <div className="mt-12 mb-8">
+        <iframe 
+          src="https://mprojects.instatus.com/embed-status/1ac64775/light-sm" 
+          width="230" 
+          height="61" 
+          frameBorder="0" 
+          scrolling="no" 
+          style={{ border: "none" }}
+        >
+        </iframe>
+      </div>
     </div>
   );
 }
