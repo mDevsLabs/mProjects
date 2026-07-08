@@ -25,3 +25,23 @@ Cette page compile les résultats de tests de performance effectués sur les dif
 - **TTFT (Time-To-First-Token)** : Temps écoulé entre la réception de la requête HTTP et l'émission du tout premier token généré.
 - **Débit de Génération (tk/s)** : Nombre de tokens générés par seconde lors de la phase de décodage.
 - **Empreinte VRAM Peak** : Consommation maximale de mémoire vidéo incluant le KV-Cache pour une fenêtre de 32K tokens.
+
+---
+
+## 📊 Graphiques Comparatifs des Benchmarks
+
+Retrouvez ci-dessous les scores d'évaluation des modèles mAI-1 et mAI-1-Light face aux modèles de référence du marché sur plusieurs tâches standards de raisonnement, de code et de multilinguisme :
+
+### mAI-1 (12B)
+
+:::flex
+![mAI-1 Benchmark 1](/mai-1/mai-1-benchmark-1.png)
+![mAI-1 Benchmark 2](/mai-1/mai-1-benchmark-2.png)
+:::
+
+### mAI-1-Light (2B)
+
+:::flex
+![mAI-1-Light Benchmark 1](/mai-1-light/mai-1-light-benchmark-1.png)
+![mAI-1-Light Benchmark 2](/mai-1-light/mai-1-light-benchmark-2.png)
+:::

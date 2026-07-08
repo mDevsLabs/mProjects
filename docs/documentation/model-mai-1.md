@@ -50,3 +50,13 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
+
+---
+
+## 📊 Benchmarks de Performance
+
+Voici les résultats de mAI-1 par rapport aux modèles de référence de sa catégorie sur plusieurs tâches d'évaluation courantes :
+
+![mAI-1 Benchmarks 1](/mai-1/mai-1-benchmark-1.png)
+
+![mAI-1 Benchmarks 2](/mai-1/mai-1-benchmark-2.png)

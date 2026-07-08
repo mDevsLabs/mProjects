@@ -34,3 +34,13 @@ order: 2
 ```bash
 ollama run mdevslabs/mai-1-light:latest
 ```
+
+---
+
+## 📊 Benchmarks de Performance
+
+Voici les résultats de mAI-1-Light par rapport aux modèles ultra-légers de référence sur plusieurs tâches d'évaluation courantes :
+
+![mAI-1-Light Benchmarks 1](/mai-1-light/mai-1-light-benchmark-1.png)
+
+![mAI-1-Light Benchmarks 2](/mai-1-light/mai-1-light-benchmark-2.png)

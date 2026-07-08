@@ -30,3 +30,15 @@ Télécharge Ollama :
 
 ```bash
 https://ollama.com/download
+```
+
+---
+
+## 📊 Benchmarks de Performance
+
+Voici les scores obtenus par **mAI-1** face aux modèles de référence du marché :
+
+:::flex
+![mAI-1 Benchmark 1](/mai-1/mai-1-benchmark-1.png)
+![mAI-1 Benchmark 2](/mai-1/mai-1-benchmark-2.png)
+:::

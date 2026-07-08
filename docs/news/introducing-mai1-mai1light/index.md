@@ -20,6 +20,15 @@ mAI-1 est la version complète et sans compromis de la famille mAI. Conçu spéc
 * Contexte ultra-large : Il possède une capacité de rétention allant jusqu'à 256 000 tokens (en fonction de la mémoire de votre machine), ce qui le rend parfait pour ingérer, synthétiser et interroger de très longs documents ou des bases de code entières sans perdre le fil.
 * Prêt pour l'écosystème : Totalement "Agent-ready" (compatible avec le tool/function calling selon l'intégration) et "RAG-ready", il est taillé sur mesure pour s'intégrer dans des pipelines de recherche documentaire avancée et d'extraction de données.
 
+### 📊 Benchmarks de mAI-1
+
+mAI-1 se distingue par des performances exceptionnelles pour sa catégorie de taille, rivalisant avec des modèles bien plus lourds sur les tâches de raisonnement et de compréhension de code :
+
+:::flex
+![mAI-1 Benchmark 1](/mai-1/mai-1-benchmark-1.png)
+![mAI-1 Benchmark 2](/mai-1/mai-1-benchmark-2.png)
+:::
+
 ---
 
 ![mAI-1-Light](https://upload.fs.fr/8P7ceTZ0wf.png)
@@ -33,6 +42,15 @@ Si vous recherchez un assistant IA ultra-réactif ou si vous travaillez sur une 
 * Synthèse éclair : Il excelle dans le résumé et l'extraction d'informations clés à partir de documents massifs, de notes de réunion, d'articles web ou même de fichiers logs complexes.
 * Support au code ciblé : Il reste une aide précieuse pour les développeurs, toujours disponible pour générer des fonctions, expliquer des blocs de code, vous aider au refactoring ou vous assister dans le débogage.
 * Connectivité et Polyvalence : Tout comme son grand frère, il est "RAG-ready" et préparé pour l'appel de fonctions. De plus, c'est un véritable polyglotte qui maîtrise couramment le français, l'anglais, l'espagnol, l'allemand, le japonais, le portugais, l'arabe, l'italien, le coréen, le chinois, et bien d'autres langues.
+
+### 📊 Benchmarks de mAI-1-Light
+
+mAI-1-Light affiche un excellent ratio performance/taille, garantissant une exécution ultra-rapide en local tout en conservant d'excellents scores sur les benchmarks standards :
+
+:::flex
+![mAI-1-Light Benchmark 1](/mai-1-light/mai-1-light-benchmark-1.png)
+![mAI-1-Light Benchmark 2](/mai-1-light/mai-1-light-benchmark-2.png)
+:::
 
 ---
 
