@@ -114,7 +114,7 @@ export default function ProjectsPage() {
           <div className="flex flex-col h-full relative z-10">
             <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
               <Image
-                src="/msearch.png"
+                src="/msearch.PNG"
                 alt="mSearch logo"
                 width={64}
                 height={64}
@@ -211,6 +211,10 @@ export default function ProjectsPage() {
                 Découvrir Snob
                 <ExternalLink className="w-4 h-4" />
               </Link>
+            </div>
+
+            <div className="mt-auto">
+              <GithubRepoStats repo="mDevsLabs/Snob" />
             </div>
           </div>
         </motion.div>

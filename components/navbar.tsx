@@ -33,6 +33,7 @@ const navLinks: NavItem[] = [
       { name: "Tout", href: "/projects" },
       { name: "mAI", href: "/projects/mai" },
       { name: "mSearch", href: "/projects/msearch" },
+      { name: "Snob", href: "/projects/snob" },
     ],
   },
   {
@@ -55,6 +56,7 @@ const navLinks: NavItem[] = [
           { name: "Tout", href: "/changelog" },
           { name: "mAI", href: "/changelog/mai" },
           { name: "mSearch", href: "/changelog/msearch" },
+          { name: "Snob", href: "/changelog/snob" },
         ],
       },
       { name: "Télécharger", href: "/download" },
