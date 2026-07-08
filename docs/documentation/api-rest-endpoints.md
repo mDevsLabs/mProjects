@@ -20,7 +20,7 @@ Génère une réponse textuelle ou un flux de tokens (Server-Sent Events) à par
 #### Requête Exemple
 
 ```bash
-curl -X POST https://mprojects-officiel.vercel.app/api/v1/chat/completitions \
+curl -X POST https://mprojects-officiel.vercel.app/api/v1/chat/completions \
   -H "Authorization: Bearer $MAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{

@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { GithubActivity } from "@/components/github-activity";
 import { GithubRepoStats } from "@/components/github-repo-stats";
 import Image from "next/image";
 
@@ -115,7 +114,7 @@ export default function ProjectsPage() {
           <div className="flex flex-col h-full relative z-10">
             <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
               <Image
-                src="/msearch.PNG"
+                src="/msearch.png"
                 alt="mSearch logo"
                 width={64}
                 height={64}
@@ -159,6 +158,59 @@ export default function ProjectsPage() {
 
             <div className="mt-auto">
               <GithubRepoStats repo="mDevsLabs/mSearch" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Project 3 : Snob */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4 }}
+          className="group relative bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-6 md:p-8 hover:border-amber-500/30 transition-all overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:shadow-[0_8px_32px_0_rgba(245,158,11,0.2)] md:col-span-2 lg:col-span-1"
+        >
+          <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+            <div className="text-6xl font-black italic tracking-tighter select-none text-slate-900">
+              03
+            </div>
+          </div>
+
+          <div className="flex flex-col h-full relative z-10">
+            <div className="w-16 h-16 rounded-xl mb-4 flex items-center justify-center">
+              <Image
+                src="/snob.png"
+                alt="Snob logo"
+                width={64}
+                height={64}
+                sizes="64px"
+                className="w-full h-full object-contain drop-shadow-md rounded-2xl"
+              />
+            </div>
+
+            <h2 className="text-3xl font-black mb-2 text-slate-900">Snob</h2>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-slate-800 uppercase font-bold tracking-widest">
+                Web
+              </span>
+            </div>
+
+            <p className="text-amber-600 font-medium mb-4 italic">
+              &quot;L&apos;expérience ultime de Block Blast revisitée.&quot;
+            </p>
+
+            <p className="text-slate-600 text-sm leading-relaxed mb-3">
+              Un jeu de puzzle de prestige alliant un design élégant à des mécaniques profondément tactiques.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3 my-3">
+              <Link
+                href="/projects/snob"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-bold hover:bg-white/60 transition-all w-fit"
+              >
+                Découvrir Snob
+                <ExternalLink className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </motion.div>

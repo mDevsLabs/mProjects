@@ -6,7 +6,6 @@ import { normalizeText, type DocMetadata } from "@/lib/text-utils";
 import ReactMarkdown from "react-markdown";
 import {
   Search,
-  BookOpen,
   FileText,
   Clock,
   Layers,

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Users, Target, Rocket, Heart, ArrowRight } from "lucide-react";
+import { Target, Rocket, Heart, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutPage() {

@@ -77,12 +77,12 @@ export default async function RootLayout({
                     >
                       Confidentialité
                     </Link>
-                    <Link
-                  href="/legal/terms"
-                  className="px-3 py-2 rounded-xl text-xs font-medium transition-colors text-slate-600 hover:bg-black/5 hover:text-slate-900 text-center"
-                >
-                  CGU
-                </Link>
+<Link
+                      href="/legal/terms"
+                      className="px-3 py-2 rounded-xl text-xs font-medium transition-colors text-slate-600 hover:bg-black/5 hover:text-slate-900 text-center"
+                    >
+                      CGU
+                    </Link>
                   </div>
                 </div>
               </div>

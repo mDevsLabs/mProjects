@@ -42,4 +42,4 @@ L'avantage majeur de mAI-1 et mAI-1-Light réside dans leur fonctionnement "Loca
 
 ### Prêt à transformer votre productivité ?
 
-Le déploiement est immédiat. Il vous suffit de [télécharger l'outil Ollama](https://ollama.com/download) sur votre machine pour lancer le modèle de votre choix en quelques secondes et bénéficier de toute la puissance de l'IA en local.
+Le déploiement est immédiat. Il vous suffit de [télécharger l'outil Ollama](https://ollama.com/download) sur votre machine pour lancer le modèle de votre choix en quelques secondes et bénéficier de toute la puissance de l'IA en local. Vous pouvez aussi le télécharger via Hugging Face : [Hugging Face](https://huggingface.co/mDevsLabs).

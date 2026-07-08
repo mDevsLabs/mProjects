@@ -51,7 +51,7 @@ Vous pouvez télécharger n'importe quel modèle du registre officiel mDevsLabs.
 # Pour le modèle général mAI-1 (12B)
 ollama pull mdevslabs/mai-1:latest
 
-# Pour la version légère mAI-1-Light (2B)
+# Pour la version légère mAI-1-Light (3B)
 ollama pull mdevslabs/mai-1-light:latest
 ```
 
