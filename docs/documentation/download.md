@@ -11,7 +11,7 @@ Ce document récapitule les étapes nécessaires pour télécharger, installer e
 
 ## 🚀 Applications desktop
 
-1. Accédez à la page [Télécharger](/download) de mProjects.
+1. Accédez à la page [Télécharger](/downloads) de mProjects.
 2. Choisissez le canal souhaité :
    - **Canal Stable** : Version testée et recommandée pour la production.
    - **Canal Canary** : Version expérimentale contenant les dernières fonctionnalités.

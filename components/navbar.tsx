@@ -59,7 +59,7 @@ const navLinks: NavItem[] = [
           { name: "Snob", href: "/changelog/snob" },
         ],
       },
-      { name: "Télécharger", href: "/download" },
+      { name: "Télécharger", href: "/downloads" },
       { name: "API", href: "/api" },
       { name: "Documentation", href: "/docs" },
     ],
