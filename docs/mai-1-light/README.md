@@ -29,3 +29,15 @@ Télécharge Ollama depuis :
 
 ```bash
 https://ollama.com/download
+```
+
+---
+
+## 📊 Benchmarks de Performance
+
+Voici les scores obtenus par **mAI-1-Light** face aux modèles ultra-légers de référence :
+
+:::flex
+![mAI-1-Light Benchmark 1](/mai-1-light/mai-1-light-benchmark-1.png)
+![mAI-1-Light Benchmark 2](/mai-1-light/mai-1-light-benchmark-2.png)
+:::

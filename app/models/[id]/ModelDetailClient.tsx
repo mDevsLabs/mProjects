@@ -14,7 +14,6 @@ import {
   Sparkles,
   ArrowLeft,
   Share2,
-  ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -34,6 +33,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const mainCommand = `ollama run ${model.ollamaTag}`;
+  const hfCommand = `hf download ${model.ollamaTag}`;
 
   const integrations: AppIntegration[] = [
     {
@@ -131,11 +131,11 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
               />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-700 text-xs font-bold uppercase tracking-wider mb-2">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
+                <Sparkles className="w-4 h-4" />
                 {model.badge}
               </div>
-              <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+              <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase text-slate-900">
                 {model.name}
               </h1>
               <p className="text-slate-600 text-base mt-2 max-w-xl">
@@ -180,7 +180,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="p-4 rounded-2xl bg-white/50 backdrop-blur-md border border-white/70 shadow-sm flex flex-col gap-1">
             <div className="flex items-center gap-2 text-slate-500 text-xs font-medium">
-              <Cpu className="w-4 h-4 text-purple-500" />
+              <Cpu className="w-4 h-4 text-blue-500" />
               Paramètres
             </div>
             <span className="text-xl font-black text-slate-900">{model.parameters}</span>
@@ -218,51 +218,80 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
         </div>
       </div>
 
-      {/* Section Commande d'installation Ollama principale */}
-      <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-purple-950 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden border border-slate-800">
+      {/* Section Commandes d'installation principale */}
+      <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden border border-slate-800">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2.5 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30">
+          <div className="p-3 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30">
             <Terminal className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-bold">Installation & Lancement Direct Ollama</h2>
+            <h2 className="text-xl font-bold">Installation & Lancement Direct</h2>
             <p className="text-xs text-slate-400">
-              Téléchargez et exécutez le modèle directement dans votre terminal avec Ollama.
+              Téléchargez et exécutez le modèle directement dans votre terminal.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 font-mono text-sm shadow-inner">
-          <code className="text-purple-300 font-bold select-all break-all">
-            {mainCommand}
-          </code>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 font-mono text-sm shadow-inner">
+            <div className="flex flex-col gap-1">
+              <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Ollama</span>
+              <code className="text-blue-300 font-bold select-all break-all">
+                {mainCommand}
+              </code>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => handleCopy(mainCommand, "main", "Ollama")}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-semibold transition-all shadow"
+              >
+                {copiedKey === "main" ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-300" />
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    Copier
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => handleDownload(mainCommand, `run-${model.id}.sh`)}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all border border-slate-700 shadow"
+              >
+                <Download className="w-4 h-4" />
+                Script
+              </button>
+            </div>
+          </div>
 
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={() => handleCopy(mainCommand, "main", model.name)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white text-xs font-semibold transition-all shadow"
-            >
-              {copiedKey === "main" ? (
-                <>
-                  <Check className="w-4 h-4 text-emerald-300" />
-                  Copié !
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  Copier
-                </>
-              )}
-            </button>
-            <button
-              onClick={() =>
-                handleDownload(mainCommand, `run-${model.id}.sh`)
-              }
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all border border-slate-700 shadow"
-            >
-              <Download className="w-4 h-4" />
-              Télécharger
-            </button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 font-mono text-sm shadow-inner">
+            <div className="flex flex-col gap-1">
+              <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Hugging Face CLI</span>
+              <code className="text-[#FFD21E] font-bold select-all break-all">
+                {hfCommand}
+              </code>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                onClick={() => handleCopy(hfCommand, "hf", "Hugging Face")}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FFD21E] hover:bg-yellow-400 active:bg-yellow-500 text-slate-900 text-xs font-semibold transition-all shadow"
+              >
+                {copiedKey === "hf" ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-700" />
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    Copier
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -301,12 +330,12 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                 >
                   {copiedKey === app.id ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <Check className="w-4 h-4 text-emerald-600" />
                       Copié !
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5 text-slate-600" />
+                      <Copy className="w-4 h-4 text-slate-600" />
                       Copier
                     </>
                   )}
@@ -315,7 +344,7 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                   onClick={() => handleDownload(app.command, app.filename)}
                   className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 text-xs font-semibold transition-all shadow-sm"
                 >
-                  <Download className="w-3.5 h-3.5" />
+                  <Download className="w-4 h-4" />
                   Télécharger
                 </button>
               </div>
@@ -328,46 +357,46 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
       {model.readmeContent && (
         <div className="bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-10">
           <h2 className="text-2xl font-black text-slate-900 mb-6 pb-4 border-b border-black/10 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-purple-600" />
+            <Sparkles className="w-5 h-5 text-blue-600" />
             Documentation Officielle (README.md)
           </h2>
 
-          <div className="prose max-w-none prose-headings:text-slate-900 prose-a:text-purple-600 prose-p:text-slate-700 prose-p:leading-relaxed prose-li:text-slate-700">
+          <div className="prose max-w-none prose-headings:text-slate-900 prose-a:text-blue-600 prose-p:text-slate-700 prose-p:leading-relaxed prose-li:text-slate-700">
             <Markdown
               components={{
-                h1: ({ node, ...props }) => (
+                h1: ({ node: _node, ...props }) => (
                   <h1 className="text-3xl font-black text-slate-900 mt-6 mb-4" {...props} />
                 ),
-                h2: ({ node, ...props }) => (
+                h2: ({ node: _node, ...props }) => (
                   <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4 pb-2 border-b border-black/5" {...props} />
                 ),
-                h3: ({ node, ...props }) => (
+                h3: ({ node: _node, ...props }) => (
                   <h3 className="text-xl font-semibold text-slate-900 mt-6 mb-3" {...props} />
                 ),
-                p: ({ node, ...props }) => (
+                p: ({ node: _node, ...props }) => (
                   <p className="mb-4 leading-relaxed text-slate-700" {...props} />
                 ),
-                ul: ({ node, ...props }) => (
+                ul: ({ node: _node, ...props }) => (
                   <ul className="list-disc list-inside space-y-2 mb-6 text-slate-700" {...props} />
                 ),
-                ol: ({ node, ...props }) => (
+                ol: ({ node: _node, ...props }) => (
                   <ol className="list-decimal list-inside space-y-2 mb-6 text-slate-700" {...props} />
                 ),
-                table: ({ node, ...props }) => (
+                table: ({ node: _node, ...props }) => (
                   <div className="overflow-x-auto my-6 rounded-2xl border border-white/60 shadow-sm bg-white/30 backdrop-blur-md">
                     <table className="w-full text-sm text-left text-slate-700 border-collapse" {...props} />
                   </div>
                 ),
-                th: ({ node, ...props }) => (
+                th: ({ node: _node, ...props }) => (
                   <th className="px-4 py-3 font-bold text-slate-900 bg-slate-900/5 border-b border-black/10" {...props} />
                 ),
-                td: ({ node, ...props }) => (
+                td: ({ node: _node, ...props }) => (
                   <td className="px-4 py-3 border-b border-black/5 text-slate-700" {...props} />
                 ),
-                code: ({ node, className, children, ...props }) => {
+                code: ({ node: _node, className, children, ...props }) => {
                   const isInline = !className;
                   return isInline ? (
-                    <code className="bg-purple-100/60 text-purple-800 px-1.5 py-0.5 rounded text-xs font-mono font-semibold" {...props}>
+                    <code className="bg-blue-100/60 text-blue-800 px-1.5 py-0.5 rounded text-xs font-mono font-semibold" {...props}>
                       {children}
                     </code>
                   ) : (
@@ -376,13 +405,13 @@ export function ModelDetailClient({ model }: { model: ModelInfo }) {
                     </code>
                   );
                 },
-                pre: ({ node, ...props }) => (
+                pre: ({ node: _node, ...props }) => (
                   <pre className="bg-slate-950 text-slate-100 p-4 rounded-2xl overflow-x-auto my-6 font-mono text-xs border border-slate-800 shadow-md" {...props} />
                 ),
-                blockquote: ({ node, ...props }) => (
-                  <blockquote className="border-l-4 border-purple-500 bg-purple-50/50 italic p-4 rounded-r-2xl my-6 text-slate-700 shadow-sm" {...props} />
+                blockquote: ({ node: _node, ...props }) => (
+                  <blockquote className="border-l-4 border-blue-500 bg-blue-50/50 italic p-4 rounded-r-2xl my-6 text-slate-700 shadow-sm" {...props} />
                 ),
-                img: ({ node, src, alt, ...props }) => (
+                img: ({ node: _node, src, alt, ...props }) => (
                   <img
                     src={src}
                     alt={alt || "Image du modèle"}

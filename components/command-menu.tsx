@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Command } from "cmdk";
 import { useRouter } from "next/navigation";
-import { Search, Folder, FileText, ArrowRight } from "lucide-react";
+import { Search, Folder, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import type { ChangelogsByProject } from "@/lib/changelog";
 import type { NewsArticle } from "@/lib/news";

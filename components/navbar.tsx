@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Github, DiscIcon as Discord, Menu, X, ChevronDown } from "lucide-react";
+import { Github, Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { CommandMenu } from "@/components/command-menu";
 import type { ChangelogsByProject } from "@/lib/changelog";
@@ -33,6 +33,7 @@ const navLinks: NavItem[] = [
       { name: "Tout", href: "/projects" },
       { name: "mAI", href: "/projects/mai" },
       { name: "mSearch", href: "/projects/msearch" },
+      { name: "Snob", href: "/projects/snob" },
     ],
   },
   {
@@ -48,7 +49,6 @@ const navLinks: NavItem[] = [
     name: "Plus",
     href: "#",
     subitems: [
-      { name: "API", href: "/api" },
       {
         name: "Notes de version",
         href: "/changelog",
@@ -56,8 +56,12 @@ const navLinks: NavItem[] = [
           { name: "Tout", href: "/changelog" },
           { name: "mAI", href: "/changelog/mai" },
           { name: "mSearch", href: "/changelog/msearch" },
+          { name: "Snob", href: "/changelog/snob" },
         ],
       },
+      { name: "Télécharger", href: "/download" },
+      { name: "API", href: "/api" },
+      { name: "Documentation", href: "/docs" },
     ],
   },
 ];
@@ -141,7 +145,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                       }`}
                     >
                       <span className="relative z-10">{link.name}</span>
-                      <ChevronDown className="w-3.5 h-3.5 opacity-60 group-hover:rotate-180 transition-transform duration-200" />
+                      <ChevronDown className="w-4 h-4 opacity-60 group-hover:rotate-180 transition-transform duration-200" />
                     </Link>
 
                     {/* Premier niveau de Dropdown */}
@@ -293,7 +297,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                     {hasSubitems && (
                       <button
                         onClick={() => toggleMobileSubmenu(link.name)}
-                        className={`p-2.5 mr-1.5 rounded-xl hover:bg-black/5 text-slate-500 transition-transform ${
+                        className={`p-3 mr-2 rounded-xl hover:bg-black/5 text-slate-500 transition-transform ${
                           isSubmenuOpen ? "rotate-180" : ""
                         }`}
                         aria-label="Toggle submenu"
@@ -316,7 +320,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                               <Link
                                 href={subitem.href}
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className={`flex-1 px-4 py-2.5 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between ${
+                                className={`flex-1 px-4 py-3 rounded-xl text-xs font-semibold transition-colors flex items-center justify-between ${
                                   isSubActive
                                     ? "bg-purple-50 text-purple-600"
                                     : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
@@ -324,7 +328,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                               >
                                 <span>{subitem.name}</span>
                                 {pathname === subitem.href && (
-                                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                                  <span className="w-2 h-2 rounded-full bg-purple-500"></span>
                                 )}
                               </Link>
                               {hasNested && (
@@ -334,7 +338,7 @@ export function Navbar({ changelogs, news }: { changelogs?: ChangelogsByProject;
                                     isNestedOpen ? "rotate-180" : ""
                                   }`}
                                 >
-                                  <ChevronDown className="w-3.5 h-3.5" />
+                                  <ChevronDown className="w-4 h-4" />
                                 </button>
                               )}
                             </div>

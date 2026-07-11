@@ -60,7 +60,7 @@ export default function MsearchProjectPage() {
               />
             </motion.div>
             <div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black italic tracking-tighter uppercase text-slate-900 drop-shadow-sm">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900 drop-shadow-sm">
                 mSearch
               </h1>
               <p className="text-blue-600 font-medium text-lg italic mt-1">
@@ -104,7 +104,7 @@ export default function MsearchProjectPage() {
             distraction, où votre vie privée est la priorité absolue.
           </p>
 
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <a
               href="https://github.com/mDevsLabs/mSearch"
               target="_blank"

@@ -25,8 +25,9 @@ export default function TermsPage() {
           <Scale className="w-8 h-8" />
         </div>
 
-        <h1 className="text-4xl sm:text-5xl font-black italic tracking-tighter uppercase text-slate-900 mb-6">
-          Conditions Générales <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">d'Utilisation</span> ⚖️
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900 mb-6">
+          Conditions Générales <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">d&apos;Utilisation</span> ⚖️
         </h1>
 
         <p className="text-slate-500 font-light mb-10 text-base md:text-lg">

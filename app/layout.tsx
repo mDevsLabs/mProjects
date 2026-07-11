@@ -6,20 +6,17 @@ import { BackToTop } from "@/components/back-to-top";
 import { ToastProvider, CookieBanner } from "@/components/ui/index";
 import { getChangelogs } from "@/lib/changelog";
 import { getNewsArticles } from "@/lib/news";
-import { Inter, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = {
+  variable: "font-sans inter-variable",
+};
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-});
+const spaceGrotesk = {
+  variable: "font-space-grotesk space-grotesk-variable",
+};
 
 export const metadata: Metadata = {
   title: {
@@ -68,7 +65,7 @@ export default async function RootLayout({
               <div className="relative group text-xs md:text-sm text-slate-500 font-medium cursor-pointer">
                 <span className="hover:text-slate-900 transition-colors flex items-center gap-1">
                   Légal
-                  <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-rotate-180" />
+                  <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:-rotate-180" />
                 </span>
 
                 {/* Liste de liens s'ouvrant vers le haut */}
@@ -80,12 +77,12 @@ export default async function RootLayout({
                     >
                       Confidentialité
                     </Link>
-                    <a
+<Link
                       href="/legal/terms"
                       className="px-3 py-2 rounded-xl text-xs font-medium transition-colors text-slate-600 hover:bg-black/5 hover:text-slate-900 text-center"
                     >
                       CGU
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -3,3 +3,7 @@
 node_modules*
 .next
 .next/*
+.agents
+.agents/*
+.env*
+!.env.example

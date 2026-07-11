@@ -17,9 +17,14 @@ export function GithubRelease({
   useEffect(() => {
     const fetchReleases = async () => {
       try {
+        const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+        const headers: HeadersInit = {};
+        if (token) {
+          headers['Authorization'] = `token ${token}`;
+        }
         const [latestRes, allRes] = await Promise.all([
-          fetch(`https://api.github.com/repos/${repo}/releases/latest`),
-          showPreRelease ? fetch(`https://api.github.com/repos/${repo}/releases`) : Promise.resolve(null),
+          fetch(`https://api.github.com/repos/${repo}/releases/latest`, { headers }),
+          showPreRelease ? fetch(`https://api.github.com/repos/${repo}/releases`, { headers }) : Promise.resolve(null),
         ]);
 
         if (latestRes.ok) {
@@ -55,25 +60,23 @@ export function GithubRelease({
 
   if (!latestRelease && !latestPreRelease) return null;
 
-  return (
-    <div className="flex flex-wrap items-center gap-3 mt-4">
-      {latestRelease && (
-        <a
-          href={`https://github.com/${repo}/releases/latest`}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-slate-800 text-xs font-bold uppercase tracking-wider hover:bg-white/60 transition-colors"
-        >
-          <Tag className="w-3 h-3" />
-          Latest: {latestRelease}
-        </a>
-      )}
+return (
+    <div className="flex items-center gap-2 flex-wrap">
+      <a
+        href={`https://github.com/${repo}/releases/latest`}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-slate-800 text-xs font-bold uppercase tracking-wider hover:bg-white/60 transition-colors"
+      >
+        <Tag className="w-3 h-3" />
+        Latest: {latestRelease}
+      </a>
       {showPreRelease && latestPreRelease && (
         <a
           href={`https://github.com/${repo}/releases/tag/${latestPreRelease}`}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-purple-600 text-xs font-bold uppercase tracking-wider hover:bg-white/60 transition-colors"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-purple-600 text-xs font-bold uppercase tracking-wider hover:bg-white/60 transition-colors"
         >
           <Tag className="w-3 h-3" />
           Pre-release: {latestPreRelease}
