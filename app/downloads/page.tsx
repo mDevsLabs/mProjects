@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 import { VscCode } from "react-icons/vsc";
-import { FaChrome } from "react-icons/fa";
+import { FaChrome, FaAndroid } from "react-icons/fa";
 
 export default function DownloadPage() {
   const router = useRouter();
@@ -151,6 +151,18 @@ export default function DownloadPage() {
               >
                 <FaChrome className="w-5 h-5 text-slate-900" />
                 Extension Navigateur
+              </button>
+              <button
+                onClick={() =>
+                  handleDownloadAndRedirect(
+                    "https://upload.fs.fr/i4Bw0kQXk7.zip",
+                    "guide-application-android"
+                  )
+                }
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm cursor-pointer"
+              >
+                <FaAndroid className="w-5 h-5 text-slate-900" />
+                Version Android (Mobile)
               </button>
             </div>
           </div>
