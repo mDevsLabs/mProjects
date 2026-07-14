@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 import { VscCode } from "react-icons/vsc";
-import { FaChrome } from "react-icons/fa";
+import { FaChrome, FaAndroid } from "react-icons/fa";
 
 export default function DownloadPage() {
   const router = useRouter();
@@ -82,10 +82,32 @@ export default function DownloadPage() {
                 <p className="text-slate-600 text-sm mt-1 max-w-xl">
                   L&apos;assistant IA local de nouvelle génération pour booster votre productivité au quotidien.
                 </p>
+                <div className="mt-3 flex flex-col gap-2 max-w-md">
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">mAI CLI (npm)</span>
+                    <code className="text-slate-100 font-semibold">npm i @mdevs/mai-cli</code>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+              <button
+                onClick={() => handleCopy("npm i @mdevs/mai-cli", "mai-cli-npm", "mAI CLI")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-purple-600 text-white font-bold hover:bg-purple-700 transition-all shadow-md text-sm cursor-pointer"
+              >
+                {copiedKey === "mai-cli-npm" ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-400" />
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    mAI CLI
+                  </>
+                )}
+              </button>
               <a
                 href="https://github.com/mDevsLabs/mAI/releases/latest"
                 target="_blank"
@@ -129,6 +151,18 @@ export default function DownloadPage() {
               >
                 <FaChrome className="w-5 h-5 text-slate-900" />
                 Extension Navigateur
+              </button>
+              <button
+                onClick={() =>
+                  handleDownloadAndRedirect(
+                    "https://upload.fs.fr/i4Bw0kQXk7.zip",
+                    "guide-application-android"
+                  )
+                }
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm cursor-pointer"
+              >
+                <FaAndroid className="w-5 h-5 text-slate-900" />
+                Version Android (Mobile)
               </button>
             </div>
           </div>

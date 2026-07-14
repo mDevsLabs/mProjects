@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, Layers, Github, Instagram, Youtube } from "lucide-react";
 import { SiOllama, SiHuggingface } from "react-icons/si";
 import Link from "next/link";
-import { MaiModal } from "@/components/mai-modal";
+
 
 export default function Home() {
   return (
@@ -87,7 +87,7 @@ export default function Home() {
           ))}
         </div>
       </motion.div>
-      <MaiModal />
+
       <div className="mt-12 mb-8">
         <iframe 
           src="https://mprojects.instatus.com/embed-status/1ac64775/light-sm" 
