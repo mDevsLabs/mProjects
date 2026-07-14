@@ -35,13 +35,13 @@ export default function Home() {
               <ArrowRight className="w-5 h-5" />
             </motion.button>
           </Link>
-          <Link href="/changelog" className="w-full sm:w-auto">
+          <Link href="/models" className="w-full sm:w-auto">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full sm:w-auto px-8 py-4 rounded-3xl md:rounded-full bg-white/30 backdrop-blur-md border border-white/40 text-slate-900 font-semibold flex items-center justify-center gap-2 hover:bg-white/50 transition-colors shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]"
             >
-              Voir le Changelog
+              Découvrir les Modèles
               <Layers className="w-5 h-5" />
             </motion.button>
           </Link>

@@ -100,6 +100,27 @@ const ENDPOINTS: EndpointChoice[] = [
     description: "Obtient les métadonnées détaillées du modèle mAI-1-Light",
   },
   {
+    id: "get-model-detail-12-light",
+    method: "GET",
+    path: "/v1/models/mai-1.2-light",
+    name: "GET /v1/models/mai-1.2-light",
+    description: "Obtient les métadonnées détaillées du modèle mAI-1.2-Light",
+  },
+  {
+    id: "get-model-detail-12-apex",
+    method: "GET",
+    path: "/v1/models/mai-1.2-apex",
+    name: "GET /v1/models/mai-1.2-apex",
+    description: "Obtient les métadonnées détaillées du modèle mAI-1.2-Apex",
+  },
+  {
+    id: "get-model-detail-12-opal",
+    method: "GET",
+    path: "/v1/models/mai-1.2-opal",
+    name: "GET /v1/models/mai-1.2-opal",
+    description: "Obtient les métadonnées détaillées du modèle mAI-1.2-Opal",
+  },
+  {
     id: "create-embeddings",
     method: "POST",
     path: "/v1/embeddings",
@@ -493,6 +514,48 @@ export default function ApiPage() {
               object: "list",
               data: [
                 {
+                  id: "mai-1.2-light",
+                  object: "model",
+                  created: 1752537600,
+                  owned_by: "mDevsLabs",
+                  permission: [],
+                  root: "mai-1.2-light",
+                  parent: null,
+                  meta: {
+                    series: "mAI-1.2",
+                    context_window: 131072,
+                    vision: true,
+                  },
+                },
+                {
+                  id: "mai-1.2-apex",
+                  object: "model",
+                  created: 1752537600,
+                  owned_by: "mDevsLabs",
+                  permission: [],
+                  root: "mai-1.2-apex",
+                  parent: null,
+                  meta: {
+                    series: "mAI-1.2",
+                    context_window: 262144,
+                    vision: true,
+                  },
+                },
+                {
+                  id: "mai-1.2-opal",
+                  object: "model",
+                  created: 1752537600,
+                  owned_by: "mDevsLabs",
+                  permission: [],
+                  root: "mai-1.2-opal",
+                  parent: null,
+                  meta: {
+                    series: "mAI-1.2",
+                    context_window: 262144,
+                    vision: true,
+                  },
+                },
+                {
                   id: "mai-1",
                   object: "model",
                   created: 1720656000,
@@ -584,6 +647,66 @@ export default function ApiPage() {
                 json_mode: true,
               },
               context_window: 131072,
+            };
+            break;
+
+          case "get-model-detail-12-light":
+            resultJson = {
+              id: "mai-1.2-light",
+              object: "model",
+              created: 1752537600,
+              owned_by: "mDevsLabs",
+              description:
+                "Assistant IA local ultra-rapide et multimodal 3B paramètres. Vision intégrée, légèreté maximale et productivité au quotidien.",
+              status: "active",
+              series: "mAI-1.2",
+              capabilities: {
+                chat: true,
+                vision: true,
+                function_calling: true,
+                json_mode: true,
+              },
+              context_window: 131072,
+            };
+            break;
+
+          case "get-model-detail-12-apex":
+            resultJson = {
+              id: "mai-1.2-apex",
+              object: "model",
+              created: 1752537600,
+              owned_by: "mDevsLabs",
+              description:
+                "Le top tier de la famille mAI. 9B paramètres, vision multimodale, raisonnement avancé et RAG lourd — zéro cloud.",
+              status: "active",
+              series: "mAI-1.2",
+              capabilities: {
+                chat: true,
+                vision: true,
+                function_calling: true,
+                json_mode: true,
+              },
+              context_window: 262144,
+            };
+            break;
+
+          case "get-model-detail-12-opal":
+            resultJson = {
+              id: "mai-1.2-opal",
+              object: "model",
+              created: 1752537600,
+              owned_by: "mDevsLabs",
+              description:
+                "Le sweet spot parfait de la série mAI-1.2. 33B paramètres, multimodal, fluide et équilibré pour toutes vos tâches.",
+              status: "active",
+              series: "mAI-1.2",
+              capabilities: {
+                chat: true,
+                vision: true,
+                function_calling: true,
+                json_mode: true,
+              },
+              context_window: 262144,
             };
             break;
 
@@ -708,7 +831,7 @@ print(response.json())`,
           transition={{ delay: 0.1 }}
           className="text-slate-500 text-base md:text-lg font-light mt-2 md:mt-4 max-w-3xl"
         >
-          Accédez à la puissance de nos modèles de langage et de vision via notre API haute performance. Intégrez facilement mAI-1 et mAI-1-Light dans vos applications.
+          Accédez à la puissance de nos modèles de langage et de vision via notre API haute performance. Intégrez facilement la série <strong>mAI-1.2</strong> (Light, Apex, Opal) et les modèles mAI-1 dans vos applications.
         </motion.p>
       </div>
 
