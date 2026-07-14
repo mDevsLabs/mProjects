@@ -1,39 +1,54 @@
 ![mAI-1.2-Light](https://upload.fs.fr/YFFKJ4rkMB.png)
 
-# mAI-1.2-Light ⚡👁️
+# mAI-1.2-Light ⚡
 
-**mAI-1.2-Light** est ton assistant IA local, ultra-rapide et maintenant **multimodal**. Conçu pour tourner de manière fluide avec **Ollama**, il gère à la fois tes textes et tes images.
+**mAI-1.2-Light** est un assistant d'intelligence artificielle local, rapide et multimodal. Optimisé pour s'exécuter efficacement via **Ollama**, il prend en charge le traitement conjoint de textes et d'images.
 
-> Objectif : t'offrir un modèle simple à lancer, capable de voir tes visuels et de gérer tes requêtes au quotidien. Productivité, code, résumé, analyse d'images — sans jamais envoyer tes datas dans le cloud. Local-first, vibes clean 🧠✨
+> **Objectif** : Mettre à disposition un modèle performant et accessible, capable d'analyser des documents visuels et de répondre aux requêtes quotidiennes. Idéal pour la productivité, le développement informatique, la synthèse de documents et l'analyse d'images, tout en garantissant la confidentialité des données grâce à une exécution locale (Local-first).
+
+---
+
+## ⚙️ Spécifications clés
+
+- **Taille** : 3 milliards de paramètres (3B).
+- **Contexte** : Fenêtre de contexte native étendue à **256K tokens**.
+- **Vision** : Prise en charge native de la vision multimodale.
 
 ---
 
 ## ✨ Fonctionnalités
 
-- ⚡ **Léger & Rapide** : Optimisé pour tourner sur ta machine sans faire fondre le processeur.
-- 📸 **Vision + Texte** : Balance tes images, il les comprend ! Parfait pour lire des captures d'écran, décrire des visuels ou extraire des infos.
-- 🧠 **Assistant généraliste** : Questions/réponses, rédaction, reformulation, brainstorming direct et efficace.
-- 🧾 **Résumé & extraction** : Documents, notes, articles, logs, et maintenant le contenu de tes images.
-- 💻 **Code** : Génération, explication, refactoring, aide au debug sans prise de tête.
-- 🔎 **RAG-ready** : Utilisable avec un pipeline de recherche documentaire pour fouiller tes docs.
-- 🌍 **Multilingue** : Français, anglais, espagnol, allemand, japonais, portugais, arabe, italien, coréen, chinois, etc.
-- 🔐 **Local-first** : 100% privé. Tout tourne chez toi via Ollama.
+- ⚡ **Légèreté & Rapidité** : Optimisé pour s'exécuter localement sans surcharge système majeure.
+- 📸 **Vision Multimodale** : Analyse et traitement d'images (captures d'écran, graphiques, documents numérisés).
+- 🧠 **Assistance générale** : Réponses aux questions, rédaction de contenus, reformulation et aide à la création.
+- 🧾 **Synthèse & Extraction** : Analyse approfondie de notes, d'articles, de journaux système (logs) et d'images.
+- 💻 **Développement** : Aide à la génération de code, explication de scripts, refactoring et assistance au débogage.
+- 🔎 **Intégration RAG** : Prêt pour les architectures de génération augmentée par récupération (RAG).
+- 🌍 **Support multilingue** : Français, anglais, espagnol, allemand, japonais, portugais, arabe, italien, coréen, chinois, etc.
+- 🔐 **Confidentialité** : Exécution 100 % locale pour une sécurité totale de vos données.
 
 ---
 
-## 📊 Benchmarks
+## 📊 Benchmarks de performance
 
-Un aperçu des perfs du modèle : 
+Aperçu des performances du modèle sur les tâches de référence : 
 
 ![Benchmarks mAI-1.2-Light](https://upload.fs.fr/0hN2V7LWC6.png)
 
 ---
 
-## 🚀 Installation rapide
+## 🚀 Guide d'installation rapide
 
 ### 1. Installer Ollama
 
-Télécharge et installe Ollama depuis le site officiel :
+Téléchargez et installez Ollama depuis la plateforme officielle :
+
+[https://ollama.com/download](https://ollama.com/download)
+
+### 2. Exécuter le modèle
+
+Une fois Ollama installé, lancez le modèle dans votre terminal avec la commande suivante :
 
 ```bash
-[https://ollama.com/download](https://ollama.com/download)
+ollama run mDevsLabs/mAI-1.2-Light
+```

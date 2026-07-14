@@ -516,21 +516,21 @@ export default function ApiPage() {
                 {
                   id: "mai-1.2-light",
                   object: "model",
-                  created: 1752537600,
+                  created: 1753228800,
                   owned_by: "mDevsLabs",
                   permission: [],
                   root: "mai-1.2-light",
                   parent: null,
                   meta: {
                     series: "mAI-1.2",
-                    context_window: 131072,
+                    context_window: 262144,
                     vision: true,
                   },
                 },
                 {
                   id: "mai-1.2-apex",
                   object: "model",
-                  created: 1752537600,
+                  created: 1753228800,
                   owned_by: "mDevsLabs",
                   permission: [],
                   root: "mai-1.2-apex",
@@ -544,7 +544,7 @@ export default function ApiPage() {
                 {
                   id: "mai-1.2-opal",
                   object: "model",
-                  created: 1752537600,
+                  created: 1753228800,
                   owned_by: "mDevsLabs",
                   permission: [],
                   root: "mai-1.2-opal",
@@ -654,7 +654,7 @@ export default function ApiPage() {
             resultJson = {
               id: "mai-1.2-light",
               object: "model",
-              created: 1752537600,
+              created: 1753228800,
               owned_by: "mDevsLabs",
               description:
                 "Assistant IA local ultra-rapide et multimodal 3B paramètres. Vision intégrée, légèreté maximale et productivité au quotidien.",
@@ -666,7 +666,7 @@ export default function ApiPage() {
                 function_calling: true,
                 json_mode: true,
               },
-              context_window: 131072,
+              context_window: 262144,
             };
             break;
 
@@ -674,7 +674,7 @@ export default function ApiPage() {
             resultJson = {
               id: "mai-1.2-apex",
               object: "model",
-              created: 1752537600,
+              created: 1753228800,
               owned_by: "mDevsLabs",
               description:
                 "Le top tier de la famille mAI. 9B paramètres, vision multimodale, raisonnement avancé et RAG lourd — zéro cloud.",
@@ -694,7 +694,7 @@ export default function ApiPage() {
             resultJson = {
               id: "mai-1.2-opal",
               object: "model",
-              created: 1752537600,
+              created: 1753228800,
               owned_by: "mDevsLabs",
               description:
                 "Le sweet spot parfait de la série mAI-1.2. 33B paramètres, multimodal, fluide et équilibré pour toutes vos tâches.",

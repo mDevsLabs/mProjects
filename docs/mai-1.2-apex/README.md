@@ -1,40 +1,55 @@
 ![mAI-1.2-Apex](https://upload.fs.fr/Aa6fP7VE4N.png)
 
-# mAI-1.2-Apex 🏔️👁️
+# mAI-1.2-Apex 🏔️
 
-**mAI-1.2-Apex** est ton assistant IA local haut de gamme, conçu pour des performances maximales avec **Ollama**. Il est **multimodal**, ce qui veut dire qu'il gère aussi bien tes textes que tes images avec une précision redoutable.
+**mAI-1.2-Apex** représente le modèle haut de gamme de la famille mAI. Conçu pour offrir des performances maximales via **Ollama**, ce modèle **multimodal** traite avec une grande précision les requêtes textuelles et les données visuelles complexes.
 
-> Objectif : t'offrir le top tier de l'IA à la maison. Capable de voir tes visuels, de coder, d'analyser et de booster ta productivité au max, tout en gardant 100% de tes données en local. Zéro cloud, vibes clean et puissance brute 🧠✨
+> **Objectif** : Proposer le plus haut niveau d'intelligence artificielle locale pour un usage privé. Capable de traiter des informations visuelles, d'écrire des programmes complexes, de mener des analyses approfondies et d'optimiser votre productivité, le tout de manière souveraine sans dépendance au cloud.
+
+---
+
+## ⚙️ Spécifications clés
+
+- **Taille** : 9 milliards de paramètres (9B).
+- **Contexte** : Fenêtre de contexte native de **256K tokens**.
+- **Vision** : Traitement avancé et compréhension de la vision multimodale.
 
 ---
 
 ## ✨ Fonctionnalités
 
-- 🏔️ **Performances Apex** : Conçu pour les tâches complexes, sans compromis sur la qualité des réponses.
-- 📸 **Vision + Texte** : Fais glisser tes images, screenshots ou schémas. Le modèle lit, analyse et extrait les infos de tes visuels instantanément.
-- 🧠 **Assistant généraliste** : Questions/réponses pointues, rédaction, reformulation, brainstorming avancé.
-- 🧾 **Résumé & extraction** : Analyse profonde de documents longs, notes, articles, logs et contenus visuels.
-- 💻 **Code** : Génération de scripts complexes, explication détaillée, refactoring et aide au debug poussée.
-- 🔎 **RAG-ready** : Parfaitement taillé pour s'intégrer à un pipeline de recherche documentaire lourd.
-- 🧰 **Tool/Function calling-ready** : Prêt à utiliser des outils externes selon ton intégration.
-- 🌍 **Multilingue** : Français, anglais, espagnol, allemand, japonais, portugais, arabe, italien, coréen, chinois, etc.
-- 🔐 **Local-first** : Tourne directement sur ta machine via Ollama. Ce qui se passe chez toi, reste chez toi.
+- 🏔️ **Performances Supérieures** : Adapté aux tâches logiques et analytiques les plus exigeantes.
+- 📸 **Vision Multimodale** : Analyse approfondie des images, des graphiques, des schémas techniques et des captures d'écran.
+- 🧠 **Assistance générale** : Réponses précises aux requêtes complexes, rédaction de rapports et brainstorming avancé.
+- 🧾 **Synthèse & Analyse de Documents** : Traitement et extraction de données clés à partir de documents longs et de fichiers de journaux système.
+- 💻 **Développement logiciel** : Génération de scripts complexes, explication détaillée du code, refactoring et aide au débogage.
+- 🔎 **Intégration RAG** : Spécifiquement calibré pour s'intégrer dans des architectures de recherche documentaire lourdes.
+- 🧰 **Appels d'outils (Tool Calling)** : Conçu pour s'interfacer avec des API ou des outils externes de façon fiable.
+- 🌍 **Support multilingue** : Français, anglais, espagnol, allemand, japonais, portugais, arabe, italien, coréen, chinois, etc.
+- 🔐 **Sécurité souveraine** : Vos données restent stockées et traitées localement sur votre infrastructure.
 
 ---
 
-## 📊 Benchmarks
+## 📊 Benchmarks de performance
 
-Voici un aperçu des performances de la version Apex :
+Aperçu des performances du modèle sur les tâches de référence :
 
 ![Benchmarks mAI-1.2-Apex](https://upload.fs.fr/BZvHvbDIlB.png)
 
 ---
 
-## 🚀 Installation rapide
+## 🚀 Guide d'installation rapide
 
 ### 1. Installer Ollama
 
-Télécharge et installe Ollama depuis le site officiel :
+Téléchargez et installez Ollama depuis la plateforme officielle :
+
+[https://ollama.com/download](https://ollama.com/download)
+
+### 2. Exécuter le modèle
+
+Une fois Ollama installé, lancez le modèle dans votre terminal avec la commande suivante :
 
 ```bash
-[https://ollama.com/download](https://ollama.com/download)
+ollama run mDevsLabs/mAI-1.2-Apex
+```
