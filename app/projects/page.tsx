@@ -189,9 +189,12 @@ export default function ProjectsPage() {
 
             <h2 className="text-3xl font-black mb-2 text-slate-900">Snob</h2>
 
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-row flex-wrap gap-2 mb-4">
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-slate-800 uppercase font-bold tracking-widest">
                 Web
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm text-slate-800 uppercase font-bold tracking-widest">
+                Android
               </span>
             </div>
 

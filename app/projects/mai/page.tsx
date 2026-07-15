@@ -128,7 +128,7 @@ export default function MaiProjectPage() {
           </p>
 
 
-          <div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto pb-1 max-w-full whitespace-nowrap scrollbar-none">
+          <div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto p-4 -m-4 max-w-full whitespace-nowrap scrollbar-none">
             <a
               href="https://mai-officiel.vercel.app"
               target="_blank"

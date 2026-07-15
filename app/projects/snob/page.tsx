@@ -86,7 +86,7 @@ export default function SnobProjectPage() {
             Snob est un jeu de puzzle de blocs alliant un design ultra-fluide et moderne à des mécaniques de jeu profondément revisitées. L&apos;interface élégante est magnifiée par des effets de particules magiques et des coloris sophistiqués.
           </p>
 
-          <div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto pb-1 max-w-full whitespace-nowrap scrollbar-none">
+          <div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto p-4 -m-4 max-w-full whitespace-nowrap scrollbar-none">
             <a
               href="https://snob-officiel.vercel.app"
               target="_blank"
