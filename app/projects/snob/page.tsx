@@ -9,6 +9,7 @@ import {
   Ticket,
   Palette,
   Crown,
+  Download,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -95,6 +96,13 @@ export default function SnobProjectPage() {
               Jouer à Snob
               <ExternalLink className="w-4 h-4" />
             </a>
+            <Link
+              href="/downloads"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-xs sm:text-sm hover:bg-white/60 transition-colors shrink-0"
+            >
+              Télécharger Snob
+              <Download className="w-4 h-4 text-slate-900" />
+            </Link>
           </div>
         </div>
       </motion.div>

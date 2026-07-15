@@ -210,6 +210,50 @@ export default function DownloadPage() {
           </div>
         </motion.section>
 
+        {/* Section Snob */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="group bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 hover:border-amber-500/30 transition-all duration-300 relative overflow-hidden"
+        >
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start md:items-center gap-5">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-3 shrink-0">
+                <Image
+                  src="/snob.png"
+                  alt="Snob logo"
+                  width={80}
+                  height={80}
+                  sizes="80px"
+                  className="w-full h-full object-contain drop-shadow-md rounded-xl"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">Snob</h2>
+                <p className="text-slate-600 text-sm mt-1 max-w-xl">
+                  Le Block Blast Tactique de Prestige. L&apos;expérience ultime revisitée.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+              <button
+                onClick={() =>
+                  handleDownloadAndRedirect(
+                    "https://upload.fs.fr/HQYJvG7IxV.zip",
+                    "guide-application-android"
+                  )
+                }
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm cursor-pointer"
+              >
+                <FaAndroid className="w-5 h-5 text-slate-900" />
+                Version Android (Mobile)
+              </button>
+            </div>
+          </div>
+        </motion.section>
+
         {/* Section 3 : mAI-1.2-Light */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
