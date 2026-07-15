@@ -21,9 +21,10 @@ import { toast } from "react-hot-toast";
 
 interface DocsClientProps {
   initialDocs: DocMetadata[];
+  titleSpan?: React.ReactNode;
 }
 
-export function DocsClient({ initialDocs }: DocsClientProps) {
+export function DocsClient({ initialDocs, titleSpan }: DocsClientProps) {
   const searchParams = useSearchParams();
   const docParam = searchParams.get("doc");
 
@@ -146,7 +147,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-[0.9] md:leading-[0.85] uppercase text-slate-900">
             Documentation <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500">
-              mProjects
+              {titleSpan || "mProjects"}
             </span>
           </h1>
           <p className="text-slate-500 text-base md:text-lg font-light mt-2 md:mt-4 max-w-2xl">
@@ -168,7 +169,7 @@ export function DocsClient({ initialDocs }: DocsClientProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Sidebar Latérale (Column 5 of 12) */}
         <aside
-          className={`lg:col-span-5 flex flex-col gap-4 bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-5 transition-all ${
+          className={`lg:col-span-5 flex flex-col gap-4 bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-5 transition-all lg:sticky lg:top-28 lg:max-h-[calc(100vh-8rem)] ${
             isMobileSidebarOpen ? "block" : "hidden lg:flex"
           }`}
         >

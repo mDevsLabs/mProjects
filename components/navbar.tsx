@@ -54,7 +54,14 @@ const navLinks: NavItem[] = [
     subitems: [
       { name: "Télécharger", href: "/downloads" },
       { name: "API", href: "/api" },
-      { name: "Documentation", href: "/docs" },
+      { 
+        name: "Documentation", 
+        href: "/docs",
+        subitems: [
+          { name: "Tout", href: "/docs" },
+          { name: "mAI", href: "/docs/mai" }
+        ]
+      },
     ],
   },
 ];
