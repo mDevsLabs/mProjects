@@ -1,8 +1,8 @@
 ---
 title: 目录架构
-description: 深入了解 LobeHub 的文件夹目录架构及其功能模块。
+description: 深入了解 mAI 的文件夹目录架构及其功能模块。
 tags:
-  - LobeHub
+  - mAI
   - 目录架构
   - Next.js
   - API路由
@@ -11,13 +11,13 @@ tags:
 
 # 目录架构
 
-LobeHub 采用 Monorepo 架构（`@lobechat/` 命名空间），
+mAI 采用 Monorepo 架构（`@lobechat/` 命名空间），
 顶层目录结构如下：
 
 ```bash
 lobehub/
 ├── apps/
-│   ├── cli/                   # LobeHub CLI
+│   ├── cli/                   # mAI CLI
 │   ├── desktop/                # Electron 桌面应用
 │   └── server/                 # 独立服务端（tRPC routers、services、modules）
 ├── packages/                  # 共享包（@lobechat/*）

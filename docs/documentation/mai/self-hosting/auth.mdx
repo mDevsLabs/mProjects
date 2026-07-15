@@ -1,5 +1,5 @@
 ---
-title: LobeHub Authentication Service Configuration
+title: mAI Authentication Service Configuration
 description: >-
   Learn how to configure external authentication services using Better Auth for
   centralized user authorization management. Supported authentication services
@@ -12,7 +12,7 @@ tags:
 
 # Authentication Service
 
-LobeHub supports the configuration of external authentication services using Better Auth for internal use within enterprises/organizations to centrally manage user authorization.
+mAI supports the configuration of external authentication services using Better Auth for internal use within enterprises/organizations to centrally manage user authorization.
 
 ## Better Auth
 
@@ -28,12 +28,12 @@ LobeHub supports the configuration of external authentication services using Bet
 
 ## Getting Started
 
-To enable Better Auth in LobeHub, set the following environment variables:
+To enable Better Auth in mAI, set the following environment variables:
 
 | Environment Variable   | Type       | Description                                                                                                                                                                                                                                                                                               |
 | ---------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `AUTH_SECRET`          | Required   | Key used to encrypt session tokens. Generate using: `openssl rand -base64 32`                                                                                                                                                                                                                             |
-| `APP_URL`              | Required   | Public base URL of this LobeHub instance (e.g. `https://lobe.example.com`). Better Auth uses it as `baseURL` for OAuth callbacks and trusted origins. On Vercel it can fall back to `VERCEL_*` URLs when unset; elsewhere omitting it defaults to `http://localhost:<PORT>` and breaks public-domain SSO. |
+| `APP_URL`              | Required   | Public base URL of this mAI instance (e.g. `https://lobe.example.com`). Better Auth uses it as `baseURL` for OAuth callbacks and trusted origins. On Vercel it can fall back to `VERCEL_*` URLs when unset; elsewhere omitting it defaults to `http://localhost:<PORT>` and breaks public-domain SSO. |
 | `NEXT_PUBLIC_AUTH_URL` | Deprecated | Removed NextAuth/browser auth URL. Setting this variable will cause the deployment to fail — use `APP_URL` instead.                                                                                                                                                                                       |
 | `AUTH_SSO_PROVIDERS`   | Optional   | Comma-separated list of enabled SSO providers, e.g., `google,github,microsoft`                                                                                                                                                                                                                            |
 
@@ -239,7 +239,7 @@ Set the `AUTH_ALLOWED_EMAILS` environment variable with a comma-separated list o
 
 ### Webhook Support
 
-Allow LobeHub to receive notifications when user information is updated in the identity provider. Supported providers include Casdoor and Logto. Please refer to the specific provider documentation for configuration details.
+Allow mAI to receive notifications when user information is updated in the identity provider. Supported providers include Casdoor and Logto. Please refer to the specific provider documentation for configuration details.
 
 ### Other SSO Providers
 

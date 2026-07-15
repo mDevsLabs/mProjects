@@ -1,21 +1,21 @@
 ---
 title: New Authentication Provider Guide
-description: Learn how to implement a new authentication provider using Better Auth in LobeHub.
+description: Learn how to implement a new authentication provider using Better Auth in mAI.
 tags:
   - Authentication
   - Better Auth
-  - LobeHub
+  - mAI
   - OAuth
   - OIDC
 ---
 
 # New Authentication Provider Guide
 
-LobeHub uses [Better Auth](https://www.better-auth.com/) as the external authentication service. Better Auth is an open-source authentication library that provides a simple way to implement authentication and authorization features. This document will introduce how to use Better Auth to implement a new authentication provider.
+mAI uses [Better Auth](https://www.better-auth.com/) as the external authentication service. Better Auth is an open-source authentication library that provides a simple way to implement authentication and authorization features. This document will introduce how to use Better Auth to implement a new authentication provider.
 
 ## Architecture Overview
 
-To add a new authentication provider in LobeHub (for example, adding GitLab), you need to follow the steps below:
+To add a new authentication provider in mAI (for example, adding GitLab), you need to follow the steps below:
 
 | Type      | Description                                 | Examples                         |
 | --------- | ------------------------------------------- | -------------------------------- |
@@ -183,4 +183,4 @@ AUTH_GITLAB_SECRET=your-client-secret
 AUTH_GITLAB_ISSUER=https://gitlab.example.com
 ```
 
-Now, you can use GitLab as your provider to implement the authentication feature in LobeHub.
+Now, you can use GitLab as your provider to implement the authentication feature in mAI.

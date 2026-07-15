@@ -2,7 +2,7 @@
 title: Legacy Authentication (NextAuth & Clerk)
 description: >-
   Historical reference for legacy authentication methods NextAuth and Clerk,
-  both of which have been removed from LobeHub. Use Better Auth instead.
+  both of which have been removed from mAI. Use Better Auth instead.
 tags:
   - Authentication Service
   - Next Auth
@@ -13,18 +13,18 @@ tags:
 # Legacy Authentication
 
 <Callout type={'warning'}>
-  **Legacy Notice**: NextAuth and Clerk have been fully removed from LobeHub. Setting removed NextAuth/Clerk variables (`NEXT_AUTH*` / `NEXTAUTH*`, Clerk keys, `AUTH_URL`, `NEXT_PUBLIC_AUTH_URL`, `ACCESS_CODE`, etc.) fails the deployment at build/startup. **`AUTH_SECRET` is not deprecated** — it is still required by [Better Auth](/docs/self-hosting/auth). This page is historical migration reference only.
+  **Legacy Notice**: NextAuth and Clerk have been fully removed from mAI. Setting removed NextAuth/Clerk variables (`NEXT_AUTH*` / `NEXTAUTH*`, Clerk keys, `AUTH_URL`, `NEXT_PUBLIC_AUTH_URL`, `ACCESS_CODE`, etc.) fails the deployment at build/startup. **`AUTH_SECRET` is not deprecated** — it is still required by [Better Auth](/docs/self-hosting/auth). This page is historical migration reference only.
 </Callout>
 
-This page documents the legacy authentication methods (NextAuth and Clerk), which have been removed from LobeHub, for historical migration reference only.
+This page documents the legacy authentication methods (NextAuth and Clerk), which have been removed from mAI, for historical migration reference only.
 
 ## Clerk
 
 Clerk is a comprehensive identity verification solution that provides a simple yet powerful API and services to handle user authentication and session management.
 
-LobeHub has deeply integrated with Clerk to provide users with a secure and convenient login and registration experience.
+mAI has deeply integrated with Clerk to provide users with a secure and convenient login and registration experience.
 
-By setting the environment variables `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` in LobeHub's environment, you can enable and use Clerk.
+By setting the environment variables `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` in mAI's environment, you can enable and use Clerk.
 
 <Callout type={'info'}>
   For detailed Clerk configuration, see [Clerk Configuration Guide](/docs/self-hosting/auth/clerk).
@@ -40,11 +40,11 @@ By setting the environment variables `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CL
   To migrate from NextAuth to Better Auth, see the [NextAuth Migration Guide](/docs/self-hosting/migration/v2/auth/nextauth-to-betterauth).
 </Callout>
 
-Before using NextAuth, please set the following variables in LobeHub's environment variables:
+Before using NextAuth, please set the following variables in mAI's environment variables:
 
 | Environment Variable             | Type                   | Description                                                                                                                                                                                                                    |
 | -------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `NEXT_PUBLIC_ENABLE_NEXT_AUTH`   | *(Deprecated)*         | Used to enable the NextAuth service. NextAuth has been removed from LobeHub — setting this variable will cause the deployment to fail at build/startup.                                                                        |
+| `NEXT_PUBLIC_ENABLE_NEXT_AUTH`   | *(Deprecated)*         | Used to enable the NextAuth service. NextAuth has been removed from mAI — setting this variable will cause the deployment to fail at build/startup.                                                                        |
 | `AUTH_SECRET`                    | Required (Better Auth) | Still required by Better Auth (not a removed NextAuth-only var). Session encryption secret — generate with `openssl rand -base64 32` or `https://generate-secret.vercel.app/32`. See [Better Auth](/docs/self-hosting/auth).   |
 | `AUTH_URL`                       | *(Deprecated)*         | Previously specified the callback address for Auth.js when performing OAuth verification. Setting this variable will now cause the deployment to fail at build/startup.                                                        |
 | `NEXT_AUTH_SSO_PROVIDERS`        | *(Deprecated)*         | Previously used to enable multiple identity verification sources simultaneously, separated by commas, e.g. `auth0,microsoft-entra-id,authentik`. Setting this variable will now cause the deployment to fail at build/startup. |
@@ -103,7 +103,7 @@ The order corresponds to the display order of the SSO providers.
 
 ### Webhook Support
 
-Allow LobeHub to receive notifications when user information is updated in the identity provider. Supported providers include Casdoor and Logto. Please refer to the specific provider documentation for configuration details.
+Allow mAI to receive notifications when user information is updated in the identity provider. Supported providers include Casdoor and Logto. Please refer to the specific provider documentation for configuration details.
 
 ### Database Session
 
