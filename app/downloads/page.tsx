@@ -210,7 +210,249 @@ export default function DownloadPage() {
           </div>
         </motion.section>
 
-        {/* Section 3 : mAI-1 */}
+        {/* Section Snob */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="group bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 hover:border-amber-500/30 transition-all duration-300 relative overflow-hidden"
+        >
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start md:items-center gap-5">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-3 shrink-0">
+                <Image
+                  src="/snob.png"
+                  alt="Snob logo"
+                  width={80}
+                  height={80}
+                  sizes="80px"
+                  className="w-full h-full object-contain drop-shadow-md rounded-xl"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">Snob</h2>
+                <p className="text-slate-600 text-sm mt-1 max-w-xl">
+                  Le Block Blast Tactique de Prestige. L&apos;expérience ultime revisitée.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+              <button
+                onClick={() =>
+                  handleDownloadAndRedirect(
+                    "https://upload.fs.fr/HQYJvG7IxV.zip",
+                    "guide-application-android"
+                  )
+                }
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-bold transition-all shadow-sm text-sm cursor-pointer"
+              >
+                <FaAndroid className="w-5 h-5 text-slate-900" />
+                Version Android (Mobile)
+              </button>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 3 : mAI-1.2-Light */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="group bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 hover:border-emerald-500/30 transition-all duration-300 relative overflow-hidden"
+        >
+          {/* Badge NEW */}
+          <div className="absolute top-4 right-4 flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500 text-white text-[10px] font-black uppercase tracking-widest shadow">
+            ✦ NEW
+          </div>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start md:items-center gap-5">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-1 shrink-0 overflow-hidden">
+                <Image
+                  src="/mai-1.2-light/mai-1.2-light.png"
+                  alt="mAI-1.2-Light logo"
+                  width={80}
+                  height={80}
+                  sizes="80px"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">mAI-1.2-Light</h2>
+                <p className="text-slate-600 text-sm mt-1 max-w-xl">
+                  Assistant IA local ultra-rapide et multimodal. Vision intégrée, légèreté maximale et productivité au quotidien.
+                </p>
+                <div className="mt-3 flex flex-col gap-2 max-w-md">
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Ollama</span>
+                    <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1.2-Light</code>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Hugging Face CLI</span>
+                    <code className="text-slate-100 font-semibold">hf download mDevsLabs/mAI-1.2-Light</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+              <button
+                onClick={() => handleCopy("ollama run mDevsLabs/mAI-1.2-Light", "mai-1.2-light-ollama", "mAI-1.2-Light Ollama")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm whitespace-nowrap"
+              >
+                {copiedKey === "mai-1.2-light-ollama" ? (
+                  <><Check className="w-4 h-4 text-emerald-400" />Copié !</>
+                ) : (
+                  <><Copy className="w-4 h-4" />Ollama</>
+                )}
+              </button>
+              <button
+                onClick={() => handleCopy("hf download mDevsLabs/mAI-1.2-Light", "mai-1.2-light-hf", "mAI-1.2-Light Hugging Face")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#FFD21E] text-slate-900 font-bold hover:bg-yellow-400 transition-all shadow-md text-sm whitespace-nowrap"
+              >
+                {copiedKey === "mai-1.2-light-hf" ? (
+                  <><Check className="w-4 h-4 text-emerald-700" />Copié !</>
+                ) : (
+                  <><Copy className="w-4 h-4" />Hugging Face</>
+                )}
+              </button>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 4 : mAI-1.2-Apex */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="group bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 hover:border-rose-500/30 transition-all duration-300 relative overflow-hidden"
+        >
+          {/* Badge NEW */}
+          <div className="absolute top-4 right-4 flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-500 text-white text-[10px] font-black uppercase tracking-widest shadow">
+            ✦ NEW
+          </div>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start md:items-center gap-5">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-1 shrink-0 overflow-hidden">
+                <Image
+                  src="/mai-1.2-apex/mai-1.2-apex.png"
+                  alt="mAI-1.2-Apex logo"
+                  width={80}
+                  height={80}
+                  sizes="80px"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">mAI-1.2-Apex</h2>
+                <p className="text-slate-600 text-sm mt-1 max-w-xl">
+                  Le top tier de la famille mAI. Performances maximales, vision multimodale et raisonnement avancé — zéro cloud.
+                </p>
+                <div className="mt-3 flex flex-col gap-2 max-w-md">
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Ollama</span>
+                    <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1.2-Apex</code>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Hugging Face CLI</span>
+                    <code className="text-slate-100 font-semibold">hf download mDevsLabs/mAI-1.2-Apex</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+              <button
+                onClick={() => handleCopy("ollama run mDevsLabs/mAI-1.2-Apex", "mai-1.2-apex-ollama", "mAI-1.2-Apex Ollama")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm whitespace-nowrap"
+              >
+                {copiedKey === "mai-1.2-apex-ollama" ? (
+                  <><Check className="w-4 h-4 text-emerald-400" />Copié !</>
+                ) : (
+                  <><Copy className="w-4 h-4" />Ollama</>
+                )}
+              </button>
+              <button
+                onClick={() => handleCopy("hf download mDevsLabs/mAI-1.2-Apex", "mai-1.2-apex-hf", "mAI-1.2-Apex Hugging Face")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#FFD21E] text-slate-900 font-bold hover:bg-yellow-400 transition-all shadow-md text-sm whitespace-nowrap"
+              >
+                {copiedKey === "mai-1.2-apex-hf" ? (
+                  <><Check className="w-4 h-4 text-emerald-700" />Copié !</>
+                ) : (
+                  <><Copy className="w-4 h-4" />Hugging Face</>
+                )}
+              </button>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 5 : mAI-1.2-Opal */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="group bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-3xl p-6 md:p-8 hover:border-violet-500/30 transition-all duration-300 relative overflow-hidden"
+        >
+          {/* Badge NEW */}
+          <div className="absolute top-4 right-4 flex items-center gap-1 px-2.5 py-1 rounded-full bg-violet-500 text-white text-[10px] font-black uppercase tracking-widest shadow">
+            ✦ NEW
+          </div>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start md:items-center gap-5">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/50 backdrop-blur-md border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] flex items-center justify-center p-1 shrink-0 overflow-hidden">
+                <Image
+                  src="/mai-1.2-opal/mai-1.2-opal.png"
+                  alt="mAI-1.2-Opal logo"
+                  width={80}
+                  height={80}
+                  sizes="80px"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">mAI-1.2-Opal</h2>
+                <p className="text-slate-600 text-sm mt-1 max-w-xl">
+                  Le sweet spot parfait entre rapidité et intelligence. Ultra-fluide, multimodal et 100% local via Ollama.
+                </p>
+                <div className="mt-3 flex flex-col gap-2 max-w-md">
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Ollama</span>
+                    <code className="text-slate-100 font-semibold">ollama run mDevsLabs/mAI-1.2-Opal</code>
+                  </div>
+                  <div className="p-3 rounded-xl bg-slate-950 text-slate-100 font-mono text-xs border border-slate-800 shadow-inner flex flex-col gap-1">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Hugging Face CLI</span>
+                    <code className="text-slate-100 font-semibold">hf download mDevsLabs/mAI-1.2-Opal</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+              <button
+                onClick={() => handleCopy("ollama run mDevsLabs/mAI-1.2-Opal", "mai-1.2-opal-ollama", "mAI-1.2-Opal Ollama")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all shadow-md text-sm whitespace-nowrap"
+              >
+                {copiedKey === "mai-1.2-opal-ollama" ? (
+                  <><Check className="w-4 h-4 text-emerald-400" />Copié !</>
+                ) : (
+                  <><Copy className="w-4 h-4" />Ollama</>
+                )}
+              </button>
+              <button
+                onClick={() => handleCopy("hf download mDevsLabs/mAI-1.2-Opal", "mai-1.2-opal-hf", "mAI-1.2-Opal Hugging Face")}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#FFD21E] text-slate-900 font-bold hover:bg-yellow-400 transition-all shadow-md text-sm whitespace-nowrap"
+              >
+                {copiedKey === "mai-1.2-opal-hf" ? (
+                  <><Check className="w-4 h-4 text-emerald-700" />Copié !</>
+                ) : (
+                  <><Copy className="w-4 h-4" />Hugging Face</>
+                )}
+              </button>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Section 6 : mAI-1 */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -41,6 +41,9 @@ const navLinks: NavItem[] = [
     href: "/models",
     subitems: [
       { name: "Tout", href: "/models" },
+      { name: "mAI-1.2-Light", href: "/models/mai-1.2-light" },
+      { name: "mAI-1.2-Apex", href: "/models/mai-1.2-apex" },
+      { name: "mAI-1.2-Opal", href: "/models/mai-1.2-opal" },
       { name: "mAI-1", href: "/models/mai-1" },
       { name: "mAI-1-Light", href: "/models/mai-1-light" },
     ],
@@ -49,19 +52,16 @@ const navLinks: NavItem[] = [
     name: "Plus",
     href: "#",
     subitems: [
-      {
-        name: "Notes de version",
-        href: "/changelog",
-        subitems: [
-          { name: "Tout", href: "/changelog" },
-          { name: "mAI", href: "/changelog/mai" },
-          { name: "mSearch", href: "/changelog/msearch" },
-          { name: "Snob", href: "/changelog/snob" },
-        ],
-      },
       { name: "Télécharger", href: "/downloads" },
       { name: "API", href: "/api" },
-      { name: "Documentation", href: "/docs" },
+      { 
+        name: "Documentation", 
+        href: "/docs",
+        subitems: [
+          { name: "Tout", href: "/docs" },
+          { name: "mAI", href: "/docs/mai" }
+        ]
+      },
     ],
   },
 ];

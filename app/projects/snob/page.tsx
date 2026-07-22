@@ -9,6 +9,7 @@ import {
   Ticket,
   Palette,
   Crown,
+  Download,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -85,7 +86,7 @@ export default function SnobProjectPage() {
             Snob est un jeu de puzzle de blocs alliant un design ultra-fluide et moderne à des mécaniques de jeu profondément revisitées. L&apos;interface élégante est magnifiée par des effets de particules magiques et des coloris sophistiqués.
           </p>
 
-          <div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto pb-1 max-w-full whitespace-nowrap scrollbar-none">
+          <div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto p-4 -m-4 max-w-full whitespace-nowrap scrollbar-none">
             <a
               href="https://snob-officiel.vercel.app"
               target="_blank"
@@ -95,6 +96,13 @@ export default function SnobProjectPage() {
               Jouer à Snob
               <ExternalLink className="w-4 h-4" />
             </a>
+            <Link
+              href="/downloads"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] text-slate-900 font-semibold text-xs sm:text-sm hover:bg-white/60 transition-colors shrink-0"
+            >
+              Télécharger Snob
+              <Download className="w-4 h-4 text-slate-900" />
+            </Link>
           </div>
         </div>
       </motion.div>

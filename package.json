@@ -1,6 +1,7 @@
 {
   "name": "@mdevs/mprojects",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
